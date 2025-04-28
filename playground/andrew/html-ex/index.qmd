@@ -1,0 +1,21 @@
+---
+title: "HTML Example"
+---
+
+# Header 1
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultrices ligula vitae ligula consectetur, eu sodales diam pulvinar. Nam volutpat volutpat nisi, sed convallis neque aliquam quis. 
+
+## Header 2
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultrices ligula vitae ligula consectetur, eu sodales diam pulvinar. Nam volutpat volutpat nisi, sed convallis neque aliquam quis. 
+
+### Header 3
+
+* Bullet 1
+* Bullet 2
+
+```{r}
+sum_fun <- function(x, y) { x + y }
+sum_fun(2, 3)
+```
