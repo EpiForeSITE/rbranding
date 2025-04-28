@@ -12,7 +12,6 @@ website:
 
 format:
   html:
-    theme: brand
     css: styles.css
     toc: true
 
