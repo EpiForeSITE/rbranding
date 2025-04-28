@@ -2,6 +2,8 @@
 title: "HTML Example"
 ---
 
+This website is an example of using `_brand.yml` within a Quarto project. I know it's ugly.
+
 # Header 1
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultrices ligula vitae ligula consectetur, eu sodales diam pulvinar. Nam volutpat volutpat nisi, sed convallis neque aliquam quis. 
