@@ -1,8 +1,8 @@
 ---
-title: "HTML Example"
+title: "HTML Example of `_brand.yml` in Quarto"
 ---
 
-This website is an example of using `_brand.yml` within a Quarto project. I know it's ugly.
+This website is an example of using `_brand.yml` within a Quarto project.
 
 # Header 1
 
