@@ -1,16 +1,18 @@
----
-format: gfm
-title: Using themes in ggplot2
----
+# Using themes in ggplot2
 
 
-```{r}
-#| label: setup
+``` r
 library(ggplot2)
 library(yaml)
 
 library(showtext) # For accessing fonts
+```
 
+    Loading required package: sysfonts
+
+    Loading required package: showtextdb
+
+``` r
 # A place to save things
 brandingr_envir <- new.env(parent = emptyenv())
 
@@ -90,9 +92,14 @@ brandingr_add_logo <- function(grob, x = 0.9, y = 0.1, size = 0.05) {
 
 Calling
 
-```{r}
+``` r
 brandingr_set_ggplot("_brand.yml")
+```
 
+    Warning in readLines(file, warn = readLines.warn): incomplete final line found
+    on '_brand.yml'
+
+``` r
 # Example plot
 data(mtcars)
 p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
@@ -104,8 +111,14 @@ p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
 
 # Producing
 p
+```
 
+![](README_files/figure-commonmark/unnamed-chunk-1-1.png)
+
+``` r
 # Reproducing
 brandingr_reset_ggplot()
 p
 ```
+
+![](README_files/figure-commonmark/unnamed-chunk-1-2.png)
