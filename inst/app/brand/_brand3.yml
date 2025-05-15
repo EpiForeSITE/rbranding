@@ -1,0 +1,58 @@
+meta:
+  name: brand.yml
+  link: https://posit-dev.github.io/brand-yml
+
+color:
+  palette:
+    # Core palette
+    aubergine: '#4A154B'
+    horchata: '#F4EDE4'
+    black: '#1D1C1D'
+    white: '#FFFFFF'
+    blue: '#36C5F0'
+    green: '#2EB67D'
+    yellow: '#ECB22E'
+    red: '#E01E5A'
+
+    # Secondary palette
+    cobalt: '#1E328F'
+    sky: '#0E9DD3'
+    teal: '#2392A2'
+    pool: '#78D7DD'
+    evergreen: '#185F34'
+    moss: '#729C1A'
+    sandbar: '#FFD57E'
+    peach: '#FED4BE'
+    salmon: '#F2606A'
+    bubblegum: '#FFB6BD'
+    crimson: '#921D21'
+    terracotta: '#DE8969'
+    berry: '#7C2852'
+    mauve: '#C05B8C'
+
+    # Bootstrap color aliases
+    purple: aubergine
+    pink: bubblegum
+    indigo: '#4F2B8C'
+    cyan: sky
+    orange: terracotta
+
+  # Theme colors
+  primary: aubergine
+  background: white
+  foreground: black
+  success: green
+  info: blue
+  warning: yellow
+  danger: red
+
+
+typography:
+  base:
+    family: Open Sans
+    line-height: 1.5
+    size: 2rem
+  headings:
+    family: Rubik
+    weight: 400
+  monospace: IBM Plex Mono
