@@ -1,6 +1,6 @@
 
 library(shiny)
-library(simpleshiny)
+
 
 
 

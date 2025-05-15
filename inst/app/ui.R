@@ -1,7 +1,9 @@
 library(bslib)
 
 ui <- bslib::page_sidebar(
-  theme = bs_theme(),
+  # theme = bs_theme(brand = "brand/_brand2.yml"),
+  # theme = bs_theme(brand = "brand/_ap_brand.yml"),
+  # theme = bs_theme(brand = "brand/_gvy_brand.yml"),
   title = "simple shiny",
 
   sidebar = bslib::sidebar(
