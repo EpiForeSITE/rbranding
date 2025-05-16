@@ -32,4 +32,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultrices ligula
 ```{r}
 sum_fun <- function(x, y) { x + y }
 sum_fun(2, 3)
+
+library(bslib)
+
+# Create a theme object
+theme <- bs_theme(brand = TRUE)
+
+# Extract the path of the discovered _brand.yml file
+brand_info <- attr(theme, "brand")
+brand_path <- brand_info$path
+
+brand_path
 ```

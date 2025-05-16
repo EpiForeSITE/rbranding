@@ -6,10 +6,17 @@ title: Using themes in ggplot2
 
 ```{r}
 #| label: setup
+options( warn = -1)
 library(ggplot2)
 library(yaml)
+library(sysfonts)
+library(showtextdb)
+library(showtext)
 
-library(showtext) # For accessing fonts
+library (bslib)
+# For accessing fonts
+
+
 
 # A place to save things
 brandingr_envir <- new.env(parent = emptyenv())
@@ -91,7 +98,16 @@ brandingr_add_logo <- function(grob, x = 0.9, y = 0.1, size = 0.05) {
 Calling
 
 ```{r}
-brandingr_set_ggplot("_brand.yml")
+theme <- bs_theme(brand = TRUE)
+
+# Extract the path of the discovered _brand.yml file
+brand_info <- attr(theme, "brand")
+brand_path <- brand_info$path
+print(brand_path)
+
+#brandingr_set_ggplot("bak_brand.yml")
+brandingr_set_ggplot(brand_path)
+
 
 # Example plot
 data(mtcars)
@@ -108,4 +124,16 @@ p
 # Reproducing
 brandingr_reset_ggplot()
 p
+```
+
+```{r}
+# Create a theme object
+theme <- bs_theme(brand = TRUE)
+
+# Extract the path of the discovered _brand.yml file
+brand_info <- attr(theme, "brand")
+brand_path <- brand_info$path
+
+print(brand_path)
+
 ```

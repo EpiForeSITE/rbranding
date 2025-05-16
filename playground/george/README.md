@@ -2,28 +2,28 @@
 
 
 ``` r
+options( warn = -1)
 library(ggplot2)
-```
-
-    Warning: package 'ggplot2' was built under R version 4.4.3
-
-``` r
 library(yaml)
+library(sysfonts)
+library(showtextdb)
+library(showtext)
 
-library(showtext) # For accessing fonts
+library (bslib)
 ```
 
-    Warning: package 'showtext' was built under R version 4.4.3
 
-    Loading required package: sysfonts
+    Attaching package: 'bslib'
 
-    Warning: package 'sysfonts' was built under R version 4.4.3
+    The following object is masked from 'package:utils':
 
-    Loading required package: showtextdb
-
-    Warning: package 'showtextdb' was built under R version 4.4.3
+        page
 
 ``` r
+# For accessing fonts
+
+
+
 # A place to save things
 brandingr_envir <- new.env(parent = emptyenv())
 
@@ -104,13 +104,21 @@ brandingr_add_logo <- function(grob, x = 0.9, y = 0.1, size = 0.05) {
 Calling
 
 ``` r
-brandingr_set_ggplot("_brand.yml")
+theme <- bs_theme(brand = TRUE)
+
+# Extract the path of the discovered _brand.yml file
+brand_info <- attr(theme, "brand")
+brand_path <- brand_info$path
+print(brand_path)
 ```
 
-    Warning in readLines(file, warn = readLines.warn): incomplete final line found
-    on '_brand.yml'
+    [1] "C:/Users/willy/rprojects/rbranding/_brand.yml"
 
 ``` r
+#brandingr_set_ggplot("bak_brand.yml")
+brandingr_set_ggplot(brand_path)
+
+
 # Example plot
 data(mtcars)
 p <- ggplot(mtcars, aes(x = mpg, y = wt)) +
@@ -133,3 +141,16 @@ p
 ```
 
 ![](README_files/figure-commonmark/unnamed-chunk-1-2.png)
+
+``` r
+# Create a theme object
+theme <- bs_theme(brand = TRUE)
+
+# Extract the path of the discovered _brand.yml file
+brand_info <- attr(theme, "brand")
+brand_path <- brand_info$path
+
+print(brand_path)
+```
+
+    [1] "C:/Users/willy/rprojects/rbranding/_brand.yml"
