@@ -105,7 +105,7 @@ brand_info <- attr(theme, "brand")
 brand_path <- brand_info$path
 print(brand_path)
 
-#brandingr_set_ggplot("bak_brand.yml")
+
 brandingr_set_ggplot(brand_path)
 
 

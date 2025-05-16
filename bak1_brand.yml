@@ -1,6 +1,6 @@
 # The full schema can be found at:
 # https://github.com/posit-dev/brand-yml/tree/5bb1c92334ef4f63e3eeb84f98749cca5f1fdc68/schema
-meta: 
+meta:
   name:
     full: Utah Department of Health and Human Services
     short: UDHHS
@@ -29,8 +29,8 @@ color:
   primary: purple
   secondary: teal
 
-typography: 
-  fonts: 
+typography:
+  fonts:
     - family: Source Sans Pro
       source: bunny
   base: Source Sans Pros

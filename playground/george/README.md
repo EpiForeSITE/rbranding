@@ -112,7 +112,7 @@ brand_path <- brand_info$path
 print(brand_path)
 ```
 
-    [1] "C:/Users/willy/rprojects/rbranding/_brand.yml"
+    [1] "C:\\Users\\willy\\rprojects\\rbranding\\playground\\george/_brand.yml"
 
 ``` r
 #brandingr_set_ggplot("bak_brand.yml")
@@ -153,4 +153,4 @@ brand_path <- brand_info$path
 print(brand_path)
 ```
 
-    [1] "C:/Users/willy/rprojects/rbranding/_brand.yml"
+    [1] "C:\\Users\\willy\\rprojects\\rbranding\\playground\\george/_brand.yml"

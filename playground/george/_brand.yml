@@ -24,21 +24,16 @@ color:
     teal: "#1c8478"
     purple: "#4e2d53"
     gray: "#474747"
-  foreground: black
+  foreground: gray
   background: white
-  primary: red
+  primary: purple
   secondary: teal
 
 typography:
   fonts:
-    - family: Delius
+    - family: Jura
       source: google
-    - family: IBM Plex Mono
-      source: google
-  base: IBM Plex Mono
-  headings:
-       family: Delius
-       weight: 400
+  base: Jura
+  headings: Jura
 
-
-
+#1c8478

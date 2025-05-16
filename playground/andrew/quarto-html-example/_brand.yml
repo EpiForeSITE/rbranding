@@ -7,7 +7,7 @@ color:
   foreground: black
   primary: foresite-red
 
-logo: 
+logo:
   large: foresite-logo.png
 
 typography:

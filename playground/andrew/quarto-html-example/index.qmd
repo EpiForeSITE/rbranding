@@ -33,10 +33,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultrices ligula
 sum_fun <- function(x, y) { x + y }
 sum_fun(2, 3)
 
-library(bslib)
+suppressWarnings(
+  suppressPackageStartupMessages(
+    library(bslib)
+    )
+)
 
 # Create a theme object
-theme <- bs_theme(brand = TRUE)
+theme <- bslib::bs_theme(brand = TRUE)
 
 # Extract the path of the discovered _brand.yml file
 brand_info <- attr(theme, "brand")
