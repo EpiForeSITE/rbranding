@@ -3,14 +3,25 @@
 
 ``` r
 library(ggplot2)
+```
+
+    Warning: package 'ggplot2' was built under R version 4.4.3
+
+``` r
 library(yaml)
 
 library(showtext) # For accessing fonts
 ```
 
+    Warning: package 'showtext' was built under R version 4.4.3
+
     Loading required package: sysfonts
 
+    Warning: package 'sysfonts' was built under R version 4.4.3
+
     Loading required package: showtextdb
+
+    Warning: package 'showtextdb' was built under R version 4.4.3
 
 ``` r
 # A place to save things
