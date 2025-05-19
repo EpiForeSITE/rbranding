@@ -112,10 +112,9 @@ brand_path <- brand_info$path
 print(brand_path)
 ```
 
-    [1] "C:\\Users\\willy\\rprojects\\rbranding\\playground\\george/_brand.yml"
+    [1] "C:/Users/willy/rprojects/rbranding/_brand.yml"
 
 ``` r
-#brandingr_set_ggplot("bak_brand.yml")
 brandingr_set_ggplot(brand_path)
 
 
@@ -141,16 +140,3 @@ p
 ```
 
 ![](README_files/figure-commonmark/unnamed-chunk-1-2.png)
-
-``` r
-# Create a theme object
-theme <- bs_theme(brand = TRUE)
-
-# Extract the path of the discovered _brand.yml file
-brand_info <- attr(theme, "brand")
-brand_path <- brand_info$path
-
-print(brand_path)
-```
-
-    [1] "C:\\Users\\willy\\rprojects\\rbranding\\playground\\george/_brand.yml"

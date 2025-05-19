@@ -104,8 +104,6 @@ theme <- bs_theme(brand = TRUE)
 brand_info <- attr(theme, "brand")
 brand_path <- brand_info$path
 print(brand_path)
-
-
 brandingr_set_ggplot(brand_path)
 
 
@@ -126,14 +124,3 @@ brandingr_reset_ggplot()
 p
 ```
 
-```{r}
-# Create a theme object
-theme <- bs_theme(brand = TRUE)
-
-# Extract the path of the discovered _brand.yml file
-brand_info <- attr(theme, "brand")
-brand_path <- brand_info$path
-
-print(brand_path)
-
-```

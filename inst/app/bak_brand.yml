@@ -16,7 +16,7 @@ color:
 
   foreground: white
   background: black
-  primary: blue
+  primary: red
   secondary: "#707073"
   tertiary: "#C2C2C4"
   success: green
