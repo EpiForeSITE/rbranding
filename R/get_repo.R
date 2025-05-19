@@ -1,66 +1,49 @@
 
-#' Retrieve all repos for an organization or user
-#'
-#' Given a username or organization, retrieve all the repos
-#'
-#' @param owner the name of the organization or user to retrieve a list of repos from. E.g. fhdsl
-#'
-#' @param git_pat A personal access token from GitHub. Only necessary if the
-#' repository being checked is a private repository.
-#' @param verbose TRUE/FALSE do you want more progress messages?
-#'
-#' @return A data frame that contains information about the issues from the given repository
-#' @importFrom gh gh
-#' @importFrom dplyr bind_rows
-#' @importFrom jsonlite
-#'
-#' @export
-#'
-#' @examples  \dontrun{
-#'
-#' # First, set up your GitHub credentials using `usethis::gitcreds_set()`.
-#' # Get a GitHub personal access token (PAT)
-#' usethis::create_github_token()
-#'
-#' # Give this token to `gitcreds_set()`
-#' gitcreds::gitcreds_set()
-#'
-#' # Now you can retrieve the repositories
-#' repos_df <- get_repos("fhdsl")
-#'
-#' # Alternatively, you can supply the GitHub PAT directly
-#' # to the function to avoid doing the steps above.
-#' repos_df <- get_repos("fhdsl", git_pat = "gh_somepersonalaccesstokenhere")
-#' }
-get_repo <- function(owner,
-                      repo = NULL,
-                      path = NULL,
-                      verbose = TRUE) {
-
-  # Try to get credentials
 
 
 
 
-    # Get the issues through API query with gh package
-      my_repo <- gh::gh("GET /repos/EpiForeSITE/branding-package/contents/")
+
+remote_file = "https://raw.githubusercontent.com/EpiForeSITE/branding-package/refs/heads/main/_brand.yml"
+local_file = "_brand.yml"
 
 
-    # Make it into a dataframe
-    repo_df <- suppressWarnings(as.data.frame(t(do.call(cbind, my_repo))))
-    # Add the owner and repo name
+tempfile_name = tempfile()
+# add exception handling if the download fails
+tryCatch(
+  {
+    download.file(
+      remote_file,
+      destfile = tempfile_name)
+  },
+  error = function(e) {
+    print(paste("Error downloading file:", e))
+  }
+)
+
+download.file(
+            remote_file,
+            destfile = tempfile_name)
+temp_hash = tools::md5sum(tempfile_name)
+local_hash = tools::md5sum(local_file)
 
 
+print(paste("local hash equals remote hash: ", (local_hash == temp_hash)))
+# prompt user to overwrite if the hashes are not equal.
+# add exception handling is the file is not found
 
-    return(repo_df)
+if (local_hash != temp_hash) {
+  print("The local file is different from the remote file.")
+  print("do you want to overwrite it? (y/n)")
+  answer <- readline()
+  if (answer == "y") {
+    file.copy(tempfile_name, "_brand.yml", overwrite = TRUE)
+    print("File overwritten.")
+  } else {
+    print("File not overwritten.")
+  }
+} else {
+  print("The local file is the same as the remote file. No action taken.")
 }
 
-
-repo_df = get_repo("EpiForeSITE", "branding-package")
-brand = repo_df[repo_df$name == '_brand.yml',]
-sha = as.character(brand$sha)
-sha
-local <- system2(command="git", args=c( "hash-object", "_brand.yml"), stdout = TRUE)
-local
-print(paste("local hash equals remote hash: ", (sha == toString(local))))
 
