@@ -1,11 +1,11 @@
 library(shiny)
 library(leaflet)
 library(DT)
-library(dplyr) # For data manipulation, though not strictly necessary for this simple example
+library(dplyr)
 
 server <- function(input, output, session) {
 
-  # 1. Dummy Data for Wastewater Sample Locations
+  # Dummy Data for Wastewater Sample Locations
   # In a real app, this would come from a database, CSV, API, etc.
   # Crucially, each location has a unique 'id'.
   dummy_locations <- reactive({
@@ -20,11 +20,11 @@ server <- function(input, output, session) {
     )
   })
 
-  # 2. Reactive Value to Store the ID of the Currently Selected Location
+  # Reactive Value to Store the ID of the Currently Selected Location
   # This will be updated by map clicks or table row selections.
   selected_location_id <- reactiveVal(NULL)
 
-  # 3. Render the Leaflet Map
+  # Render the Leaflet Map
   output$wastewaterMap <- renderLeaflet({
     locations <- dummy_locations()
     leaflet(data = locations) %>%
@@ -36,7 +36,7 @@ server <- function(input, output, session) {
       )
   })
 
-  # 4. Render the Data Table
+  # Render the Data Table
   output$wastewaterTable <- renderDT({
     locations <- dummy_locations()
     datatable(
@@ -50,7 +50,7 @@ server <- function(input, output, session) {
     )
   })
 
-  # 5. Observe Map Marker Clicks
+  # Observe Map Marker Clicks
   observeEvent(input$wastewaterMap_marker_click, {
     clicked_marker_id <- input$wastewaterMap_marker_click$id
     
@@ -62,7 +62,7 @@ server <- function(input, output, session) {
     }
   })
 
-  # 6. Observe Table Row Selections
+  # Observe Table Row Selections
   observeEvent(input$wastewaterTable_rows_selected, {
     selected_row_index <- input$wastewaterTable_rows_selected
     locations <- dummy_locations()
@@ -76,18 +76,10 @@ server <- function(input, output, session) {
       if (is.null(selected_location_id()) || selected_location_id() != id_from_table) {
         selected_location_id(id_from_table)
       }
-      # else if (selected_location_id() == id_from_table) {
-      #   selected_location_id(NULL) # Deselect
-      # }
-
-    } else { # If selection is cleared in the table (e.g., by clicking selected row again if DT allows)
-        if(!is.null(selected_location_id())){
-            # selected_location_id(NULL) # Uncomment if you want clearing table selection to clear map highlight
-        }
     }
   })
 
-  # 7. Update Map Based on `selected_location_id`
+  # Update Map Based on `selected_location_id`
   # This observer reacts when `selected_location_id()` changes.
   observe({
     current_id <- selected_location_id()
@@ -115,7 +107,7 @@ server <- function(input, output, session) {
     }
   })
 
-  # 8. Update Table Selection Based on `selected_location_id`
+  # Update Table Selection Based on `selected_location_id`
   # This observer reacts when `selected_location_id()` changes.
   observe({
     current_id <- selected_location_id()
