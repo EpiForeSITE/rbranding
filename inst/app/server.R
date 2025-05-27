@@ -110,7 +110,7 @@ server <- function(input, output, session) {
                         "Value:", selected_data$last_sample_value)
         )
 
-        map_proxy %>% flyTo(lng = selected_data$longitude, lat = selected_data$latitude, zoom = 13)
+        map_proxy %>% flyTo(lng = selected_data$longitude, lat = selected_data$latitude, zoom = 12)
       }
     }
   })
