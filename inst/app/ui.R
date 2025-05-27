@@ -1,45 +1,29 @@
+library(shiny)
 library(bslib)
-library(yaml)
+library(plotly)  # Using plotly for maps now
+library(DT)      # For interactive data tables
 
-# Create a theme object
-theme <- bslib::bs_theme(brand = TRUE)
+ui <- fluidPage(
+  theme = bs_theme(version = 5, bootswatch = "cerulean"),
+  titlePanel("Wastewater Dashboard: Plotly Map & Table Interaction"),
 
-# Extract the path of the discovered _brand.yml file
-brand_info <- attr(theme, "brand")
-brand_path <- brand_info$path
-
-
-# Read YAML file
-brand <- yaml.load_file(brand_path)
-dput(brand)
-brand_colors <- brand$color
-dput(brand_colors)
-
-ui <- bslib::page_sidebar(
-    theme = bs_theme(),
-
-  title = tags$h1("Simple Shiny"),
-
-  sidebar = bslib::sidebar(
-    theme = "brand_colors$primary",
-    tags$h2("Sidebar"),
-    numericInput(
-      "num1",
-      "Mean",
-      value = 50,
-      min = 1,
-      max = 100
+  layout_sidebar(
+    sidebar = sidebar(
+      title = "Controls & Info",
+      width = 300, # Adjust sidebar width as needed
+      p("This demo shows how clicking on the Plotly map can select a row in the table, and selecting a row in the table can highlight a location on the map."),
+      p("A shared 'Location ID' is used to link the views.")
     ),
-    card(
-      title = "Card",
-
-
-      style = paste("background-color:", brand_colors$primary),
-
-      tags$h3("Card Title"),
-      tags$p(brand_colors$primary))
-
-    ),
-
-  plotOutput("hist")
+    # Main content area
+    fluidRow(
+      column(width = 7, # Column for the map
+             h4("Sample Locations Map (Plotly)"),
+             plotlyOutput("wastewaterMapPlotly", height = "600px") # Plotly map output
+      ),
+      column(width = 5, # Column for the data table
+             h4("Sample Details Table"),
+             DTOutput("wastewaterTable") # DT table output remains the same
+      )
+    )
+  )
 )
