@@ -1,13 +1,16 @@
 library(shiny)
-library(plotly)
+library(leaflet)
 library(DT)
+library(dplyr) # For data manipulation, though not strictly necessary for this simple example
 
 server <- function(input, output, session) {
 
-  # 1. Dummy Data
+  # 1. Dummy Data for Wastewater Sample Locations
+  # In a real app, this would come from a database, CSV, API, etc.
+  # Crucially, each location has a unique 'id'.
   dummy_locations <- reactive({
     data.frame(
-      id = paste0("WS_Loc_", 1:5),
+      id = paste0("WS_Loc_", 1:5), # Unique Location ID
       name = paste("Treatment Plant", LETTERS[1:5]),
       latitude = c(40.93, 41.1, 40.79, 37.76, 40.71), # cities in Utah
       longitude = c(-111.88, -112.02, -111.74, -111.6, -111.9),
@@ -17,64 +20,20 @@ server <- function(input, output, session) {
     )
   })
 
-  # 2. Reactive Value for Selected ID
+  # 2. Reactive Value to Store the ID of the Currently Selected Location
+  # This will be updated by map clicks or table row selections.
   selected_location_id <- reactiveVal(NULL)
 
-  # 3. Render the Plotly Map
-  output$wastewaterMapPlotly <- renderPlotly({
+  # 3. Render the Leaflet Map
+  output$wastewaterMap <- renderLeaflet({
     locations <- dummy_locations()
-    current_id <- selected_location_id()
-
-    # Initialize colors and sizes with default values first
-    locations$color <- "blue" # Default color for all points
-    locations$size  <- 12     # Default size for all points
-
-    # If a specific location is selected, update its color and size
-    if (!is.null(current_id)) {
-      selected_idx <- which(locations$id == current_id)
-      if (length(selected_idx) > 0) { # Check if the selected ID exists in the locations
-        locations$color[selected_idx] <- "orange"
-        locations$size[selected_idx]  <- 20
-      }
-    }
-
-    # Set map center and zoom level based on selection
-    map_center <- list(lon = -98.5, lat = 39.8) # Default US center
-    map_zoom <- 3
-
-    if (!is.null(current_id)) {
-      # Use a different variable name here to avoid potential confusion if 'selected_loc' was used elsewhere.
-      selected_location_data <- locations[locations$id == current_id, ] 
-      if(nrow(selected_location_data) > 0) {
-        map_center <- list(lon = selected_location_data$longitude, lat = selected_location_data$latitude)
-        map_zoom <- 9 # Zoom in on selected
-      }
-    }
-
-    # Create the plot_mapbox
-    # Note: Requires an internet connection. 'open-street-map' style doesn't need a token.
-    # We use 'key = ~id' to pass the ID to click events.
-    # 'source = "map_plotly"' is used to identify events from this specific plot.
-    p <- plot_mapbox(data = locations, lat = ~latitude, lon = ~longitude,
-                     key = ~id, source = "map_plotly", # Set key and source
-                     mode = 'markers', type = 'scattermapbox',
-                     text = ~paste("ID:", id, "<br>Name:", name, "<br>Status:", status), # Added status to hover
-                     hoverinfo = 'text',
-                     marker = list(size = ~size, color = ~color, opacity = 0.9)
-                     ) %>%
-         layout(
-           title = 'Click a point to select',
-           mapbox = list(
-             style = 'open-street-map', # Using a free map style
-             center = map_center,
-             zoom = map_zoom
-           ),
-           showlegend = FALSE, # Hide legend if not needed
-           margin = list(l = 10, r = 10, t = 40, b = 10) # Adjust margins
-         )
-
-    # Register the click event. This ensures Shiny listens for clicks on this plot.
-    p %>% event_register("plotly_click")
+    leaflet(data = locations) %>%
+      addTiles() %>% # Adds default OpenStreetMap tiles
+      addMarkers(
+        lng = ~longitude,
+        lat = ~latitude,
+        layerId = ~id # IMPORTANT: Assigns the location 'id' to each marker for click events
+      )
   })
 
   # 4. Render the Data Table
@@ -82,27 +41,24 @@ server <- function(input, output, session) {
     locations <- dummy_locations()
     datatable(
       locations,
-      selection = 'single',
-      rownames = FALSE,
-      options = list(searching = FALSE, pageLength = 5)
+      selection = 'single', # Allow only single row selection
+      rownames = FALSE,     # Don't show row numbers from R
+      options = list(
+        searching = FALSE, # Disable global search box for this simple table
+        pageLength = 5     # Show 5 rows per page
+      )
     )
   })
 
-  # 5. Observe Plotly Map Clicks
-  observeEvent(event_data("plotly_click", source = "map_plotly"), {
-    # Get click event data
-    event <- event_data("plotly_click", source = "map_plotly")
+  # 5. Observe Map Marker Clicks
+  observeEvent(input$wastewaterMap_marker_click, {
+    clicked_marker_id <- input$wastewaterMap_marker_click$id
     
-    # Check if event data and 'key' (our ID) exist
-    if (!is.null(event) && "key" %in% names(event) && length(event$key) > 0) { # Ensure key is not empty
-      clicked_id <- event$key[1] # Extract the ID
-      
-      # Toggle selection logic
-      if (!is.null(selected_location_id()) && selected_location_id() == clicked_id) {
-        selected_location_id(NULL) # Deselect
-      } else {
-        selected_location_id(clicked_id) # Select
-      }
+    # If the clicked marker is already selected, deselect it (toggle)
+    if (!is.null(selected_location_id()) && selected_location_id() == clicked_marker_id) {
+      selected_location_id(NULL) # Deselect
+    } else {
+      selected_location_id(clicked_marker_id) # Select the new marker
     }
   })
 
@@ -111,23 +67,56 @@ server <- function(input, output, session) {
     selected_row_index <- input$wastewaterTable_rows_selected
     locations <- dummy_locations()
     
-    if (length(selected_row_index) > 0) {
+    if (length(selected_row_index) > 0) { # If a row is actually selected
+      # Get the ID of the location from the selected row
       id_from_table <- locations$id[selected_row_index]
-      # Only update if the selection is different to avoid potential loops
+      
+      # If the table selection matches the current selected ID, do nothing (or deselect if desired)
+      # If it's different, update the selected_location_id
       if (is.null(selected_location_id()) || selected_location_id() != id_from_table) {
-          selected_location_id(id_from_table)
+        selected_location_id(id_from_table)
       }
-    } 
-    # If you want to deselect from map when table selection is cleared (e.g. clicking selected row again):
-    # else {
-    #   if (!is.null(selected_location_id())) {
-    #      selected_location_id(NULL)
-    #   }
-    # }
+      # else if (selected_location_id() == id_from_table) {
+      #   selected_location_id(NULL) # Deselect
+      # }
+
+    } else { # If selection is cleared in the table (e.g., by clicking selected row again if DT allows)
+        if(!is.null(selected_location_id())){
+            # selected_location_id(NULL) # Uncomment if you want clearing table selection to clear map highlight
+        }
+    }
   })
 
-  # 7. Update Table Selection Based on `selected_location_id`
-  # This observer reacts when `selected_location_id()` changes (from map or table).
+  # 7. Update Map Based on `selected_location_id`
+  # This observer reacts when `selected_location_id()` changes.
+  observe({
+    current_id <- selected_location_id()
+    locations <- dummy_locations()
+    map_proxy <- leafletProxy("wastewaterMap", session) # Get a proxy to modify the map
+
+    map_proxy %>% clearPopups() # Clear any existing popups
+
+    if (!is.null(current_id)) {
+      selected_data <- locations[locations$id == current_id, ]
+      
+      if (nrow(selected_data) > 0) {
+        # Open a popup on the selected marker
+        map_proxy %>% addPopups(
+          lng = selected_data$longitude,
+          lat = selected_data$latitude,
+          popup = paste("<strong>",selected_data$name,"</strong>", "<br>",
+                        "ID:", selected_data$id, "<br>",
+                        "Status:", selected_data$status, "<br>",
+                        "Value:", selected_data$last_sample_value)
+        )
+
+        map_proxy %>% flyTo(lng = selected_data$longitude, lat = selected_data$latitude, zoom = 13)
+      }
+    }
+  })
+
+  # 8. Update Table Selection Based on `selected_location_id`
+  # This observer reacts when `selected_location_id()` changes.
   observe({
     current_id <- selected_location_id()
     locations <- dummy_locations()
@@ -135,18 +124,15 @@ server <- function(input, output, session) {
 
     if (!is.null(current_id)) {
       selected_row_index <- which(locations$id == current_id)
-      # Check if the desired row is different from the currently selected row in the table
-      if (length(selected_row_index) > 0 && 
-          (is.null(input$wastewaterTable_rows_selected) || 
-           length(input$wastewaterTable_rows_selected) == 0 || # Handle case where table selection is empty
-           selected_row_index != input$wastewaterTable_rows_selected[1])) { # Compare with the first selected row if multiple are somehow selected
+      if (length(selected_row_index) > 0) {
+        # Select the row in the table.
+        # Note: This might re-trigger input$wastewaterTable_rows_selected if not handled carefully.
+        # The conditional logic in observeEvent(input$wastewaterTable_rows_selected, ...) helps prevent infinite loops.
         selectRows(table_proxy, selected_row_index)
       }
     } else {
-      # If current_id is NULL, clear the table selection
-      if(!is.null(input$wastewaterTable_rows_selected) && length(input$wastewaterTable_rows_selected) > 0) {
-         selectRows(table_proxy, NULL)
-      }
+      selectRows(table_proxy, NULL) # Clear selection in the table
     }
   })
+
 }
