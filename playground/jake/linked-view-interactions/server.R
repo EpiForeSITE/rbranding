@@ -130,16 +130,90 @@ server <- function(input, output, session) {
     locations <- dummy_locations()
     table_proxy <- dataTableProxy("wastewaterTable", session)
 
+    # Page length defined in renderDT options.
+    page_length <- 5 
+
     if (!is.null(current_id)) {
-      selected_row_index <- which(locations$id == current_id)
+      selected_row_index <- which(locations$id == current_id) # This is the 1-based index in the full dataset
+
       if (length(selected_row_index) > 0) {
-        # Select the row in the table.
-        # Note: This might re-trigger input$wastewaterTable_rows_selected if not handled carefully.
-        # The conditional logic in observeEvent(input$wastewaterTable_rows_selected, ...) helps prevent infinite loops.
-        selectRows(table_proxy, selected_row_index)
+        # Calculate the target page (1-indexed)
+        target_page <- ceiling(selected_row_index / page_length)
+
+        # Get current displayed page (1-indexed) from table state
+        # input$wastewaterTable_state$start is 0-indexed start row for the current page
+        current_display_page <- 1 # Default if state is not yet available or table is on first page
+        if (!is.null(input$wastewaterTable_state$start) && !is.null(input$wastewaterTable_state$length) && input$wastewaterTable_state$length > 0) {
+            # Ensure input$wastewaterTable_state$length is the actual page length used by DT
+            current_page_length_from_state <- input$wastewaterTable_state$length
+            current_display_page <- (input$wastewaterTable_state$start / current_page_length_from_state) + 1
+        } else if (!is.null(input$wastewaterTable_state$start) && page_length > 0) {
+            # Fallback if state$length isn't available but start is, use configured page_length
+            current_display_page <- (input$wastewaterTable_state$start / page_length) + 1
+        }
+
+
+        # Change page if necessary
+        # Check if target_page is different from current_display_page
+        # Rounding current_display_page as it might be fractional if state updates are slightly off from page_length
+        if (round(current_display_page) != target_page) {
+          selectPage(table_proxy, target_page)
+        }
+
+        # Select the row if it's not already selected or if the selection is different
+        if (is.null(input$wastewaterTable_rows_selected) || 
+            length(input$wastewaterTable_rows_selected) == 0 ||
+            input$wastewaterTable_rows_selected[1] != selected_row_index) {
+          selectRows(table_proxy, selected_row_index)
+        }
+      }
+    } else { # current_id is NULL (deselection)
+      # If current_id is NULL, clear the table selection
+      if (!is.null(input$wastewaterTable_rows_selected) && length(input$wastewaterTable_rows_selected) > 0) {
+        selectRows(table_proxy, NULL)
+      }
+    }
+  })
+
+  output$selectedDataPanel <- renderUI({
+    current_id <- selected_location_id()
+    
+    if (!is.null(current_id)) {
+      locations <- dummy_locations() # Get the current data
+      selected_data <- locations[locations$id == current_id, ]
+      
+      if (nrow(selected_data) > 0) {
+        sample_value <- selected_data$last_sample_value
+        location_name <- selected_data$name
+        
+        # HTML structure for the light blue box
+        div(
+          style = "background-color: #e0f2f7; padding: 15px; margin-top: 20px; border-radius: 8px; border: 1px solid #b3cde0;",
+          tags$h5(style="margin-top:0; color: #005662;", paste("Details for:", location_name)), # Panel title
+          tags$hr(style="border-top: 1px solid #b3cde0;"),
+          tags$p(
+            tags$strong("Sampled Value: "), 
+            tags$span(style="font-weight:bold; color: #007bff;", sample_value)
+          ),
+          tags$p(
+            tags$strong("Status: "),
+            tags$span(selected_data$status)
+          )
+          # You can add more details here from selected_data
+        )
+      } else {
+        # This case should ideally not happen if IDs are managed correctly
+        div(
+          style = "background-color: #f8d7da; color: #721c24; padding: 15px; margin-top: 20px; border-radius: 5px;",
+          "Error: Could not find data for the selected ID."
+        )
       }
     } else {
-      selectRows(table_proxy, NULL) # Clear selection in the table
+      # If nothing is selected, show a placeholder message
+      div(
+        style = "background-color: #f0f0f0; padding: 15px; margin-top: 20px; border-radius: 5px; text-align: center; color: #6c757d;",
+        tags$em("Select a location on the map or table to see details here.")
+      )
     }
   })
 
