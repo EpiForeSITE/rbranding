@@ -26,7 +26,7 @@ get_brand <- function() {
 
 
   tempfile_name <- tempfile()
-  # add exception handling if the download fails
+  #' add exception handling if the download fails
   tryCatch(
     {
       message("Checking remote version... ")
@@ -73,4 +73,26 @@ get_brand <- function() {
   } else {
     message("The local file is the same as the remote file. No action taken.")
   }
+}
+
+
+#' @export
+#'
+brand_init <- function() {
+  #' This function initializes the branding by creating a config.yml file
+  #' with the remote and local file paths.
+  #'
+
+
+  config <- list(
+    remote_file = "https://raw.githubusercontent.com/EpiForeSITE/branding-package/main/_brand.yml",
+    local_file = "_brand.yml"
+  )
+
+  # make a yml file with these keys
+  yaml::write_yaml(config, "config.yml")
+
+  fileConn<-file("_brand.yml")
+  writeLines(c("this file needs to be updated with rbrand::get_brand()"), fileConn)
+  close(fileConn)
 }

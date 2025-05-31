@@ -1,3 +1,2 @@
-
-remote_file: https://raw.githubusercontent.com/EpiForeSITE/branding-package/refs/heads/main/_brand.yml
-local_file:  _brand.yml
+remote_file: https://raw.githubusercontent.com/EpiForeSITE/branding-package/main/_brand.yml
+local_file: _brand.yml
