@@ -2,7 +2,8 @@ library(shiny)
 library(leaflet)
 library(DT)
 library(dplyr)
-source("link_plots.R")
+library(here)
+source(here::here("link_plots.R"))
 
 # Suppress "no visible global function definition" note for linkLeafletDT
 utils::globalVariables("linkLeafletDT")
@@ -18,7 +19,7 @@ if (!exists("linkLeafletDT")) {
 }
 
 server <- function(input, output, session) {
-  # List of dummy wastewater sample locations in Utah
+  # List of dummy wastewaterTable_rows_selectedwastewater sample locations in Utah
   UT_city_locations <- list(
     c(40.93, -111.88), # Salt Lake City area
     c(41.1, -112.02), # Ogden area
@@ -152,14 +153,19 @@ server <- function(input, output, session) {
     if (!is.null(current_id)) {
       locations <- dummy_locations()
       selected_data <- locations[locations$id == current_id, ]
-
+      
       if (nrow(selected_data) > 0) {
         sample_value <- selected_data$last_sample_value
         location_name <- selected_data$name
-
+        
         div(
           style = "background-color: #e0f2f7; padding: 15px; margin-top: 20px; border-radius: 8px; border: 1px solid #b3cde0;",
           tags$h5(style = "margin-top:0; color: #005662;", paste("Details for:", location_name)),
+          # ADD THIS PART TO DISPLAY THE ID:
+          tags$p(
+            tags$strong("ID: "), 
+            tags$span(current_id) 
+          ),
           tags$hr(style = "border-top: 1px solid #b3cde0;"),
           tags$p(
             tags$strong("Sampled Value: "),
@@ -171,10 +177,10 @@ server <- function(input, output, session) {
           )
         )
       } else {
-        div(
-          style = "background-color: #f8d7da; color: #721c24; padding: 15px; margin-top: 20px; border-radius: 5px;",
-          "Error: Could not find data for the selected ID."
-        )
+          div(
+            style = "background-color: #f0f0f0; padding: 15px; margin-top: 20px; border-radius: 5px; text-align: center; color: #6c757d;",
+            tags$em("ERROR")
+          )
       }
     } else {
       div(
