@@ -2,31 +2,41 @@ library(shiny)
 library(leaflet)
 library(DT)
 library(dplyr)
+source("link_plots.R")
+
+# Suppress "no visible global function definition" note for linkLeafletDT
+utils::globalVariables("linkLeafletDT")
+
+
+if (!exists("linkLeafletDT")) {
+  warning("linkLeafletDT function not found. Please source it from your utils file (e.g., shiny_link_utils.R). Using a placeholder for now.")
+  linkLeafletDT <- function(...) {
+    stop("linkLeafletDT function is not defined. Please ensure it is sourced correctly.")
+  }
+} else {
+  print("linkLeafletDT is here!")
+}
 
 server <- function(input, output, session) {
-
-  # list of dummy wastewater sample locations in Utah, where each entry is a vector of latitude and longitude
+  # List of dummy wastewater sample locations in Utah
   UT_city_locations <- list(
-    c(40.93, -111.88), # Salt Lake City
-    c(41.1, -112.02),  # Ogden
-    c(40.79, -111.74), # Provo
-    c(37.76, -111.6),  # St. George
-    c(40.71, -111.9),  # Logan
-    c(40.76, -111.88), # Park City
-    c(40.78, -111.89), # Sandy
-    c(40.67, -111.89), # Orem
-    c(40.76, -111.89), # Draper
-    c(40.76, -111.89)  # Lehi
+    c(40.93, -111.88), # Salt Lake City area
+    c(41.1, -112.02), # Ogden area
+    c(40.79, -111.74), # Millcreek/Holladay area
+    c(37.76, -111.6), # Remote area (original St. George comment likely misplaced)
+    c(40.71, -111.9), # West Valley City/Taylorsville area
+    c(40.76, -111.88), # Park City area (coords are more SLC downtown)
+    c(40.78, -111.89), # Sandy area (coords are more SLC downtown/Avenues)
+    c(40.67, -111.89), # Orem area (coords are Murray/Midvale)
+    c(40.76, -111.89), # Draper area (coords are SLC downtown)
+    c(40.76, -111.89) # Lehi area (coords are SLC downtown)
   )
-
-  num_rows <- length(UT_city_locations) # Number of dummy wastewater sample locations
+  num_rows <- length(UT_city_locations)
 
   # Dummy Data for Wastewater Sample Locations
-  # In a real app, this would come from a database, CSV, API, etc.
-  # Crucially, each location has a unique 'id'.
   dummy_locations <- reactive({
     data.frame(
-      id = paste0("WS_Loc_", 1:num_rows), # Unique Location ID
+      id = paste0("WS_Loc_", 1:num_rows),
       name = paste("Treatment Plant", LETTERS[1:num_rows]),
       latitude = sapply(UT_city_locations, function(x) x[1]),
       longitude = sapply(UT_city_locations, function(x) x[2]),
@@ -36,19 +46,15 @@ server <- function(input, output, session) {
     )
   })
 
-  # Reactive Value to Store the ID of the Currently Selected Location
-  # This will be updated by map clicks or table row selections.
-  selected_location_id <- reactiveVal(NULL)
-
   # Render the Leaflet Map
   output$wastewaterMap <- renderLeaflet({
     locations <- dummy_locations()
     leaflet(data = locations) %>%
-      addTiles() %>% # Adds default OpenStreetMap tiles
+      addTiles() %>%
       addMarkers(
         lng = ~longitude,
         lat = ~latitude,
-        layerId = ~id # IMPORTANT: Assigns the location 'id' to each marker for click events
+        layerId = ~id # IMPORTANT: For click events and linking
       )
   })
 
@@ -57,164 +63,124 @@ server <- function(input, output, session) {
     locations <- dummy_locations()
     datatable(
       locations,
-      selection = 'single', # Allow only single row selection
-      rownames = FALSE,     # Don't show row numbers from R
+      selection = "single",
+      rownames = FALSE,
       options = list(
-        searching = FALSE, # Disable global search box for this simple table
-        pageLength = 5     # Show 5 rows per page
+        searching = FALSE,
+        pageLength = 5
       )
     )
   })
 
-  # Observe Map Marker Clicks
-  observeEvent(input$wastewaterMap_marker_click, {
-    clicked_marker_id <- input$wastewaterMap_marker_click$id
-    
-    # If the clicked marker is already selected, deselect it (toggle)
-    if (!is.null(selected_location_id()) && selected_location_id() == clicked_marker_id) {
-      selected_location_id(NULL) # Deselect
+  # --- Link Leaflet and DT using the helper function ---
+  # This replaces several manual observers.
+  # Assumes linkLeafletDT is defined (e.g., sourced from shiny_link_utils.R)
+  if (exists("linkLeafletDT")) {
+    linkLeafletDT(
+      input = input,
+      session = session,
+      leaflet_output_id = "wastewaterMap",
+      dt_output_id = "wastewaterTable",
+      shared_id_column = "id",
+      leaflet_data_reactive = dummy_locations, # Data for map markers
+      dt_data_reactive = dummy_locations, # Data for DT table
+      map_lng_col = "longitude", # Name of longitude col in leaflet_data_reactive
+      map_lat_col = "latitude" # Name of latitude col in leaflet_data_reactive
+      # highlight_zoom and highlight_icon can use defaults or be customized here
+    )
+  } else {
+    warning("linkLeafletDT function not defined. Linking will not work.")
+  }
+
+  # --- Reactive to get the currently selected location ID ---
+  # This ID is derived from the DT table's selection state, which linkLeafletDT keeps in sync.
+  reactive_selected_id <- reactive({
+    selected_row_indices <- input$wastewaterTable_rows_selected
+
+    if (is.null(selected_row_indices) || length(selected_row_indices) == 0) {
+      return(NULL) # No row selected
+    }
+
+    # Assuming single selection, take the first selected index
+    selected_row_index <- selected_row_indices[1]
+    current_dt_data <- dummy_locations()
+
+    # Basic validation for the index
+    if (selected_row_index > 0 && selected_row_index <= nrow(current_dt_data)) {
+      return(current_dt_data$id[selected_row_index])
     } else {
-      selected_location_id(clicked_marker_id) # Select the new marker
+      # This case should ideally not happen if DT and data are in sync
+      warning(paste("Selected row index", selected_row_index, "is out of bounds for DT data."))
+      return(NULL)
     }
   })
 
-  # Observe Table Row Selections
-  observeEvent(input$wastewaterTable_rows_selected, {
-    selected_row_index <- input$wastewaterTable_rows_selected
-    locations <- dummy_locations()
-    
-    if (length(selected_row_index) > 0) { # If a row is actually selected
-      # Get the ID of the location from the selected row
-      id_from_table <- locations$id[selected_row_index]
-      
-      # If the table selection matches the current selected ID, do nothing (or deselect if desired)
-      # If it's different, update the selected_location_id
-      if (is.null(selected_location_id()) || selected_location_id() != id_from_table) {
-        selected_location_id(id_from_table)
-      }
-    }
-  })
-
-  # Update Map Based on `selected_location_id`
-  # This observer reacts when `selected_location_id()` changes.
+  # --- Observer to manage custom popups on the map ---
+  # This adds/clears your detailed popups based on the selection.
+  # linkLeafletDT handles its own highlight marker and simple popup.
   observe({
-    current_id <- selected_location_id()
+    current_id <- reactive_selected_id() # Get the ID from our reactive
     locations <- dummy_locations()
-    map_proxy <- leafletProxy("wastewaterMap", session) # Get a proxy to modify the map
+    map_proxy <- leafletProxy("wastewaterMap", session)
 
-    map_proxy %>% clearPopups() # Clear any existing popups
+    map_proxy %>% clearPopups() # Clear any previously added custom popups
 
     if (!is.null(current_id)) {
       selected_data <- locations[locations$id == current_id, ]
-      
+
       if (nrow(selected_data) > 0) {
-        # Open a popup on the selected marker
+        # Add the detailed popup
         map_proxy %>% addPopups(
           lng = selected_data$longitude,
           lat = selected_data$latitude,
-          popup = paste("<strong>",selected_data$name,"</strong>", "<br>",
-                        "ID:", selected_data$id, "<br>",
-                        "Status:", selected_data$status, "<br>",
-                        "Value:", selected_data$last_sample_value)
+          popup = paste(
+            "<strong>", selected_data$name, "</strong>", "<br>",
+            "ID:", selected_data$id, "<br>",
+            "Status:", selected_data$status, "<br>",
+            "Value:", selected_data$last_sample_value
+          ),
+          layerId = paste0("detailed_popup_", selected_data$id) # Unique ID for this popup layer
         )
-
-        map_proxy %>% flyTo(lng = selected_data$longitude, lat = selected_data$latitude, zoom = 12)
       }
     }
   })
 
-  # Update Table Selection Based on `selected_location_id`
-  # This observer reacts when `selected_location_id()` changes.
-  observe({
-    current_id <- selected_location_id()
-    locations <- dummy_locations()
-    table_proxy <- dataTableProxy("wastewaterTable", session)
-
-    # Page length defined in renderDT options.
-    page_length <- 5 
-
-    if (!is.null(current_id)) {
-      selected_row_index <- which(locations$id == current_id) # This is the 1-based index in the full dataset
-
-      if (length(selected_row_index) > 0) {
-        # Calculate the target page (1-indexed)
-        target_page <- ceiling(selected_row_index / page_length)
-
-        # Get current displayed page (1-indexed) from table state
-        # input$wastewaterTable_state$start is 0-indexed start row for the current page
-        current_display_page <- 1 # Default if state is not yet available or table is on first page
-        if (!is.null(input$wastewaterTable_state$start) && !is.null(input$wastewaterTable_state$length) && input$wastewaterTable_state$length > 0) {
-            # Ensure input$wastewaterTable_state$length is the actual page length used by DT
-            current_page_length_from_state <- input$wastewaterTable_state$length
-            current_display_page <- (input$wastewaterTable_state$start / current_page_length_from_state) + 1
-        } else if (!is.null(input$wastewaterTable_state$start) && page_length > 0) {
-            # Fallback if state$length isn't available but start is, use configured page_length
-            current_display_page <- (input$wastewaterTable_state$start / page_length) + 1
-        }
-
-
-        # Change page if necessary
-        # Check if target_page is different from current_display_page
-        # Rounding current_display_page as it might be fractional if state updates are slightly off from page_length
-        if (round(current_display_page) != target_page) {
-          selectPage(table_proxy, target_page)
-        }
-
-        # Select the row if it's not already selected or if the selection is different
-        if (is.null(input$wastewaterTable_rows_selected) || 
-            length(input$wastewaterTable_rows_selected) == 0 ||
-            input$wastewaterTable_rows_selected[1] != selected_row_index) {
-          selectRows(table_proxy, selected_row_index)
-        }
-      }
-    } else { # current_id is NULL (deselection)
-      # If current_id is NULL, clear the table selection
-      if (!is.null(input$wastewaterTable_rows_selected) && length(input$wastewaterTable_rows_selected) > 0) {
-        selectRows(table_proxy, NULL)
-      }
-    }
-  })
-
+  # --- Render the panel showing details of the selected location ---
   output$selectedDataPanel <- renderUI({
-    current_id <- selected_location_id()
-    
+    current_id <- reactive_selected_id() # Get the ID from our reactive
+
     if (!is.null(current_id)) {
-      locations <- dummy_locations() # Get the current data
+      locations <- dummy_locations()
       selected_data <- locations[locations$id == current_id, ]
-      
+
       if (nrow(selected_data) > 0) {
         sample_value <- selected_data$last_sample_value
         location_name <- selected_data$name
-        
-        # HTML structure for the light blue box
+
         div(
           style = "background-color: #e0f2f7; padding: 15px; margin-top: 20px; border-radius: 8px; border: 1px solid #b3cde0;",
-          tags$h5(style="margin-top:0; color: #005662;", paste("Details for:", location_name)), # Panel title
-          tags$hr(style="border-top: 1px solid #b3cde0;"),
+          tags$h5(style = "margin-top:0; color: #005662;", paste("Details for:", location_name)),
+          tags$hr(style = "border-top: 1px solid #b3cde0;"),
           tags$p(
-            tags$strong("Sampled Value: "), 
-            tags$span(style="font-weight:bold; color: #007bff;", sample_value)
+            tags$strong("Sampled Value: "),
+            tags$span(style = "font-weight:bold; color: #007bff;", sample_value)
           ),
           tags$p(
             tags$strong("Status: "),
             tags$span(selected_data$status)
           )
-          # You can add more details here from selected_data
         )
       } else {
-        # This case should ideally not happen if IDs are managed correctly
         div(
           style = "background-color: #f8d7da; color: #721c24; padding: 15px; margin-top: 20px; border-radius: 5px;",
           "Error: Could not find data for the selected ID."
         )
       }
     } else {
-      # If nothing is selected, show a placeholder message
       div(
         style = "background-color: #f0f0f0; padding: 15px; margin-top: 20px; border-radius: 5px; text-align: center; color: #6c757d;",
         tags$em("Select a location on the map or table to see details here.")
       )
     }
   })
-
 }
