@@ -37,28 +37,7 @@ get_brand()
 3. **Use in your Shiny app:**
    - Load the branding YAML and apply the theme in your UI/server code.
 
-## Example
 
-```r
-library(shiny)
-library(bslib)
-library(rbranding)
-
-# Initialize or update branding (run these in the R console)
-brand_init()
-get_brand()
-
-ui <- fluidPage(
-  theme = bs_theme(),
-  # ... your UI ...
-)
-
-server <- function(input, output, session) {
-  # ... your server logic ...
-}
-
-shinyApp(ui, server)
-```
 
 ## Documentation
 - Function documentation is available via `?get_brand` and `?brand_init` after loading the package.
