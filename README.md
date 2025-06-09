@@ -2,6 +2,10 @@
 
 Facilitate the creation of Shiny apps for CFA projects that conform to STLTs’ branding and design standards, and automatically provide as much accessibility to ForeSITE Shiny apps as possible.
 
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/EpiForeSITE/branding-package/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EpiForeSITE/branding-package/actions/workflows/R-CMD-check.yaml)
+  <!-- badges: end -->
+
 ## Overview
 
 The `branding-package` helps R developers quickly build Shiny applications that are visually consistent, accessible, and easy to maintain. It provides tools to manage branding assets, apply organization-wide themes, and streamline the setup of new projects.

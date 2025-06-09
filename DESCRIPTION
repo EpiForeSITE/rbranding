@@ -26,3 +26,6 @@ Imports:
     thematic,
     ragg,
     ggplot2
+
+Suggests:
+    pkgdown
