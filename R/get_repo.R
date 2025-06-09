@@ -1,5 +1,12 @@
-#' get the latest branding file from the repository
-
+#' @title Get the Latest Branding File
+#' @description Downloads the latest _brand.yml file from the repository and compares it with the local _brand.yml file. If they are different, prompts the user to overwrite the local file. If the local file does not exist, it will be created.
+#' @details Reads configuration from config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ.
+#' @return No return value. Side effects: may overwrite _brand.yml and create bak_brand.yml.
+#' @examples
+#' # Initialize config and local brand file
+#' brand_init()
+#' # Update local brand file if needed
+#' get_brand()
 #' @export
 get_brand <- function() {
   # This function downloads the latest _brand.yml file from the repository
@@ -26,7 +33,7 @@ get_brand <- function() {
 
 
   tempfile_name <- tempfile()
-  #' add exception handling if the download fails
+  # add exception handling if the download fails
   tryCatch(
     {
       message("Checking remote version... ")
@@ -76,13 +83,14 @@ get_brand <- function() {
 }
 
 
+#' @title Initialize Branding Config
+#' @description Initializes the branding by creating a config.yml file with the remote and local file paths, and a placeholder _brand.yml file.
+#' @details This function is intended to be run once to set up the configuration for branding file management.
+#' @return No return value. Side effects: creates config.yml and _brand.yml.
+#' @examples
+#' brand_init()
 #' @export
-#'
 brand_init <- function() {
-  #' This function initializes the branding by creating a config.yml file
-  #' with the remote and local file paths.
-  #'
-
 
   config <- list(
     remote_file = "https://raw.githubusercontent.com/EpiForeSITE/branding-package/main/_brand.yml",

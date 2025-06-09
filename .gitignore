@@ -9,3 +9,4 @@ rbranding.Rproj
 /.quarto/
 .DS_Storebak_brand.yml
 bak_brand.yml
+*.Rcheck/**

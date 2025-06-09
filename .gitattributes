@@ -1,0 +1,7 @@
+# Use CRLF for DESCRIPTION (Windows default)
+DESCRIPTION text eol=crlf
+
+# Use LF for code and docs (recommended for R projects)
+*.R text eol=lf
+*.md text eol=lf
+*.Rd text eol=lf
