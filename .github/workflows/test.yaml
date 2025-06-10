@@ -1,0 +1,42 @@
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: Tests
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+          
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
+          
+      - name: Install R dependencies
+        run: |
+          install.packages(c("remotes", "tinytest"))
+          remotes::install_deps(dependencies = TRUE)
+        shell: Rscript {0}
+        
+      - name: Install package
+        run: R CMD INSTALL .
+        
+      - name: Run tests
+        run: |
+          library(tinytest)
+          test_results <- run_test_dir("tests/tinytest")
+          print(test_results)
+          if (any(test_results$exit_code != 0)) {
+            quit(status = 1)
+          }
+        shell: Rscript {0}

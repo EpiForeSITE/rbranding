@@ -18,13 +18,17 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
-Imports: 
-    yaml,
-    tools,
+Imports:
     shiny,
     bslib,
+    ggplot2,
+    palmerpenguins,
     thematic,
     ragg,
-    ggplot2
+    leaflet,
+    DT,
+    htmltools
 Suggests:
+    tinytest,
+    here,
     pkgdown
