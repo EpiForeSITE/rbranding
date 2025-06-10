@@ -20,11 +20,6 @@ RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Imports:
     shiny,
-    bslib,
-    ggplot2,
-    palmerpenguins,
-    thematic,
-    ragg,
     leaflet,
     DT,
     htmltools
