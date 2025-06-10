@@ -26,4 +26,5 @@ Imports:
 Suggests:
     tinytest,
     here,
-    pkgdown
+    pkgdown,
+    yaml
