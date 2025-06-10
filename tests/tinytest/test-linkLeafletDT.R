@@ -2,7 +2,7 @@ library(tinytest)
 
 # Source the function to test and the helper
 source(here::here("R", "link_plots.R"))
-source(here::here("tests", "tinytest", "helper-test-server.R"))
+source(here::here("tests", "tinytest", "utils", "helper.R"))
 
 # Test the linkLeafletDT function using the shared helper
 shiny::testServer(
