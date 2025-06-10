@@ -8,17 +8,17 @@ source(here::here("tests", "tinytest", "utils", "helper.R"))
 shiny::testServer(
   create_test_server(),
   expr = {
-    # Run standard test patterns
+    # Run standard test patterns - pass session, input, output to each test
     map_tests <- test_map_to_table_selection()
     table_tests <- test_table_to_map_selection()
     invalid_tests <- test_invalid_inputs()
 
-    # Execute all tests
-    map_tests$test1()
-    map_tests$test2()
-    table_tests$test1()
-    table_tests$test2()
-    invalid_tests$test1()
+    # Execute all tests with proper context
+    map_tests$test1(session, input, output)
+    map_tests$test2(session, input, output)
+    table_tests$test1(session, input, output)
+    table_tests$test2(session, input, output)
+    invalid_tests$test1(session, input, output)
   }
 )
 
