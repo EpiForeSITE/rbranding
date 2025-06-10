@@ -1,17 +1,5 @@
 # Helper function to link interactions between a Leaflet map and a DT datatable in a Shiny app.
 #
-# To use this function:
-# 1. Save this code as a .R file (e.g., "shiny_link_utils.R") in your Shiny app directory.
-# 2. In your server.R or app.R (if using a single-file app), add the line:
-#    source("shiny_link_utils.R")
-#    (Or, if using Shiny modules, you can source it in your global.R or directly within the module)
-# 3. Call the linkLeafletDT() function within your server function.
-#
-# Required packages (ensure these are installed and loaded in your Shiny app):
-# - shiny
-# - leaflet
-# - DT
-
 #' Create a two-way link between a Leaflet map and a DT datatable.
 #'
 #' This function sets up observers so that:
@@ -65,72 +53,6 @@
 #' - **DT Selection Mode:** For best results, set your DT table to single row selection:
 #'   `DT::datatable(..., selection = 'single')`. The function currently focuses on the
 #'   first selected row if multiple are somehow selected.
-#'
-#' @examples
-#' \dontrun{
-#' # --- In your ui.R (or ui part of app.R) ---
-#' # fluidPage(
-#' #   titlePanel("Linked Leaflet Map and DT Table"),
-#' #   leafletOutput("myMapOutputId"),
-#' #   hr(),
-#' #   DT::DTOutput("myTableOutputId")
-#' # )
-#'
-#' # --- In your server.R (or server part of app.R) ---
-#' # library(shiny)
-#' # library(leaflet)
-#' # library(DT)
-#'
-#' # Source this file if it's separate
-#' # source("shiny_link_utils.R")
-#'
-#' # server <- function(input, output, session) {
-#' #
-#' #   # Sample data (replace with your actual data)
-#' #   map_and_table_data <- reactive({
-#' #     data.frame(
-#' #       uid = paste0("ID", 1:3),
-#' #       name = c("Point A", "Point B", "Point C"),
-#' #       latitude = c(40.7128, 34.0522, 41.8781), # NY, LA, Chicago
-#' #       longitude = c(-74.0060, -118.2437, -87.6298),
-#' #       description = paste("Details for point", LETTERS[1:3]),
-#' #       stringsAsFactors = FALSE
-#' #     )
-#' #   })
-#' #
-#' #   output$myMapOutputId <- renderLeaflet({
-#' #     leaflet(data = map_and_table_data()) %>%
-#' #       addTiles() %>%
-#' #       addAwesomeMarkers(
-#' #         lng = ~longitude,
-#' #         lat = ~latitude,
-#' #         layerId = ~uid, # CRITICAL: layerId must be the shared ID
-#' #         popup = ~name
-#' #       )
-#' #   })
-#' #
-#' #   output$myTableOutputId <- DT::renderDT({
-#' #     DT::datatable(
-#' #       map_and_table_data()[, c("uid", "name", "description")], # Select columns for table
-#' #       selection = 'single',
-#' #       rownames = FALSE
-#' #     )
-#' #   })
-#' #
-#' #   # Call the linking function
-#' #   linkLeafletDT(
-#' #     input = input,
-#' #     session = session,
-#' #     leaflet_output_id = "myMapOutputId",
-#' #     dt_output_id = "myTableOutputId",
-#' #     shared_id_column = "uid",
-#' #     leaflet_data_reactive = map_and_table_data, # Same data for both in this example
-#' #     dt_data_reactive = map_and_table_data      # Can be different if structured correctly
-#' #   )
-#' # }
-#' #
-#' # shinyApp(ui, server)
-#' }
 linkLeafletDT <- function(input, session,
                           leaflet_output_id,
                           dt_output_id,
@@ -146,7 +68,7 @@ linkLeafletDT <- function(input, session,
                             markerColor = 'red',
                             iconColor = '#FFFFFF' # White star on red marker
                           )) {
-
+  
   # --- Input Validation and Checks (Basic) ---
   # Ensure required arguments are provided (shiny::req can be used within observers for reactive inputs)
   if (missing(input) || missing(session) || missing(leaflet_output_id) ||
