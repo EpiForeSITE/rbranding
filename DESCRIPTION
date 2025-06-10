@@ -4,16 +4,27 @@ Title: What the Package Does (Title Case)
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Willy", "Ray",
+      email = "william.ray@hsc.utah.edu",
       role = c("aut", "cre")
     )
   )
+Author: Willy Ray [aut, cre]
+Maintainer: Willy Ray <william.ray@hsc.utah.edu>
 Description: More about what it does (maybe more than one line).
     Continuation lines should be indented.
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
-Imports: usethis
+Imports: 
+    yaml,
+    tools,
+    shiny,
+    bslib,
+    thematic,
+    ragg,
+    ggplot2
+Suggests:
+    pkgdown
