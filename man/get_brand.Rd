@@ -13,13 +13,11 @@ No return value. Side effects: may overwrite _brand.yml and create bak_brand.yml
 Downloads the latest _brand.yml file from the repository and compares it with the local _brand.yml file. If they are different, prompts the user to overwrite the local file. If the local file does not exist, it will be created.
 }
 \details{
-Reads configuration from config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ. Intended to be run interactively from the R console, not inside scripts.
+Reads configuration from config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ.
 }
 \examples{
-if (interactive()) {
-  # Initialize config and local brand file
-  brand_init()
-  # Update local brand file if needed
-  get_brand()
-}
+# Initialize config and local brand file
+brand_init()
+# Update local brand file if needed
+get_brand()
 }

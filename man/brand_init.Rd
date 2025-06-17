@@ -13,10 +13,8 @@ No return value. Side effects: creates config.yml and _brand.yml.
 Initializes the branding by creating a config.yml file with the remote and local file paths, and a placeholder _brand.yml file.
 }
 \details{
-This function is intended to be run once to set up the configuration for branding file management. Intended to be run interactively from the R console, not inside scripts.
+This function is intended to be run once to set up the configuration for branding file management.
 }
 \examples{
-if (interactive()) {
-  brand_init()
-}
+brand_init()
 }

@@ -4,7 +4,7 @@ library(DT)
 library(dplyr)
 library(here)
 library(bslib)
-source(here::here("R", "link_plots.R"))
+library(rbranding)
 
 # Suppress "no visible global function definition" note for linkLeafletDT
 utils::globalVariables("linkLeafletDT")

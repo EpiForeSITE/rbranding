@@ -76,7 +76,7 @@ get_brand <- function() {
     if (answer == "3") {
       message("No action taken.")
     }
-    #' add validation that answer is in 1,2,3
+    # add validation that answer is in 1,2,3
   } else {
     message("The local file is the same as the remote file. No action taken.")
   }

@@ -90,3 +90,14 @@ first selected row if multiple are somehow selected.
 }
 }
 
+\examples{
+\dontrun{
+  # Running an app we have included in the package
+  fn_app <- system.file(
+    "app", "examples", "link_plots.R",
+    package = "rbranding"
+  )
+
+  shiny::runApp(fn_app)
+}
+}

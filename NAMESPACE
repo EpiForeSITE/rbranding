@@ -2,3 +2,4 @@
 
 export(brand_init)
 export(get_brand)
+export(linkLeafletDT)

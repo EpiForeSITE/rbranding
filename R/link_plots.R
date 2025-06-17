@@ -53,6 +53,17 @@
 #' - **DT Selection Mode:** For best results, set your DT table to single row selection:
 #'   `DT::datatable(..., selection = 'single')`. The function currently focuses on the
 #'   first selected row if multiple are somehow selected.
+#' @examples 
+#' \dontrun{
+#'   # Running an app we have included in the package
+#'   fn_app <- system.file(
+#'     "examples", "link_plots.R",
+#'     package = "rbranding"
+#'   )
+#' 
+#'   shiny::runApp(fn_app)
+#' }
+#' @export
 linkLeafletDT <- function(input, session,
                           leaflet_output_id,
                           dt_output_id,
