@@ -5,7 +5,7 @@
 # 2. In your server.R or app.R (if using a single-file app), add the line:
 #    source("shiny_link_utils.R")
 #    (Or, if using Shiny modules, you can source it in your global.R or directly within the module)
-# 3. Call the linkLeafletDT() function within your server function.
+# 3. Call the link_leaflet_dt() function within your server function.
 #
 # Required packages (ensure these are installed and loaded in your Shiny app):
 # - shiny
@@ -118,7 +118,7 @@
 #' #   })
 #' #
 #' #   # Call the linking function
-#' #   linkLeafletDT(
+#' #   link_leaflet_dt(
 #' #     input = input,
 #' #     session = session,
 #' #     leaflet_output_id = "myMapOutputId",
@@ -131,7 +131,7 @@
 #' #
 #' # shinyApp(ui, server)
 #' }
-linkLeafletDT <- function(input, session,
+link_leaflet_dt <- function(input, session,
                           leaflet_output_id,
                           dt_output_id,
                           shared_id_column,
@@ -152,7 +152,7 @@ linkLeafletDT <- function(input, session,
   if (missing(input) || missing(session) || missing(leaflet_output_id) ||
       missing(dt_output_id) || missing(shared_id_column) ||
       missing(leaflet_data_reactive) || missing(dt_data_reactive)) {
-    stop("One or more required arguments for linkLeafletDT are missing.")
+    stop("One or more required arguments for link_leaflet_dt are missing.")
   }
   if (!is.character(leaflet_output_id) || !is.character(dt_output_id) ||
       !is.character(shared_id_column) || !is.character(map_lng_col) ||

@@ -64,7 +64,7 @@
 #'   shiny::runApp(fn_app)
 #' }
 #' @export
-linkLeafletDT <- function(input, session,
+link_leaflet_dt <- function(input, session,
                           leaflet_output_id,
                           dt_output_id,
                           shared_id_column,
@@ -85,7 +85,7 @@ linkLeafletDT <- function(input, session,
   if (missing(input) || missing(session) || missing(leaflet_output_id) ||
       missing(dt_output_id) || missing(shared_id_column) ||
       missing(leaflet_data_reactive) || missing(dt_data_reactive)) {
-    stop("One or more required arguments for linkLeafletDT are missing.")
+    stop("One or more required arguments for link_leaflet_dt are missing.")
   }
   if (!is.character(leaflet_output_id) || !is.character(dt_output_id) ||
       !is.character(shared_id_column) || !is.character(map_lng_col) ||

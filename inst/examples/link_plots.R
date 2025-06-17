@@ -6,17 +6,17 @@ library(here)
 library(bslib)
 library(rbranding)
 
-# Suppress "no visible global function definition" note for linkLeafletDT
-utils::globalVariables("linkLeafletDT")
+# Suppress "no visible global function definition" note for link_leaflet_dt
+utils::globalVariables("link_leaflet_dt")
 
 
-if (!exists("linkLeafletDT")) {
-  warning("linkLeafletDT function not found. Please source it from your utils file (e.g., shiny_link_utils.R). Using a placeholder for now.")
-  linkLeafletDT <- function(...) {
-    stop("linkLeafletDT function is not defined. Please ensure it is sourced correctly.")
+if (!exists("link_leaflet_dt")) {
+  warning("link_leaflet_dt function not found. Please source it from your utils file (e.g., shiny_link_utils.R). Using a placeholder for now.")
+  link_leaflet_dt <- function(...) {
+    stop("link_leaflet_dt function is not defined. Please ensure it is sourced correctly.")
   }
 } else {
-  print("linkLeafletDT is here!")
+  print("link_leaflet_dt is here!")
 }
 
 ui <- fluidPage(
@@ -109,9 +109,9 @@ server <- function(input, output, session) {
 
   # --- Link Leaflet and DT using the helper function ---
   # This replaces several manual observers.
-  # Assumes linkLeafletDT is defined (e.g., sourced from shiny_link_utils.R)
-  if (exists("linkLeafletDT")) {
-    linkLeafletDT(
+  # Assumes link_leaflet_dt is defined (e.g., sourced from shiny_link_utils.R)
+  if (exists("link_leaflet_dt")) {
+    link_leaflet_dt(
       input = input,
       session = session,
       leaflet_output_id = "wastewaterMap",
@@ -124,11 +124,11 @@ server <- function(input, output, session) {
       # highlight_zoom and highlight_icon can use defaults or be customized here
     )
   } else {
-    warning("linkLeafletDT function not defined. Linking will not work.")
+    warning("link_leaflet_dt function not defined. Linking will not work.")
   }
 
   # --- Reactive to get the currently selected location ID ---
-  # This ID is derived from the DT table's selection state, which linkLeafletDT keeps in sync.
+  # This ID is derived from the DT table's selection state, which link_leaflet_dt keeps in sync.
   reactive_selected_id <- reactive({
     selected_row_indices <- input$wastewaterTable_rows_selected
 
@@ -152,7 +152,7 @@ server <- function(input, output, session) {
 
   # --- Observer to manage custom popups on the map ---
   # This adds/clears your detailed popups based on the selection.
-  # linkLeafletDT handles its own highlight marker and simple popup.
+  # link_leaflet_dt handles its own highlight marker and simple popup.
   observe({
     current_id <- reactive_selected_id() # Get the ID from our reactive
     locations <- dummy_locations()
