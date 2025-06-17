@@ -94,7 +94,7 @@ first selected row if multiple are somehow selected.
 \dontrun{
   # Running an app we have included in the package
   fn_app <- system.file(
-    "app", "examples", "link_plots.R",
+    "examples", "link_plots.R",
     package = "rbranding"
   )
 

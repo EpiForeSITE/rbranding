@@ -22,7 +22,8 @@ Imports:
     shiny,
     leaflet,
     DT,
-    htmltools
+    htmltools,
+    utils
 Suggests:
     tinytest,
     here,

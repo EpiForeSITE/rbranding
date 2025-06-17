@@ -5,6 +5,7 @@ help:
 	@echo "  help - Show this help message"
 	@echo "  install - Install the package"
 	@echo "  example - Run the example application"
+	@echo "  check - Build and check the package"
 
 docs:
 	@echo "Generating documentation..."
@@ -18,4 +19,8 @@ example:
 	@echo "Running example..."
 	Rscript -e 'shiny::runApp(system.file("examples", "link_plots.R", package = "rbranding"))'
 
-.PHONY: help docs install example
+check:
+	R CMD build . && \
+	R CMD check rbranding_*.tar.gz
+
+.PHONY: help docs install example check
