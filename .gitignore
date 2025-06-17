@@ -5,6 +5,7 @@
 ._bakgit/*
 rbranding.Pproj
 rbranding.Rproj
+*rbranding*.tar.gz
 
 /.quarto/
 .DS_Store
