@@ -53,17 +53,23 @@
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Reads configuration from config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ. Intended to be run interactively from the R console, not inside scripts.</p>
+    <p>Reads configuration from config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="co"># Initialize config and local brand file</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="co"># Update local brand file if needed</span></span></span>
-<span class="r-in"><span>  <span class="fu">get_brand</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Initialize config and local brand file</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Update local brand file if needed</span></span></span>
+<span class="r-in"><span><span class="fu">get_brand</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Checking remote version... </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The local file is different from the remote file.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Overwrite the local file with the remote file</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Overwrite the local file with the remote file and save a backup to bak_brand.yml</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Do nothing</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Please Select an option: (1/2/3): </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </div>
