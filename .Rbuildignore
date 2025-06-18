@@ -2,3 +2,13 @@
 ^\.Rproj\.user$
 
 ^\.github$
+
+
+# Other files to ignore
+^run_app\.sh$
+^\.vscode$
+^playground$
+^_brand\.yml$
+^config\.yml$
+
+^\.devcontainer$

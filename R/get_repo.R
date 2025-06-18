@@ -7,6 +7,7 @@
 #' brand_init()
 #' # Update local brand file if needed
 #' get_brand()
+#' @importFrom utils download.file
 #' @export
 get_brand <- function() {
   # This function downloads the latest _brand.yml file from the repository
@@ -76,7 +77,7 @@ get_brand <- function() {
     if (answer == "3") {
       message("No action taken.")
     }
-    #' add validation that answer is in 1,2,3
+    # add validation that answer is in 1,2,3
   } else {
     message("The local file is the same as the remote file. No action taken.")
   }
