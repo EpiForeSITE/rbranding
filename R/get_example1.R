@@ -13,4 +13,12 @@ get_shiny_example1 <- function() {
   }
   file.copy(example_file, file.path(target_dir, "link_plots.R"), overwrite = TRUE)
   message("Example file copied to ", file.path(target_dir, "link_plots.R"))
+
+  # Repeat for server.R
+  example_file_server <- system.file("examples", "server.R", package = "rbranding")
+  if (example_file_server == "") {
+    stop("server.R file not found in the package.")
+  }
+  file.copy(example_file_server, file.path(target_dir, "server.R"), overwrite = TRUE)
+  message("server.R file copied to ", file.path(target_dir, "server.R"))
 }
