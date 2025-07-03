@@ -1,0 +1,37 @@
+---
+title: "rbranding"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rbranding}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+#Get started on your Shiny app with rbranding:
+
+## In the R console:
+
+Install the package from github (if necessary): 
+```{r, eval = FALSE}
+#In the r terminal:
+#Install the package from github (if necessary):
+>devtools::install_github("rbranding/rbranding")
+#load the library:
+>library(rbranding)
+
+#Initialize the rbranding package:
+>rbranding::init_rbranding()
+
+#get the latest version of the _brand.yml file:
+>rbranding::get_brand_yaml()
+
+#install the example1 template:
+>rbranding::install_template("example1")
+```

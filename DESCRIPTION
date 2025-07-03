@@ -28,5 +28,8 @@ Suggests:
     tinytest,
     here,
     pkgdown,
-    yaml
+    yaml,
+    knitr,
+    rmarkdown
 URL: https://epiforesite.github.io/branding-package/
+VignetteBuilder: knitr

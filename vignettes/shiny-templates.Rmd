@@ -1,0 +1,33 @@
+---
+title: "Shiny Templates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{shiny-templates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  resource_files:
+    - wastewater.jpg
+---
+
+# The following templates can be used with:
+
+```{r, eval=FALSE}
+rbranding::install_template("name-of-template")
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Example 1: Map and Table with links to details
+### 
+```{r, echo=FALSE, out.width="100%", fig.cap="Example1"}
+knitr::include_graphics("wastewater.jpg")
+```
+```{r, eval=FALSE}
+rbranding::get_template("example1")
+```
+

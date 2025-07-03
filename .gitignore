@@ -13,3 +13,4 @@ bak_brand.yml
 *.Rcheck/**
 docs
 instructions
+inst/doc
