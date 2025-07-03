@@ -1,12 +1,13 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>/404.html</loc></url>
-<url><loc>/LICENSE-text.html</loc></url>
-<url><loc>/authors.html</loc></url>
-<url><loc>/index.html</loc></url>
-<url><loc>/reference/brand_init.html</loc></url>
-<url><loc>/reference/get_brand.html</loc></url>
-<url><loc>/reference/get_shiny_example1.html</loc></url>
-<url><loc>/reference/index.html</loc></url>
-<url><loc>/reference/link_leaflet_dt.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/404.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/LICENSE-text.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/authors.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/index.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/brand_init.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/get_brand.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/get_shiny_example1.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/get_template2.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/index.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/link_leaflet_dt.html</loc></url>
 </urlset>
 
