@@ -3,5 +3,6 @@
 export(brand_init)
 export(get_brand)
 export(get_shiny_example1)
+export(get_template2)
 export(link_leaflet_dt)
 importFrom(utils,download.file)

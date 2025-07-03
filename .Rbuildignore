@@ -12,3 +12,6 @@
 ^config\.yml$
 
 ^\.devcontainer$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

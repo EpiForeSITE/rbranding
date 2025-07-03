@@ -7,5 +7,5 @@
 get_shiny_example1()
 }
 \description{
-This function creates the folders \code{inst/app} in the user's working directory and copies the example file \code{link_plots.R} into that folder.
+This function creates the folders \code{inst/app} in the user's working directory and copies the shiny demo to that folder.
 }

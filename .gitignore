@@ -11,3 +11,5 @@ rbranding.Rproj
 .DS_Store
 bak_brand.yml
 *.Rcheck/**
+docs
+instructions
