@@ -1,10 +1,15 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://epiforesite.github.io/branding-package/404.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/LICENSE-text.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/articles/index.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/articles/quarto-templates.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/articles/rbranding.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/articles/shiny-templates.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/authors.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/index.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/brand_init.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/get_brand.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/get_example.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/get_shiny_example1.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/get_template2.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/index.html</loc></url>

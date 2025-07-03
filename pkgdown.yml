@@ -1,8 +1,11 @@
 pandoc: 3.1.11
 pkgdown: 2.1.3
 pkgdown_sha: ~
-articles: {}
-last_built: 2025-07-03T13:27Z
+articles:
+  quarto-templates: quarto-templates.html
+  rbranding: rbranding.html
+  shiny-templates: shiny-templates.html
+last_built: 2025-07-03T17:01Z
 urls:
   reference: https://epiforesite.github.io/branding-package/reference
   article: https://epiforesite.github.io/branding-package/articles
