@@ -1,5 +1,5 @@
 ---
-title: "Shiny Templates"
+title: "shiny-templates"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{shiny-templates}
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 ```
 
 ## Example 1: Map and Table with links to details
-### 
+ 
 ```{r, echo=FALSE, out.width="100%", fig.cap="Example1"}
 knitr::include_graphics("wastewater.jpg")
 ```
@@ -31,3 +31,12 @@ knitr::include_graphics("wastewater.jpg")
 rbranding::get_template("example1")
 ```
 
+## Example 2: Histogram with controls on the left
+
+
+```{r, echo=FALSE, out.width="100%", fig.cap="Example1"}
+knitr::include_graphics("shiny2.jpg")
+```
+```{r, eval=FALSE}
+rbranding::get_template("shiny2")
+```
