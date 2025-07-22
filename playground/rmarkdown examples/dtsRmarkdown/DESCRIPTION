@@ -1,0 +1,14 @@
+Package: dtsRmarkdown
+Title: Rmarkdown HTML report template for UDHHS 
+Version: 0.0.0.9000
+Authors@R: 
+    person("Randon", "Gruninger", , "rjgruninger@utah.gov", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Creates a reusable solution for HTML report generation at UDHHS incorporating styling guide requirements.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Imports:
+  rmarkdown
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

@@ -10,7 +10,7 @@ Facilitate the creation of Shiny apps for CFA projects that conform to STLTs’ 
 
 The `branding-package` helps R developers quickly build Shiny applications that are visually consistent, accessible, and easy to maintain. It provides tools to manage branding assets, apply organization-wide themes, and streamline the setup of new projects.
 
-## Features
+## Project Features and aspirations
 - **Branding File Management:** Download, update, and validate branding YAML files for consistent theming.
 - **Shiny App Templates:** Quickly scaffold Shiny apps that follow best practices for branding and accessibility.
 - **Accessibility:** Built-in support for accessible color palettes and UI components.

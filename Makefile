@@ -11,6 +11,10 @@ docs:
 	@echo "Generating documentation..."
 	Rscript -e 'devtools::document()'
 
+website:
+	@echo "Building website..."
+	Rscript -e 'pkgdown::build_site()'
+
 install:
 	@echo "Installing package..."
 	R CMD INSTALL .
