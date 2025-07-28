@@ -14,6 +14,30 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(rbranding)
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## rmark: A simple r markdown template for one-page pdf or html reports
+```{r, echo=FALSE, out.width="50%" }
+knitr::include_graphics("rmark.jpg")
+```
+Install with:
+```{r, eval=FALSE}
+rbranding::get_template("rmark")
+```
+
+<br>
+
+## qwebsite: A simple website template for quarto
+```{r, echo=FALSE, out.width="50%" }
+knitr::include_graphics("qwebsite.jpg")
+```
+Install with: 
+```{r, eval=FALSE}
+rbranding::get_template("qwebsite")
 ```
