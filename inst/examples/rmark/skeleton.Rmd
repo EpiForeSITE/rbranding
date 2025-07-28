@@ -1,0 +1,62 @@
+---
+title: "Report Title"
+author: "Your Name or Email"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    df_print: paged
+    geometry: margin = 0.5in
+    always_allow_html: true
+    css: styles.css
+    includes:
+      in_header: logo.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE)
+
+
+
+```
+
+## Introduction
+
+This Rmarkdown template was developed to incorporate the DHHS styling guide requirements into Rmarkdown HTML reports. This template will not guide the user through everything you can do in Rmarkdown. For further information on Rmarkdown, please refer to [The Rmarkdown Definitive Guide](https://bookdown.org/yihui/rmarkdown/).  
+
+## Analysis {.tabset}
+
+The template allows for the user to also create Tabsets that will follow the required colors for DHHS, for example:
+
+### Summary
+
+Include summary information and/or graphs.
+
+### Code
+
+Although code blocks are disabled, if the user needs to share their code within their report, they can override that functionality by inserting `echo=TRUE` in the options field of the code block. 
+
+```{r, echo=TRUE}
+
+# df %>% 
+#   select() %>% 
+#   mutate() %>% 
+#   group_by() %>% 
+#   summarise()
+  
+
+```
+
+
+## Limitations
+
+## Conclusion
+
+Blockquotes will follow the same styling as the rest of the template, for example:
+
+ > _DHHS_ Rmarkdown template for **everyone**.
