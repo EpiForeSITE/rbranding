@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 This is a practical guide to **designing and implementing accessible dashboards using R**.
-Ensuring Accessibility of dashbaoards benefits everyone. Not only because they let people with diverse abilities access and interpret data, but also because they improve overall usability.
+Ensuring the accessibility of dashboards benefits everyone. It not only allows people with diverse abilities to access and interpret data, but also improves overall usability.
 
 This guide presents essential accessibility principles, offers actionable design strategies and highlights common pitfalls to avoid. It helps you build dashboards that are inclusive, user-friendly, and impactful.
 
@@ -17,31 +17,26 @@ This guide presents essential accessibility principles, offers actionable design
 
 ### Principles
 1. **Make content perceivable**
-
    * Use descriptive alt text for non-text content  
    * Avoid using only color to convey meaning  
    * Ensure sufficient contrast for text and UI elements
 
 2. **Make interactions operable**
-
    * Ensure all functions are keyboard-accessible  
    * Provide clear focus indicators  
    * Avoid time-limited interactions unless necessary
 
 3. **Make structure understandable**
-
    * Use consistent layout and predictable navigation  
    * Group related controls with landmarks (e.g., `<main>`, `<nav>`)  
    * Use headings (`<h1>`–`<h6>`) meaningfully and hierarchically
 
 4. **Make data accessible**
-
    * Provide downloadable raw data for visualizations
    * Use accessible HTML tables to present data when possible
    * Include text summaries of visualizations  
 
 5. **Design for consistent behavior**
-
    * Reuse layouts and component patterns  
    * Ensure button/tab behaviors are predictable  
    * Avoid keyboard traps or focus loops
