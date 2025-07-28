@@ -6,14 +6,115 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+This is a practical guide to **designing and implementing accessible dashboards using R**.
+Ensuring Accessibility of dashbaoards benefits everyone. Not only because they let people with diverse abilities access and interpret data, but also because they improve overall usability.
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+This guide presents essential accessibility principles, offers actionable design strategies and highlights common pitfalls to avoid. It helps you build dashboards that are inclusive, user-friendly, and impactful.
 
-```{r setup}
-library(rbranding)
-```
+
+
+## General Design Principles for Accessibility
+
+### Principles
+1. **Make content perceivable**
+
+   * Use descriptive alt text for non-text content  
+   * Avoid using only color to convey meaning  
+   * Ensure sufficient contrast for text and UI elements
+
+2. **Make interactions operable**
+
+   * Ensure all functions are keyboard-accessible  
+   * Provide clear focus indicators  
+   * Avoid time-limited interactions unless necessary
+
+3. **Make structure understandable**
+
+   * Use consistent layout and predictable navigation  
+   * Group related controls with landmarks (e.g., `<main>`, `<nav>`)  
+   * Use headings (`<h1>`–`<h6>`) meaningfully and hierarchically
+
+4. **Make data accessible**
+
+   * Provide downloadable raw data for visualizations
+   * Use accessible HTML tables to present data when possible
+   * Include text summaries of visualizations  
+
+5. **Design for consistent behavior**
+
+   * Reuse layouts and component patterns  
+   * Ensure button/tab behaviors are predictable  
+   * Avoid keyboard traps or focus loops
+
+### Dashboard Design Do’s & Don’ts
+
+| ✅ DO | ❌ DON'T |
+| :---- | :---- |
+| Include **data tables** with all visualizations | Show charts with no alternative format |
+| Use plain-language **alt text** and summaries | Hide alt text in tooltips or modals |
+| **Limit interactions** to key tasks | Add hover-only or animated elements |
+| **Highlight key insights** and put less important information to tooltips | Use a large amount of text to fill the page and make users dig through visual clutter |
+| **Prioritize tables** over interactive visualizations or maps | Assume all users can navigate interactive views |
+
+## Common Technical Pitfalls
+
+
+### **1\. Missing or Inadequate Alternative Text**
+
+| ❌ Issue | ✅ Solution |
+| :---- | :---- |
+| `<img>` elements lack `alt`, `aria-label` | Add `alt` or mark as decorative with `role="presentation"` |
+| SVGs with `role="img"` lack descriptive labels | Use `<title>`, `aria-label`, or `aria-labelledby` to describe the icon’s purpose |
+| `<iframe>` lacks accessible name | Add a descriptive `title` attribute or `aria-label` |
+| Buttons or links lack visible text or programmatically associated label | Add label via inner text, `aria-label`, `aria-labelledby`, or `title` |
+
+### **2\. Insufficient Color Contrast**
+
+| ❌ Issue | ✅ Solution |
+| :---- | :---- |
+| White text on a light background fails to meet the WCAG AA contrast ratio requirement | Ensure 4.5:1 contrast ratio for normal text (use WebAIM Contrast Checker) |
+
+### **3\. ARIA Attribute Misuse**
+
+| ❌ Issue | ✅ Solution |
+| :---- | :---- |
+| Invalid ARIA attributes for given role (e.g., `aria-selected` on `<a>`) | Use ARIA attributes only with compatible roles (e.g., `aria-selected` on `role="tab"`) |
+| `aria-label` used with `role="presentation"` or `role="none"` | Remove label or change the role to one that supports labeling |
+| Misused or redundant roles on non-interactive elements | Use native HTML roles (like `<button>`) or remove unnecessary ARIA roles |
+
+### **4\. ARIA Role Structure & Hierarchy Errors**
+
+| ❌ Issue | ✅ Solution |
+| :---- | :---- |
+| ARIA parent roles (e.g., `grid`) lack required child roles (e.g., `row`) | Follow correct structure: `grid → row → gridcell` |
+| ARIA child roles used out of context (e.g., `gridcell` not inside `row`) | Restructure DOM to enforce valid nesting |
+| Structural roles used without semantic purpose | Use native HTML where possible for more predictable accessibility |
+
+### **5\. Keyboard Navigation & Focus Management**
+
+| ❌ Issue | ✅ Solution |
+| :---- | :---- |
+| Focusable elements lack accessible name (e.g., icon-only button) | Add `aria-label`, `title`, or text content that screen readers can access |
+| Scrollable containers not keyboard focusable | Add `tabindex="0"` and ensure content is reachable via keyboard |
+| Nested interactive controls (e.g., a `button` inside a `role="tab"` container) | Avoid interactive nesting; separate into distinct controls |
+| Form inputs have hidden or missing labels | Associate form fields with visible `<label>` or use `aria-labelledby` or `aria-label` |
+
+### **6\. Structural & Semantic Violations**
+
+| ❌ Issue | ✅ Solution |
+| :---- | :---- |
+| `<a href="#">` or `<button>` used without purpose or label | Provide clear intent with text or ARIA attributes |
+| Mailto/email links not clearly labeled or visible | Add contextual label (e.g., `"Email us: example@email.com"`) with sufficient contrast |
+| Iframes embedded without descriptive context | Add `title`, wrap in `<section>`, or provide heading to explain embedded content |
+
+## Testing Tools
+
+Below are free, widely available tools you can use to evaluate the accessibility of your dashboards:
+
+* [axe DevTools Browser Extension](https://www.deque.com/axe/browser-extensions/): Runs automated scans in your developer tools to flag WCAG issues and suggest fixes right in the browser.
+* [WAVE Browser Extension](https://wave.webaim.org/extension/): Adds an on‑page overlay that visually marks accessibility errors, alerts, and structural cues for quick review.
+* [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/): Tests any foreground‑background color pair to confirm it meets WCAG AA/AAA contrast ratios.
+
+In addition to automated tools, always perform manual checks with a screen reader. Popular options include **VoiceOver** (macOS/iOS), **NVDA** (Windows), and **JAWS** (Windows).
+
+
