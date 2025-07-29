@@ -31,13 +31,13 @@ color:
 
 typography:
   fonts:
-    - family: Delius
+    - family: Open Sans
       source: google
     - family: IBM Plex Mono
       source: google
   base: IBM Plex Mono
   headings:
-       family: Delius
+       family: Open Sans
        weight: 400
 
 
