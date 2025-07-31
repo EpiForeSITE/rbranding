@@ -24,7 +24,7 @@ knitr::include_graphics("wastewater.jpg")
 ```
 Install with:
 ```{r, eval=FALSE}
-rbranding::get_template("example1")
+rbranding::get_template("wastewater")
 ```
 
 <br>
