@@ -1,0 +1,13 @@
+---
+title: "Complete Site PDF"
+format: pdf
+---
+
+```{include: index.qmd}
+```
+
+```{include: about.qmd}
+```
+
+```{include: dashboard.qmd}
+```

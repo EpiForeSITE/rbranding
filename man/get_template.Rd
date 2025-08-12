@@ -5,10 +5,12 @@
 \title{Get Shiny Templates
 Copy Example App Files from inst/examples to inst/app}
 \usage{
-get_template(example_name)
+get_template(example_name, install_to = "")
 }
 \arguments{
 \item{example_name}{Name of the example folder under inst/examples}
+
+\item{install_to}{Directory where the example files should be copied. Defaults to the current working directory.}
 }
 \description{
 Get Shiny Templates

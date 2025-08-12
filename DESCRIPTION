@@ -23,7 +23,8 @@ Imports:
     leaflet,
     DT,
     htmltools,
-    utils
+    utils,
+    thematic
 Suggests:
     tinytest,
     here,

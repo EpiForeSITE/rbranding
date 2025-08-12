@@ -25,8 +25,10 @@ brandingr_envir <- new.env(parent = emptyenv())
 #' @param fn The filename of the theme to be used.
 brandingr_set_ggplot <- function(fn) {
 
+    # Reading the YAML file
     doc <- yaml::read_yaml(fn)
 
+    # Getting colors
     doc_color <- doc$color
 
     # Replacing names
