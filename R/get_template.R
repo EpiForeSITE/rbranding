@@ -22,7 +22,7 @@ get_template <- function(example_name, install_to = "") {
   }
   # Copy each file to the target directory
   for (f in files) {
-    file.copy(f, file.path(target_dir, basename(f)), overwrite = TRUE)
+    file.copy(f, file.path(target_dir, basename(f)), overwrite = TRUE, recursive = TRUE)
     message("Copied ", basename(f), " to ", target_dir)
   }
 }

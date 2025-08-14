@@ -24,10 +24,9 @@ library(tidyverse)
 
 header <- dashboardHeader(title = "", #Replace with your title (displayed in the dashboard)
                           titleWidth = 200, #Can change to accommodate your title
-                          tags$li(a(href = "https://posit-dev.github.io/brand-yml",
+                          tags$li(a(href = "https://posit-dev.github.io/brand-yml/",
                                     img(src = "oi--circle-check.png",
-                                         title = "rbranding package demo",
-                                         height="50px", width="50px"),
+                                         title = "rbranding package"),
                                     style = "padding-top: 5px; padding-bottom: 5px;"),
                                   class = "dropdown"))
 
