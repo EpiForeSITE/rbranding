@@ -57,8 +57,15 @@ For this vignette, we'll use the existing `_brand.yml` file in the package:
 ```{r}
 # In a real project, you would have a _brand.yml file in your working directory
 # For this demo, we'll use the package's example brand file
-brand_file <- system.file("", "_brand.yml", package = "rbranding")
-if (brand_file == "") {
+brand_file <- system.file("brand_files", "_brand.yml", package = "rbranding")
+if (brand_file != "") {
+  file.copy(brand_file, "_brand.yml")
+  # Copy logo files as well
+  logo_files <- list.files(system.file("brand_files", package = "rbranding"), 
+                          pattern = "*.png", full.names = TRUE)
+  file.copy(logo_files, ".")
+  brand_file <- "_brand.yml"
+} else {
   # Fallback to a basic brand configuration for demonstration
   brand_config <- "
 meta:
@@ -173,7 +180,7 @@ p3 <- ggplot(mtcars, aes(x = hp, y = mpg, size = wt)) +
   ) +
   theme(
     plot.title = element_text(size = 16, face = "bold"),
-    plot.subtitle = element_text(size = 12, style = "italic"),
+    plot.subtitle = element_text(size = 12, face = "italic"),
     legend.position = "right"
   )
 

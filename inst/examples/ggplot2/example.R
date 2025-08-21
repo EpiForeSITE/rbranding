@@ -5,16 +5,16 @@ library(rbranding)
 library(ggplot2)
 
 # Step 1: Initialize and get brand (run once)
-cat("Step 1: Setting up brand configuration...\n")
+message("Step 1: Setting up brand configuration...")
 # brand_init()  # Uncomment for first-time setup
 # get_brand()   # Uncomment to get latest brand file
 
 # Step 2: Set ggplot2 theme from brand
-cat("Step 2: Applying brand theme to ggplot2...\n")
+message("Step 2: Applying brand theme to ggplot2...")
 brand_set_ggplot()
 
 # Step 3: Create example plots
-cat("Step 3: Creating branded plots...\n")
+message("Step 3: Creating branded plots...")
 
 # Basic scatter plot
 p1 <- ggplot(mtcars, aes(x = mpg, y = wt)) +
@@ -46,7 +46,7 @@ ggsave("example_plot2.png", p2, width = 8, height = 6, dpi = 150)
 
 # Step 4: Interactive plot with plotly (optional)
 if (requireNamespace("plotly", quietly = TRUE)) {
-  cat("Step 4: Creating interactive plot with plotly...\n")
+  message("Step 4: Creating interactive plot with plotly...")
   p1_interactive <- plotly::ggplotly(p1)
   print(p1_interactive)
   
@@ -55,7 +55,7 @@ if (requireNamespace("plotly", quietly = TRUE)) {
 }
 
 # Step 5: Reset theme
-cat("Step 5: Resetting to default theme...\n")
+message("Step 5: Resetting to default theme...")
 brand_reset_ggplot()
 
 # Create comparison plot with default theme
@@ -71,4 +71,4 @@ p3 <- ggplot(mtcars, aes(x = mpg, y = wt)) +
 print(p3)
 ggsave("example_plot3_default.png", p3, width = 8, height = 6, dpi = 150)
 
-cat("Example complete! Check the generated PNG files to see the difference.\n")
+message("Example complete! Check the generated PNG files to see the difference.")
