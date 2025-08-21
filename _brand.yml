@@ -26,7 +26,7 @@ color:
     gray: "#474747"
   foreground: black
   background: white
-  primary: red
+  primary: teal
   secondary: teal
 
 typography:

@@ -58,7 +58,7 @@ brand_set_ggplot <- function(brand_file = NULL, use_fonts = TRUE) {
     stop("Package 'yaml' is required for brand_set_ggplot(). Please install it.")
   }
   
-  doc <- yaml::read_yaml(brand_file)
+  doc <- yaml::yaml.load_file(brand_file)
   
   # Process colors - replace color names with actual hex values from palette
   doc_color <- doc$color
