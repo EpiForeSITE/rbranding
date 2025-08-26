@@ -1,1 +1,44 @@
-this file needs to be updated with rbrand::get_brand()
+# The full schema can be found at:
+# https://github.com/posit-dev/brand-yml/tree/5bb1c92334ef4f63e3eeb84f98749cca5f1fdc68/schema
+meta:
+  name:
+    full: Utah Department of Health and Human Services
+    short: UDHHS
+  link:
+    home: https://dhhs.utah.gov/
+    github: https://github.com/utahhhs
+
+logo:
+  images:
+    full:
+      path: udhhs_logo.png
+      alt: DHHS logo
+    icon:
+      path: udhhs_icon.png
+      alt: DHHS icon
+  small: icon
+  large: full
+
+color:
+  palette:
+    teal: "#1c8478"
+    purple: "#4e2d53"
+    gray: "#474747"
+  foreground: black
+  background: white
+  primary: red
+  secondary: teal
+
+typography:
+  fonts:
+    - family: Open Sans
+      source: google
+    - family: IBM Plex Mono
+      source: google
+  base: IBM Plex Mono
+  headings:
+       family: Open Sans
+       weight: 400
+
+
+
