@@ -11,10 +11,10 @@ meta:
 logo:
   images:
     full:
-      path: logo.png
+      path: inst/app/logo.png
       alt: Brand logo
     icon:
-      path: icon.png
+      path: inst/app/icon.png
       alt: Brand icon
   small: icon
   large: full
