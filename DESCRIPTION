@@ -20,11 +20,11 @@ RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Imports:
     shiny,
-    leaflet,
-    DT,
     htmltools,
     utils
 Suggests:
+    leaflet,
+    DT,
     tinytest,
     here,
     pkgdown,
