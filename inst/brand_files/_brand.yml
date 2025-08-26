@@ -11,11 +11,11 @@ meta:
 logo:
   images:
     full:
-      path: udhhs_logo.png
-      alt: DHHS logo
+      path: logo.png
+      alt: Brand logo
     icon:
-      path: udhhs_icon.png
-      alt: DHHS icon
+      path: icon.png
+      alt: Brand icon
   small: icon
   large: full
 
