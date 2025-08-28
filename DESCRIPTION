@@ -21,15 +21,21 @@ Roxygen: list(markdown = TRUE)
 Imports:
     shiny,
     htmltools,
-    utils
+    utils,
+    yaml,
+    ggplot2
 Suggests:
     leaflet,
     DT,
     tinytest,
     here,
     pkgdown,
-    yaml,
     knitr,
-    rmarkdown
+    rmarkdown,
+    sysfonts,
+    showtext,
+    grid,
+    png,
+    plotly
 URL: https://epiforesite.github.io/branding-package/
 VignetteBuilder: knitr
