@@ -2,8 +2,8 @@
 ^\.Rproj\.user$
 
 ^\.github$
-^\.git$
-
+^\.git\*$
+^\.\.Rcheck$
 
 # Other files to ignore
 ^run_app\.sh$
@@ -16,3 +16,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+
+^[.].*$
+^.*/[.].*$

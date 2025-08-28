@@ -92,7 +92,6 @@ get_brand <- function() {
 #' @examples
 #' brand_init()
 #' @export
-#' @param get_default_brand Logical. If TRUE, downloads and writes the default _brand.yml from the remote repository. If FALSE, creates a placeholder _brand.yml file.
 brand_init <- function(get_default_brand = TRUE) {
 
   config <- list(
@@ -103,11 +102,11 @@ brand_init <- function(get_default_brand = TRUE) {
   # make a yml file with these keys
   yaml::write_yaml(config, "config.yml")
 
-  if (get_default_brand){
-
-  } else {
   fileConn<-file("_brand.yml")
   writeLines(c("this file needs to be updated with rbrand::get_brand()"), fileConn)
   close(fileConn)
+  if (get_default_brand){
+    get_brand()
+  } else {
   }
 }

@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 
 ## Overview
 
+
 This vignette demonstrates how to integrate ggplot2 and plotly visualizations with brand themes using the `rbranding` package. The package provides functions to:
 
 1. Load brand configuration from `_brand.yml` files
@@ -50,6 +51,9 @@ brand_init()
 
 # Get the latest brand file from the repository
 get_brand()
+
+# to install these files directly to your working directory:
+get_template("ggplot2)
 ```
 
 For this vignette, we'll use the existing `_brand.yml` file in the package:

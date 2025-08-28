@@ -4,7 +4,10 @@
 \alias{brand_init}
 \title{Initialize Branding Config}
 \usage{
-brand_init()
+brand_init(get_default_brand = TRUE)
+}
+\arguments{
+\item{get_default_brand}{Logical. If TRUE, downloads and writes the default _brand.yml from the remote repository. If FALSE, creates a placeholder _brand.yml file.}
 }
 \value{
 No return value. Side effects: creates config.yml and _brand.yml.
