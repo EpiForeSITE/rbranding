@@ -2,6 +2,7 @@
 <url><loc>https://epiforesite.github.io/branding-package/404.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/LICENSE-text.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/articles/Accessibility-Guidelines.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/articles/ggplot2-integration.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/articles/index.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/articles/quarto-templates.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/articles/rbranding.html</loc></url>
@@ -9,7 +10,10 @@
 <url><loc>https://epiforesite.github.io/branding-package/authors.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/copilot-instructions.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/index.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/brand_add_logo.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/brand_init.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/brand_reset_ggplot.html</loc></url>
+<url><loc>https://epiforesite.github.io/branding-package/reference/brand_set_ggplot.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/get_brand.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/get_template.html</loc></url>
 <url><loc>https://epiforesite.github.io/branding-package/reference/index.html</loc></url>
