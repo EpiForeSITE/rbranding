@@ -2,6 +2,16 @@ meta:
   name: brand.yml
   link: https://posit-dev.github.io/brand-yml
 
+logo:
+  images:
+    icon:
+      path: icon.png
+      alt: "Company icon with abstract shapes"
+    logo:
+      path: logo.png
+      alt: "Full company logo with tagline"
+  small: icon
+
 color:
   palette:
     # Core palette
