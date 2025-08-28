@@ -19,13 +19,13 @@ Sets the ggplot2 theme based on colors and typography defined in a _brand.yml fi
 This function reads the brand configuration and applies it as the default ggplot2 theme.
 }
 \details{
-This function reads a brand.yml file and extracts color and typography information to 
+This function reads a brand.yml file and extracts color and typography information to
 create a custom ggplot2 theme. The function:
 \itemize{
-  \item Maps brand colors to ggplot2 theme elements
-  \item Attempts to load Google Fonts specified in the brand file
-  \item Stores the previous theme for later restoration
-  \item Sets the new theme as the default for all subsequent ggplot2 plots
+\item Maps brand colors to ggplot2 theme elements
+\item Attempts to load Google Fonts specified in the brand file
+\item Stores the previous theme for later restoration
+\item Sets the new theme as the default for all subsequent ggplot2 plots
 }
 
 The brand.yml file should follow the schema defined at:
