@@ -7,22 +7,14 @@ meta:
 logo:
   images:
     icon:
-      path: https://posit-dev.github.io/brand-yml/logos/icon.png
+      path: icon.png
       alt: "Company icon with abstract shapes"
-    header:
-      path: https://posit-dev.github.io/brand-yml/logos/header-logo.png
-      alt: "Company name with logo"
-    header-white:
-      path: https://posit-dev.github.io/brand-yml/logos/header-logo-white.png
-      alt: "Company name with logo in white"
-    full:
-      path: https://posit-dev.github.io/brand-yml/logos/full-logo.svg
+    logo:
+      path: logo.png
       alt: "Full company logo with tagline"
   small: icon
-  medium:
-    light: header
-    dark: header-white
-  large: full
+  
+
 
 color:
   palette:
