@@ -86,12 +86,14 @@ get_brand <- function() {
 
 #' @title Initialize Branding Config
 #' @description Initializes the branding by creating a config.yml file with the remote and local file paths, and a placeholder _brand.yml file.
+
 #' @details This function is intended to be run once to set up the configuration for branding file management.
 #' @return No return value. Side effects: creates config.yml and _brand.yml.
 #' @examples
 #' brand_init()
 #' @export
-brand_init <- function() {
+#' @param get_default_brand Logical. If TRUE, downloads and writes the default _brand.yml from the remote repository. If FALSE, creates a placeholder _brand.yml file.
+brand_init <- function(get_default_brand = TRUE) {
 
   config <- list(
     remote_file = "https://raw.githubusercontent.com/EpiForeSITE/branding-package/main/_brand.yml",
@@ -101,7 +103,11 @@ brand_init <- function() {
   # make a yml file with these keys
   yaml::write_yaml(config, "config.yml")
 
+  if (get_default_brand){
+
+  } else {
   fileConn<-file("_brand.yml")
   writeLines(c("this file needs to be updated with rbrand::get_brand()"), fileConn)
   close(fileConn)
+  }
 }
