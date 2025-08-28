@@ -1,33 +1,39 @@
-# The full schema can be found at:
-# https://github.com/posit-dev/brand-yml/tree/5bb1c92334ef4f63e3eeb84f98749cca5f1fdc68/schema
 meta:
-  name:
-    full: Utah Department of Health and Human Services
-    short: UDHHS
-  link:
-    home: https://dhhs.utah.gov/
-    github: https://github.com/utahhhs
+  name: rbranding 
+  links:
+    docs: https://epiforesite.github.io/branding-package/ 
+    github: https://github.com/EpiForeSITE/branding-package
 
 logo:
   images:
-    full:
-      path: inst/app/logo.png
-      alt: Brand logo
     icon:
-      path: inst/app/icon.png
-      alt: Brand icon
+      path: https://posit-dev.github.io/brand-yml/logos/icon.png
+      alt: "Company icon with abstract shapes"
+    header:
+      path: https://posit-dev.github.io/brand-yml/logos/header-logo.png
+      alt: "Company name with logo"
+    header-white:
+      path: https://posit-dev.github.io/brand-yml/logos/header-logo-white.png
+      alt: "Company name with logo in white"
+    full:
+      path: https://posit-dev.github.io/brand-yml/logos/full-logo.svg
+      alt: "Full company logo with tagline"
   small: icon
+  medium:
+    light: header
+    dark: header-white
   large: full
 
 color:
   palette:
-    teal: "#1c8478"
-    purple: "#4e2d53"
-    gray: "#474747"
-  foreground: black
-  background: white
-  primary: teal
-  secondary: teal
+    orange: "#FF6F20"
+    pink: "#FF3D7F"
+    green: "#28A745"
+    yellow: "#FFC107"
+  primary: orange
+  success: green
+  warning: yellow
+  danger: pink
 
 typography:
   fonts:
@@ -35,10 +41,24 @@ typography:
       source: google
     - family: IBM Plex Mono
       source: google
-  base: IBM Plex Mono
+    - family: Rubik
+      source: google
+  base:
+    family: Open Sans
+    line-height: 1.6
   headings:
-       family: Open Sans
-       weight: 400
+    family: Rubik
+    weight: normal
+  link:
+    color: purple
+  monospace:
+    family: IBM Plex Mono
+    size: 1em
 
-
+defaults:
+  quarto:
+    format:
+      # basic format-specific settings
+  shiny:
+    # shiny specific settings
 

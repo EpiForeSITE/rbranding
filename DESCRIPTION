@@ -27,6 +27,9 @@ Imports:
 Suggests:
     leaflet,
     DT,
+    htmltools,
+    utils,
+    thematic,
     tinytest,
     here,
     pkgdown,
