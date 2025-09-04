@@ -101,12 +101,14 @@ package. The package provides functions to:</p>
 </h2>
 <p>Start by initializing the branding configuration and getting the
 latest brand file:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Initialize branding (creates config.yml and placeholder _brand.yml)</span></span>
-<span><span class="fu"><a href="../reference/brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Get the latest brand file from the repository</span></span>
-<span><span class="fu"><a href="../reference/get_brand.html">get_brand</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Initialize branding (creates config.yml and placeholder _brand.yml)</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">brand_init</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Get the latest brand file from the repository</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">get_brand</span>()</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># to install these files directly to your working directory:</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">get_template</span>(<span class="st">"ggplot2)</span></span></code></pre></div>
 <p>For this vignette, we’ll use the existing <code>_brand.yml</code>
 file in the package:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">

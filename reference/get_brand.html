@@ -61,11 +61,24 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Initialize config and local brand file</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Checking remote version... </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The local file is different from the remote file.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Overwrite the local file with the remote file</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Overwrite the local file with the remote file and save a backup to bak_brand.yml</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Do nothing</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Please Select an option: (1/2/3): </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="co"># Update local brand file if needed</span></span></span>
 <span class="r-in"><span><span class="fu">get_brand</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Checking remote version... </span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in if (local_hash != temp_hash) {    message("The local file is different from the remote file.")    message("1: Overwrite the local file with the remote file")    message("2: Overwrite the local file with the remote file and save a backup to bak_brand.yml")    message("3: Do nothing")    message("\nPlease Select an option: (1/2/3): ")    answer &lt;- readline()    if (answer == "1") {        file.copy(tempfile_name, "_brand.yml", overwrite = TRUE)        message("_brand.yml replaced with latest from repository.")    }    if (answer == "2") {        file.copy("_brand.yml", "bak_brand.yml", overwrite = TRUE)        file.copy(tempfile_name, "_brand.yml", overwrite = TRUE)        message("_brand.yml replaced with latest from repository.")        message("backup saved to bak_brand.yml")    }    if (answer == "3") {        message("No action taken.")    }} else {    message("The local file is the same as the remote file. No action taken.")}:</span> missing value where TRUE/FALSE needed</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The local file is different from the remote file.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Overwrite the local file with the remote file</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Overwrite the local file with the remote file and save a backup to bak_brand.yml</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Do nothing</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Please Select an option: (1/2/3): </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

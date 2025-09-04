@@ -45,9 +45,17 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">brand_init</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">brand_init</span><span class="op">(</span>get_default_brand <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+
+
+<dl><dt id="arg-get-default-brand">get_default_brand<a class="anchor" aria-label="anchor" href="#arg-get-default-brand"></a></dt>
+<dd><p>Logical. If TRUE, downloads and writes the default _brand.yml from the remote repository. If FALSE, creates a placeholder _brand.yml file.</p></dd>
+
+</dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>No return value. Side effects: creates config.yml and _brand.yml.</p>
@@ -60,7 +68,14 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">brand_init</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Checking remote version... </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The local file is different from the remote file.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Overwrite the local file with the remote file</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Overwrite the local file with the remote file and save a backup to bak_brand.yml</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Do nothing</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Please Select an option: (1/2/3): </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
