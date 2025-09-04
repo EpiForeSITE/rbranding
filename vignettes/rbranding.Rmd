@@ -30,8 +30,8 @@ Install the package from github (if necessary):
 >rbranding::init_rbranding()
 
 #get the latest version of the _brand.yml file:
->rbranding::get_brand_yaml()
+>rbranding::get_brand()
 
 #install the example1 template:
->rbranding::install_template("example1")
+>rbranding::get_template("example1")
 ```

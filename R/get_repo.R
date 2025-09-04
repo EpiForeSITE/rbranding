@@ -40,7 +40,7 @@ get_brand <- function() {
       message("Checking remote version... ")
       download.file(
         remote_file,
-        destfile = tempfile_name,
+        destfile = tempfile_name
         quiet = TRUE
       )
     },
@@ -51,13 +51,14 @@ get_brand <- function() {
 
 
   temp_hash <- tools::md5sum(tempfile_name)
+  if (!file.exists(local_file)) {
+    file.copy(tempfile_name, local_file, overwrite = TRUE)
+    message(paste(local_file, "created from remote repository."))
+    return(invisible())
+  }
   local_hash <- tools::md5sum(local_file)
-
-
-
   # prompt user to overwrite if the hashes are not equal.
-  # add exception handling is the file is not found
-  if (local_hash != temp_hash) {
+  if (is.na(local_hash) || local_hash != temp_hash) {
     message("The local file is different from the remote file.")
     message("1: Overwrite the local file with the remote file")
     message("2: Overwrite the local file with the remote file and save a backup to bak_brand.yml")
@@ -107,7 +108,8 @@ brand_init <- function(get_default_brand = TRUE) {
 
   } else {
   fileConn<-file("_brand.yml")
-  writeLines(c("this file needs to be updated with rbrand::get_brand()"), fileConn)
+  writeLines(c("this file needs to be updated with rbranding::get_brand()"), fileConn)
   close(fileConn)
   }
+  message("config.yml created with remote and local file paths.  Initial _brand.yml created.")
 }
