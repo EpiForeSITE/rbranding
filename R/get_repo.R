@@ -35,19 +35,16 @@ get_brand <- function() {
 
   tempfile_name <- tempfile()
   # add exception handling if the download fails
-  tryCatch(
-    {
-      message("Checking remote version... ")
-      download.file(
-        remote_file,
-        destfile = tempfile_name
-        quiet = TRUE
-      )
-    },
-    error = function(e) {
-      message(paste("Error downloading file:", e))
-    }
-  )
+  tryCatch({
+    message("Checking remote version... ")
+    download.file(
+      remote_file,
+      destfile = tempfile_name,
+      quiet = TRUE
+    )
+  }, error = function(e) {
+    message(paste("Error downloading file:", e))
+  })
 
 
   temp_hash <- tools::md5sum(tempfile_name)
