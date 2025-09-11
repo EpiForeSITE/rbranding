@@ -23,3 +23,6 @@
 # Articles
 ^vignettes/accessibility\.Rmd$
 ^vignettes/accessibility_files/.*$
+
+# Resources
+^resources/.*$

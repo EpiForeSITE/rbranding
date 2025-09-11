@@ -111,11 +111,6 @@ Below are free, widely available tools you can use to evaluate the accessibility
 
 In addition to automated tools, always perform manual checks with a screen reader. Popular options include **VoiceOver** (macOS/iOS), **NVDA** (Windows), and **JAWS** (Windows).
 
-## Accessiblity Guildelines Cheatsheet
+## Accessiblity Guidelines Cheatsheet
 
-Download the cheatsheet below as [PDF](https://github.com/EpiForeSITE/branding-package/blob/main/vignettes/accessibility_files/cheatsheet-accessibility-guidelines.pdf) or [SVG](https://github.com/EpiForeSITE/branding-package/blob/main/vignettes/accessibility_files/cheatsheet-accessibility-guidelines.svg)
-
-```{r, echo = FALSE}
-knitr::include_graphics("accessibility_files/cheatsheet-accessibility-guidelines.svg")
-```
-
+We created a cheatsheet for the above accessiblity guidelines. You may download the cheatsheet as a [PDF](https://github.com/EpiForeSITE/branding-package/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.pdf) or [SVG](https://github.com/EpiForeSITE/branding-package/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.svg)
