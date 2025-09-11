@@ -19,3 +19,7 @@
 
 ^[.].*$
 ^.*/[.].*$
+
+# Articles
+^vignettes/accessibility\.Rmd$
+^vignettes/accessibility_files/.*$
