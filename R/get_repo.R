@@ -84,6 +84,7 @@ get_brand <- function() {
 #' @description Initializes the branding by creating a config.yml file with the remote and local file paths, and a placeholder _brand.yml file.
 
 #' @details This function is intended to be run once to set up the configuration for branding file management.
+#' @param get_default_brand Logical. If TRUE, calls get_brand() to download the latest branding file after initialization. Default is TRUE.
 #' @return No return value. Side effects: creates config.yml and _brand.yml.
 #' @examples
 #' brand_init()
