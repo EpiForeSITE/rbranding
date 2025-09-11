@@ -59,23 +59,21 @@ get_brand <- function() {
     message("The local file is different from the remote file.")
     message("1: Overwrite the local file with the remote file")
     message("2: Overwrite the local file with the remote file and save a backup to bak_brand.yml")
-    message("3: Do nothing")
+    message("3 (or enter): Do nothing")
     message("\nPlease Select an option: (1/2/3): ")
     answer <- readline()
     if (answer == "1") {
       file.copy(tempfile_name, "_brand.yml", overwrite = TRUE)
       message("_brand.yml replaced with latest from repository.")
-    }
-    if (answer == "2") {
+    } else if (answer == "2") {
       file.copy("_brand.yml", "bak_brand.yml", overwrite = TRUE)
       file.copy(tempfile_name, "_brand.yml", overwrite = TRUE)
       message("_brand.yml replaced with latest from repository.")
       message("backup saved to bak_brand.yml")
-    }
-    if (answer == "3") {
+    } else {
+      # If any other input is given, do nothing
       message("No action taken.")
     }
-    # add validation that answer is in 1,2,3
   } else {
     message("The local file is the same as the remote file. No action taken.")
   }
@@ -86,6 +84,7 @@ get_brand <- function() {
 #' @description Initializes the branding by creating a config.yml file with the remote and local file paths, and a placeholder _brand.yml file.
 
 #' @details This function is intended to be run once to set up the configuration for branding file management.
+#' @param get_default_brand Logical. If TRUE, calls get_brand() to download the latest branding file after initialization. Default is TRUE.
 #' @return No return value. Side effects: creates config.yml and _brand.yml.
 #' @examples
 #' brand_init()

@@ -7,7 +7,7 @@
 brand_init(get_default_brand = TRUE)
 }
 \arguments{
-\item{get_default_brand}{Logical. If TRUE, downloads and writes the default _brand.yml from the remote repository. If FALSE, creates a placeholder _brand.yml file.}
+\item{get_default_brand}{Logical. If TRUE, calls get_brand() to download the latest branding file after initialization. Default is TRUE.}
 }
 \value{
 No return value. Side effects: creates config.yml and _brand.yml.
