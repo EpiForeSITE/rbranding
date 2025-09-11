@@ -1,3 +1,4 @@
+# Load required libraries
 library(shiny)
 library(leaflet)
 library(DT)
@@ -5,19 +6,7 @@ library(dplyr)
 library(here)
 library(bslib)
 library(rbranding)
-
-# Suppress "no visible global function definition" note for link_leaflet_dt
-utils::globalVariables("link_leaflet_dt")
-
-
-if (!exists("link_leaflet_dt")) {
-  warning("link_leaflet_dt function not found. Please source it from your utils file (e.g., shiny_link_utils.R). Using a placeholder for now.")
-  link_leaflet_dt <- function(...) {
-    stop("link_leaflet_dt function is not defined. Please ensure it is sourced correctly.")
-  }
-} else {
-  print("link_leaflet_dt is here!")
-}
+library(linkeR)
 
 ui <- fluidPage(
   theme = bs_theme(version = 5, bootswatch = "cerulean"),
@@ -26,52 +15,65 @@ ui <- fluidPage(
   layout_sidebar(
     sidebar = sidebar(
       title = "Controls & Info",
-      width = 300, # Adjust sidebar width as needed
-      p("This demo shows how clicking on the map can select a row in the table, and selecting a row in the table can highlight a location on the map."),
-      p("A shared 'Location ID' is used to link the views.")
+      width = 300,
+      p("This demo shows bidirectional linking between a leaflet map and data table using linkeR."),
+      p("Features:"),
+      tags$ul(
+        tags$li("Click map markers to select table rows"),
+        tags$li("Click table rows to highlight map locations"),
+        tags$li("Custom popup and zoom behavior"),
+        tags$li("Shared location ID enables linking")
+      )
     ),
-    # Main content area for map and table
+    
+    # Main content area: map and table side-by-side
     fluidRow(
-      column(width = 7, # Column for the map
-             h4("Sample Locations Map"),
-             leafletOutput("wastewaterMap", height = "550px") # Slightly reduced height to make space
+      column(
+        width = 7,
+        h4("Sample Locations Map"),
+        leafletOutput("wastewaterMap", height = "550px")
       ),
-      column(width = 5, # Column for the data table
-             h4("Sample Details Table"),
-             DTOutput("wastewaterTable") # DT table output
+      column(
+        width = 5,
+        h4("Sample Details Table"),
+        DTOutput("wastewaterTable")
       )
     )
-  ), # End of layout_sidebar
+  ),
 
-  # New fluidRow for the selected data panel
+  # Full-width detail panel below map and table
   fluidRow(
-    column(width = 12, # Full width column
-           # This uiOutput will be rendered by the server
-           uiOutput("selectedDataPanel")
+    column(
+      width = 12,
+      uiOutput("selectedDataPanel")
     )
   )
 )
 
 server <- function(input, output, session) {
-  # List of dummy wastewaterTable_rows_selectedwastewater sample locations in Utah
+  
+  # === DATA SETUP ===
+  
+  # Utah city coordinates for sample locations
   UT_city_locations <- list(
     c(40.93, -111.88), # Salt Lake City area
-    c(41.1, -112.02), # Ogden area
+    c(41.1, -112.02),  # Ogden area
     c(40.79, -111.74), # Millcreek/Holladay area
-    c(37.76, -111.6), # Remote area (original St. George comment likely misplaced)
-    c(40.71, -111.9), # West Valley City/Taylorsville area
-    c(40.76, -111.88), # Park City area (coords are more SLC downtown)
-    c(40.78, -111.89), # Sandy area (coords are more SLC downtown/Avenues)
-    c(40.67, -111.89), # Orem area (coords are Murray/Midvale)
-    c(40.76, -111.89), # Draper area (coords are SLC downtown)
-    c(40.76, -111.89) # Lehi area (coords are SLC downtown)
+    c(37.76, -111.6),  # Remote area
+    c(40.71, -111.9),  # West Valley City/Taylorsville area
+    c(40.76, -111.88), # Park City area
+    c(40.78, -111.89), # Sandy area
+    c(40.67, -111.89), # Orem area
+    c(40.76, -111.89), # Draper area
+    c(40.76, -111.89)  # Lehi area
   )
+  
   num_rows <- length(UT_city_locations)
 
-  # Dummy Data for Wastewater Sample Locations
+  # Generate dummy wastewater sample data
   dummy_locations <- reactive({
     data.frame(
-      id = paste0("WS_Loc_", 1:num_rows),
+      location_id = paste0("WS_Loc_", 1:num_rows),
       name = paste("Treatment Plant", LETTERS[1:num_rows]),
       latitude = sapply(UT_city_locations, function(x) x[1]),
       longitude = sapply(UT_city_locations, function(x) x[2]),
@@ -81,7 +83,85 @@ server <- function(input, output, session) {
     )
   })
 
-  # Render the Leaflet Map
+  # Debug: print location IDs on startup
+  isolate(message(paste(dummy_locations()$location_id, collapse = ", ")))
+
+  # === REACTIVE VALUES ===
+  
+  reactive_selected_id <- reactiveVal(NULL) # Track currently selected location ID
+
+  # === CUSTOM CLICK HANDLER ===
+  
+  # Define custom behavior for leaflet marker clicks
+  leaflet_click_handler <- function(map_proxy, selected_data, session) {
+    # Clear any existing popups
+    map_proxy %>% clearPopups()
+    
+    if (!is.null(selected_data)) {
+      # Create rich HTML popup content
+      popup_content <- paste0(
+        "<div style='min-width: 200px; padding: 10px;'>",
+        "<h4 style='color: #2c3e50; margin-top: 0;'>", selected_data$name, "</h4>",
+        "<p><strong>ID:</strong> ", selected_data$location_id, "</p>",
+        "<p><strong>Status:</strong> ", selected_data$status, "</p>",
+        "<p><strong>Sample Value:</strong> ", selected_data$last_sample_value, "</p>",
+        "</div>"
+      )
+      
+      # Apply visual feedback: highlight, zoom, and popup
+      map_proxy %>%
+        # Clear any existing highlights
+        clearGroup("highlight") %>%
+        # Add highlighted circle marker
+        addCircleMarkers(
+          lng = selected_data$longitude,
+          lat = selected_data$latitude,
+          radius = 15,
+          color = "red",
+          fillColor = "red",
+          fillOpacity = 0.3,
+          stroke = TRUE,
+          weight = 3,
+          group = "highlight"
+        ) %>%
+        # Zoom to the selected location
+        flyTo(
+          lng = selected_data$longitude,
+          lat = selected_data$latitude,
+          zoom = 12
+        ) %>%
+        # Add detailed popup
+        addPopups(
+          lng = selected_data$longitude,
+          lat = selected_data$latitude,
+          popup = popup_content,
+          layerId = paste0("detailed_popup_", selected_data$location_id)
+        )
+    } else {
+      # Handle deselection - clear all visual feedback
+      map_proxy %>% 
+        clearGroup("highlight") %>%
+        clearPopups()
+    }
+  }
+  
+  # === COMPONENT LINKING ===
+  
+  # Link the map and table using linkeR with custom click handler
+  linkeR::link_plots(
+    session = session,
+    wastewaterMap = dummy_locations,
+    wastewaterTable = dummy_locations,
+    shared_id_column = "location_id",
+    leaflet_click_handler = leaflet_click_handler,
+    on_selection_change = function(selected_id, selected_data, source_id, session) {
+      reactive_selected_id(selected_id)
+    }
+  )
+
+  # === OUTPUT RENDERERS ===
+  
+  # Render the interactive leaflet map
   output$wastewaterMap <- renderLeaflet({
     locations <- dummy_locations()
     leaflet(data = locations) %>%
@@ -89,16 +169,16 @@ server <- function(input, output, session) {
       addMarkers(
         lng = ~longitude,
         lat = ~latitude,
-        layerId = ~id # IMPORTANT: For click events and linking
+        layerId = ~location_id # CRITICAL: layerId enables linking
       )
   })
 
-  # Render the Data Table
+  # Render the data table
   output$wastewaterTable <- renderDT({
     locations <- dummy_locations()
     datatable(
       locations,
-      selection = "single",
+      selection = "single", # Single row selection for better UX
       rownames = FALSE,
       options = list(
         searching = FALSE,
@@ -107,103 +187,35 @@ server <- function(input, output, session) {
     )
   })
 
-  # --- Link Leaflet and DT using the helper function ---
-  # This replaces several manual observers.
-  # Assumes link_leaflet_dt is defined (e.g., sourced from shiny_link_utils.R)
-  if (exists("link_leaflet_dt")) {
-    link_leaflet_dt(
-      input = input,
-      session = session,
-      leaflet_output_id = "wastewaterMap",
-      dt_output_id = "wastewaterTable",
-      shared_id_column = "id",
-      leaflet_data_reactive = dummy_locations, # Data for map markers
-      dt_data_reactive = dummy_locations, # Data for DT table
-      map_lng_col = "longitude", # Name of longitude col in leaflet_data_reactive
-      map_lat_col = "latitude" # Name of latitude col in leaflet_data_reactive
-      # highlight_zoom and highlight_icon can use defaults or be customized here
-    )
-  } else {
-    warning("link_leaflet_dt function not defined. Linking will not work.")
-  }
-
-  # --- Reactive to get the currently selected location ID ---
-  # This ID is derived from the DT table's selection state, which link_leaflet_dt keeps in sync.
-  reactive_selected_id <- reactive({
-    selected_row_indices <- input$wastewaterTable_rows_selected
-
-    if (is.null(selected_row_indices) || length(selected_row_indices) == 0) {
-      return(NULL) # No row selected
-    }
-
-    # Assuming single selection, take the first selected index
-    selected_row_index <- selected_row_indices[1]
-    current_dt_data <- dummy_locations()
-
-    # Basic validation for the index
-    if (selected_row_index > 0 && selected_row_index <= nrow(current_dt_data)) {
-      return(current_dt_data$id[selected_row_index])
-    } else {
-      # This case should ideally not happen if DT and data are in sync
-      warning(paste("Selected row index", selected_row_index, "is out of bounds for DT data."))
-      return(NULL)
-    }
-  })
-
-  # --- Observer to manage custom popups on the map ---
-  # This adds/clears your detailed popups based on the selection.
-  # link_leaflet_dt handles its own highlight marker and simple popup.
-  observe({
-    current_id <- reactive_selected_id() # Get the ID from our reactive
-    locations <- dummy_locations()
-    map_proxy <- leafletProxy("wastewaterMap", session)
-
-    map_proxy %>% clearPopups() # Clear any previously added custom popups
-
-    if (!is.null(current_id)) {
-      selected_data <- locations[locations$id == current_id, ]
-
-      if (nrow(selected_data) > 0) {
-        # Add the detailed popup
-        map_proxy %>% addPopups(
-          lng = selected_data$longitude,
-          lat = selected_data$latitude,
-          popup = paste(
-            "<strong>", selected_data$name, "</strong>", "<br>",
-            "ID:", selected_data$id, "<br>",
-            "Status:", selected_data$status, "<br>",
-            "Value:", selected_data$last_sample_value
-          ),
-          layerId = paste0("detailed_popup_", selected_data$id) # Unique ID for this popup layer
-        )
-      }
-    }
-  })
-
-  # --- Render the panel showing details of the selected location ---
+  # === DETAIL PANEL ===
+  
+  # Render detailed information panel for selected location
   output$selectedDataPanel <- renderUI({
-    current_id <- reactive_selected_id() # Get the ID from our reactive
+    current_id <- reactive_selected_id()
 
     if (!is.null(current_id)) {
       locations <- dummy_locations()
-      selected_data <- locations[locations$id == current_id, ]
+      selected_data <- locations[locations$location_id == current_id, ]
       
       if (nrow(selected_data) > 0) {
-        sample_value <- selected_data$last_sample_value
-        location_name <- selected_data$name
-        
+        # Create styled detail panel
         div(
           style = "background-color: #e0f2f7; padding: 15px; margin-top: 20px; border-radius: 8px; border: 1px solid #b3cde0;",
-          tags$h5(style = "margin-top:0; color: #005662;", paste("Details for:", location_name)),
-          # ADD THIS PART TO DISPLAY THE ID:
+          tags$h5(
+            style = "margin-top:0; color: #005662;", 
+            paste("Details for:", selected_data$name)
+          ),
           tags$p(
             tags$strong("ID: "), 
             tags$span(current_id) 
           ),
           tags$hr(style = "border-top: 1px solid #b3cde0;"),
           tags$p(
-            tags$strong("Sampled Value: "),
-            tags$span(style = "font-weight:bold; color: #007bff;", sample_value)
+            tags$strong("Sample Value: "),
+            tags$span(
+              style = "font-weight:bold; color: #007bff;", 
+              selected_data$last_sample_value
+            )
           ),
           tags$p(
             tags$strong("Status: "),
@@ -211,14 +223,16 @@ server <- function(input, output, session) {
           )
         )
       } else {
-          div(
-            style = "background-color: #f0f0f0; padding: 15px; margin-top: 20px; border-radius: 5px; text-align: center; color: #6c757d;",
-            tags$em("ERROR")
-          )
+        # Error state (shouldn't normally happen)
+        div(
+          style = "background-color: #f8d7da; padding: 15px; margin-top: 20px; border-radius: 5px; text-align: center; color: #721c24;",
+          tags$em("Error: Selected location not found")
+        )
       }
     } else {
+      # Default state - no selection
       div(
-        style = "background-color: #f0f0f0; padding: 15px; margin-top: 20px; border-radius: 5px; text-align: center; color: #6c757d;",
+        style = "background-color: #f8f9fa; padding: 15px; margin-top: 20px; border-radius: 5px; text-align: center; color: #6c757d;",
         tags$em("Select a location on the map or table to see details here.")
       )
     }
