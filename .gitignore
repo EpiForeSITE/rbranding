@@ -6,6 +6,7 @@
 rbranding.Pproj
 rbranding.Rproj
 *rbranding*.tar.gz
+*.Rproj
 
 /.quarto/
 .DS_Store
@@ -15,9 +16,6 @@ docs
 instructions
 inst/doc
 *.zip
-<<<<<<< HEAD
 README.html
 README_files/*
-=======
->>>>>>> update_installer
 notes/*

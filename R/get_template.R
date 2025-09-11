@@ -1,10 +1,39 @@
 #' @title Get Shiny Templates
 #' Copy Example App Files from inst/examples to inst/app
 #'
-#' @param example_name Name of the example folder under inst/examples
+#' @param example_name Optional string. Name of the example folder under inst/examples. If NULL, the function will list available examples and prompt the user to select one.
 #' @param install_to Directory where the example files should be copied. Defaults to the current working directory.
+#' 
+#' @returns NULL (called for side effects)
 #' @export
-get_template <- function(example_name, install_to = "") {
+#' 
+#' @examples 
+#' if (interactive()) {
+#'   get_template() # prompts user to select an example
+#' }
+get_template <- function(example_name = NULL, install_to = "") {
+
+  if (is.null(example_name)) {
+
+    examples <- list.dirs(system.file("examples", package = "rbranding"), full.names = FALSE, recursive = FALSE)
+
+    message("Choose from the following templates:")
+    for (i in 1:length(examples)) {
+      message(i, ": ", examples[i])
+    }
+    message("Press enter: Abort")
+    answer <- readline()
+
+    answer <- as.integer(answer)
+
+    if (is.na(answer) || answer < 1 || answer >= length(examples)) {
+      message("Template selection aborted")
+      return(invisible())
+    }
+    
+    example_name <- examples[answer]
+  }
+
   # Find the source directory inside the package
   source_dir <- system.file("examples", example_name, package = "rbranding")
   if (source_dir == "") {
