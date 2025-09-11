@@ -26,7 +26,7 @@ get_template <- function(example_name = NULL, install_to = "") {
 
     answer <- as.integer(answer)
 
-    if (is.na(answer) || answer < 1 || answer >= length(examples)) {
+    if (is.na(answer) || answer < 1 || answer > length(examples)) {
       message("Template selection aborted")
       return(invisible())
     }
