@@ -1,8 +1,8 @@
 ---
-title: "Accessibility-Guidelines"
+title: "Accessibility Guidelines"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Accessibility-Guidelines}
+  %\VignetteIndexEntry{Accessibility Guidelines}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -10,7 +10,6 @@ This is a practical guide to **designing and implementing accessible dashboards 
 Ensuring the accessibility of dashboards benefits everyone. It not only allows people with diverse abilities to access and interpret data, but also improves overall usability.
 
 This guide presents essential accessibility principles, offers actionable design strategies and highlights common pitfalls to avoid. It helps you build dashboards that are inclusive, user-friendly, and impactful.
-
 
 
 ## General Design Principles for Accessibility
@@ -112,4 +111,11 @@ Below are free, widely available tools you can use to evaluate the accessibility
 
 In addition to automated tools, always perform manual checks with a screen reader. Popular options include **VoiceOver** (macOS/iOS), **NVDA** (Windows), and **JAWS** (Windows).
 
+## Accessiblity Guildelines Cheatsheet
+
+Download the cheatsheet below as [PDF](https://github.com/EpiForeSITE/branding-package/blob/main/vignettes/accessibility_files/cheatsheet-accessibility-guidelines.pdf) or [SVG](https://github.com/EpiForeSITE/branding-package/blob/main/vignettes/accessibility_files/cheatsheet-accessibility-guidelines.svg)
+
+```{r, echo = FALSE}
+knitr::include_graphics("accessibility_files/cheatsheet-accessibility-guidelines.svg")
+```
 
