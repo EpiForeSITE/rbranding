@@ -53,7 +53,7 @@
 
 
 <dl><dt id="arg-get-default-brand">get_default_brand<a class="anchor" aria-label="anchor" href="#arg-get-default-brand"></a></dt>
-<dd><p>Logical. If TRUE, downloads and writes the default _brand.yml from the remote repository. If FALSE, creates a placeholder _brand.yml file.</p></dd>
+<dd><p>Logical. If TRUE, calls get_brand() to download the latest branding file after initialization. Default is TRUE.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -72,10 +72,11 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The local file is different from the remote file.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Overwrite the local file with the remote file</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Overwrite the local file with the remote file and save a backup to bak_brand.yml</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Do nothing</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3 (or enter): Do nothing</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Please Select an option: (1/2/3): </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> No action taken.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> config.yml created with remote and local file paths.  Initial _brand.yml created.</span>
 </code></pre></div>
     </div>
