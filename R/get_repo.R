@@ -8,6 +8,7 @@
 #' # Update local brand file if needed
 #' get_brand()
 #' @importFrom utils download.file
+#' @importFrom credentials git_credential_ask
 #' @export
 get_brand <- function() {
   # This function downloads the latest _brand.yml file from the repository
