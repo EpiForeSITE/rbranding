@@ -29,9 +29,9 @@ get_brand <- function() {
   config <- read_yaml("config.yml")
   remote_file <- config$remote_file
   local_file <- config$local_file
+  remote_host <- config$remote_host
 
-
-
+  auth_token <- credentials::git_credential_ask(remote_host)$password
 
   tempfile_name <- tempfile()
   # add exception handling if the download fails
@@ -40,7 +40,11 @@ get_brand <- function() {
     download.file(
       remote_file,
       destfile = tempfile_name,
-      quiet = TRUE
+      quiet = TRUE,
+      headers = c(
+        Authorization = paste("Bearer", auth_token),
+        Accept = "application/vnd.github.raw"
+      )
     )
   }, error = function(e) {
     message(paste("Error downloading file:", e))
@@ -91,6 +95,7 @@ get_brand <- function() {
 #' @export
 brand_init <- function(get_default_brand = TRUE) {
 
+  # TODO: Fix this link (doesn't work by default)
   config <- list(
     remote_file = "https://raw.githubusercontent.com/EpiForeSITE/branding-package/main/_brand.yml",
     local_file = "_brand.yml"

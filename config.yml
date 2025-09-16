@@ -1,2 +1,3 @@
-remote_file: https://raw.githubusercontent.com/EpiForeSITE/branding-package/main/_brand.yml
+remote_host: https://github.com/
+remote_file: https://raw.githubusercontent.com/apulsipher/download-test-host/refs/heads/main/_brand.yml
 local_file: _brand.yml
