@@ -95,9 +95,9 @@ get_brand <- function() {
 #' @export
 brand_init <- function(get_default_brand = TRUE) {
 
-  # TODO: Fix this link (doesn't work by default)
   config <- list(
-    remote_file = "https://raw.githubusercontent.com/EpiForeSITE/branding-package/main/_brand.yml",
+    remote_host = "https://github.com/",
+    remote_file = "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
     local_file = "_brand.yml"
   )
 
