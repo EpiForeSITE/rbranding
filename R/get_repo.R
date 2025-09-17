@@ -4,9 +4,12 @@
 #' @return No return value. Side effects: may overwrite _brand.yml and create bak_brand.yml.
 #' @examples
 #' # Initialize config and local brand file
-#' brand_init()
+#' brand_init(get_default_brand = FALSE)
 #' # Update local brand file if needed
-#' get_brand()
+#' \dontrun{
+#'   # Don't run example (requires github access token)
+#'   get_brand()
+#' }
 #' @importFrom utils download.file
 #' @importFrom credentials git_credential_ask
 #' @export
@@ -92,7 +95,7 @@ get_brand <- function() {
 #' @param get_default_brand Logical. If TRUE, calls get_brand() to download the latest branding file after initialization. Default is TRUE.
 #' @return No return value. Side effects: creates config.yml and _brand.yml.
 #' @examples
-#' brand_init()
+#' brand_init(get_default_brand = FALSE)
 #' @export
 brand_init <- function(get_default_brand = TRUE) {
 
