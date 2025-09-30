@@ -29,5 +29,5 @@ jobs:
       - name: Run get_brand tests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
+          GHA_TEST: true
         run: Rscript tests/manual/github-get-brand.R

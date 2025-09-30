@@ -35,7 +35,16 @@ get_brand <- function() {
   local_file <- config$local_file
   remote_host <- config$remote_host
 
-  auth_token <- credentials::git_credential_ask(remote_host)$password
+  # If we're in GHA test mode, use GITHUB_TOKEN directly
+  auth_token <- if (Sys.getenv("GHA_TEST") == TRUE) {
+    token <- Sys.getenv("GITHUB_TOKEN")
+    if (token == "") {
+      stop("GITHUB_TOKEN environment variable is required when GHA_TEST is set")
+    }
+    token
+  } else {
+    credentials::git_credential_ask(remote_host)$password
+  }
 
   tempfile_name <- tempfile()
   # add exception handling if the download fails
