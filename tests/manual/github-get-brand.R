@@ -6,8 +6,14 @@ run_get_brand_with_input <- function() {
     # Save the original stdin connection
     old_stdin <- stdin()
     
-    # Create a temporary connection that returns "1\n"
-    temp_conn <- textConnection("1")
+    # Get GitHub username from environment
+    github_user <- Sys.getenv("GITHUB_ACTOR")
+    if (github_user == "") {
+        stop("GITHUB_ACTOR environment variable is not set")
+    }
+    
+    # Create a temporary connection that returns username and then "1"
+    temp_conn <- textConnection(paste(github_user, "1", sep = "\n"))
     
     # Redirect stdin to our temporary connection
     options(stdin = temp_conn)
