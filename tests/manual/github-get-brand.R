@@ -24,7 +24,7 @@ run_get_brand_with_input <- function() {
 
 # Test Case 1: Public Repository
 message("Testing get_brand() with public repository...")
-file.copy("tests/config-public.yml", "config.yml", overwrite = TRUE)
+file.copy("tests/manual/config-public.yml", "config.yml", overwrite = TRUE)
 tryCatch({
     run_get_brand_with_input()
     if (!file.exists("_brand.yml")) {
@@ -37,7 +37,7 @@ tryCatch({
 
 # Test Case 2: Private Repository
 message("\nTesting get_brand() with private repository...")
-file.copy("tests/config-private.yml", "config.yml", overwrite = TRUE)
+file.copy("tests/manual/config-private.yml", "config.yml", overwrite = TRUE)
 
 # Set up GITHUB_TOKEN for private repo access
 token <- Sys.getenv("GITHUB_TOKEN")
