@@ -8,19 +8,19 @@ Sys.setenv(GHA_TEST = TRUE)
 run_get_brand_with_input <- function() {
     # Save the original stdin connection
     old_stdin <- stdin()
-    
+
     # Create a temporary connection that returns "1" for the menu choice
     temp_conn <- textConnection("1")
-    
+
     # Redirect stdin to our temporary connection
     options(stdin = temp_conn)
-    
+
     # Restore original stdin when we exit this function
     on.exit({
         close(temp_conn)
         options(stdin = old_stdin)
     })
-    
+
     # Run get_brand()
     get_brand()
 }

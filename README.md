@@ -68,9 +68,8 @@ get_brand()
 `get_brand()` will also update the local `_brand.yml` file, if it
 already exists.
 
-> \[!NOTE\]  
-> `brand_init()` and `get_brand()` are intended to be run interactively
-> from the R console, not inside scripts.
+> \[!NOTE\] `brand_init()` and `get_brand()` are intended to be run
+> interactively from the R console, not inside scripts.
 
 ## Use in Shiny Apps
 

@@ -40,7 +40,7 @@ Suggests:
     sysfonts,
     thematic,
     tinytest
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

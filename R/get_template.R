@@ -3,11 +3,11 @@
 #'
 #' @param example_name Optional string. Name of the example folder under inst/examples. If NULL, the function will list available examples and prompt the user to select one.
 #' @param install_to Directory where the example files should be copied. Defaults to the current working directory.
-#' 
+#'
 #' @returns NULL (called for side effects)
 #' @export
-#' 
-#' @examples 
+#'
+#' @examples
 #' if (interactive()) {
 #'   get_template() # prompts user to select an example
 #' }
@@ -30,7 +30,7 @@ get_template <- function(example_name = NULL, install_to = "") {
       message("Template selection aborted")
       return(invisible())
     }
-    
+
     example_name <- examples[answer]
   }
 
@@ -55,5 +55,3 @@ get_template <- function(example_name = NULL, install_to = "") {
     message("Copied ", basename(f), " to ", target_dir)
   }
 }
-
-
