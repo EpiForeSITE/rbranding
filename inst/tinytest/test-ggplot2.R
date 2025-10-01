@@ -1,5 +1,3 @@
-library(tinytest)
-
 # Create a temporary brand file for testing
 test_brand_content <- "
 meta:
@@ -68,9 +66,10 @@ if (requireNamespace("png", quietly = TRUE) && file.exists(test_logo_file)) {
 
 # Test error when brand not loaded
 brand_reset_ggplot()
-# Clear the brand environment
-if (exists(".brand_env", envir = parent.frame())) {
-  rm(list = ls(envir = .brand_env), envir = .brand_env)
+# Clear the brand environment - using package namespace instead of parent.frame
+pkg_env <- asNamespace("rbranding")
+if (exists(".brand_env", envir = pkg_env)) {
+  rm(list = ls(envir = get(".brand_env", envir = pkg_env)), envir = get(".brand_env", envir = pkg_env))
 }
 expect_error(brand_add_logo(), pattern = "Brand configuration not loaded")
 
