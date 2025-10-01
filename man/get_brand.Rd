@@ -23,4 +23,6 @@ brand_init(get_default_brand = FALSE)
   # Don't run example (requires github access token)
   get_brand()
 }
+# Cleanup
+file.remove("config.yml", "_brand.yml")
 }

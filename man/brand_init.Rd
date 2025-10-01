@@ -20,4 +20,6 @@ This function is intended to be run once to set up the configuration for brandin
 }
 \examples{
 brand_init(get_default_brand = FALSE)
+# Cleanup
+file.remove("config.yml", "_brand.yml")
 }

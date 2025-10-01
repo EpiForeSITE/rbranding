@@ -10,6 +10,8 @@
 #'   # Don't run example (requires github access token)
 #'   get_brand()
 #' }
+#' # Cleanup
+#' file.remove("config.yml", "_brand.yml")
 #' @importFrom utils download.file
 #' @importFrom credentials git_credential_ask
 #' @export
@@ -105,6 +107,8 @@ get_brand <- function() {
 #' @return No return value. Side effects: creates config.yml and _brand.yml.
 #' @examples
 #' brand_init(get_default_brand = FALSE)
+#' # Cleanup
+#' file.remove("config.yml", "_brand.yml")
 #' @export
 brand_init <- function(get_default_brand = TRUE) {
 
