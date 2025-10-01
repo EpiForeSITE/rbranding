@@ -35,10 +35,3 @@
 ^_pkgdown\.yml$
 ^pkgdown$
 
-## Quarto Files
-^_quarto\.yml$
-^about\.qmd$
-^dashboard\.qmd$
-^foresite-logo\.png$
-^index\.qmd$
-^styles\.css$
