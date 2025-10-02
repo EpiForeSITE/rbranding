@@ -7,7 +7,7 @@
 This is an R package called `rbranding` that facilitates the creation of Shiny apps for CFA projects conforming to STLTs' branding and design standards. The package provides automated branding configuration, theme management, and interactive component linking for ForeSITE Shiny applications.
 
 ## Core Package Functions
-- `brand_init()` - Initializes branding configuration by creating config.yml and _brand.yml files
+- `brand_init()` - Initializes branding configuration by creating rbranding_config.yml and _brand.yml files
 - `get_brand()` - Downloads/updates latest branding files from remote repository with user prompts
 - `link_leaflet_dt()` - Links leaflet maps with DT data tables for interactive dashboards
 
@@ -110,7 +110,7 @@ Rscript -e "shiny::runApp('app.R', host='0.0.0.0', port=3838)"
    ```bash
    echo 'library(rbranding); brand_init()' | R --no-save --quiet
    ```
-   Should create config.yml and _brand.yml files.
+   Should create rbranding_config.yml and _brand.yml files.
 
 3. **Package Help Test**:
    ```bash
@@ -130,7 +130,7 @@ Rscript -e "shiny::runApp('app.R', host='0.0.0.0', port=3838)"
    ```bash
    echo 'library(rbranding); brand_init()' | R --no-save --quiet
    ```
-   Should create config.yml and _brand.yml files without errors.
+   Should create rbranding_config.yml and _brand.yml files without errors.
 
 2. Test package loading and help:
    ```bash
@@ -163,7 +163,7 @@ Rscript -e "shiny::runApp('app.R', host='0.0.0.0', port=3838)"
 - `Makefile` - Build automation (check, install, docs, example targets)
 - `run_app.sh` - Script for running example applications
 - `_brand.yml` - Default branding configuration
-- `config.yml` - Package configuration template
+- `rbranding_config.yml` - Package configuration template
 
 ## Common Issues and Solutions
 

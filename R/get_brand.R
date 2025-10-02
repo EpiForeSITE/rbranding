@@ -1,17 +1,17 @@
 #' @title Get the Latest Branding File
 #' @description Downloads the latest _brand.yml file from the repository and compares it with the local _brand.yml file. If they are different, prompts the user to overwrite the local file. If the local file does not exist, it will be created.
-#' @details Reads configuration from config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ.
+#' @details Reads configuration from rbranding_config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ.
 #' @return No return value. Side effects: may overwrite _brand.yml and create bak_brand.yml.
 #' @examples
 #' # Initialize config and local brand file
-#' brand_init(get_default_brand = FALSE)
+#' brand_init()
 #' # Update local brand file if needed
 #' \dontrun{
 #'   # Don't run example (requires github access token)
 #'   get_brand()
 #' }
 #' # Cleanup
-#' file.remove("config.yml", "_brand.yml")
+#' file.remove("rbranding_config.yml", "_brand.yml")
 #' @importFrom utils download.file
 #' @importFrom credentials git_credential_ask
 #' @export
@@ -32,7 +32,7 @@ get_brand <- function() {
     }
     yaml::yaml.load_file(file)
   }
-  config <- read_yaml("config.yml")
+  config <- read_yaml("rbranding_config.yml")
   remote_file <- config$remote_file
   local_file <- config$local_file
   remote_host <- config$remote_host
