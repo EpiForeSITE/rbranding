@@ -1,8 +1,8 @@
 library(rbranding)
 library(yaml)
 
-# Set GHA_TEST mode
-Sys.setenv(GHA_TEST = TRUE)
+# Set USE_TOKEN when testing on GHA
+Sys.setenv(USE_TOKEN = TRUE)
 
 # Function to run get_brand() with simulated user input
 run_get_brand_with_input <- function() {

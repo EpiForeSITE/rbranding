@@ -7,7 +7,8 @@
 brand_init()
 }
 \value{
-NULL. Called for its side effects: creating \code{rbranding_config.yml} and \verb{_brand.yml}
+NULL. Called for its side effects: creating \code{rbranding_config.yml}
+and \verb{_brand.yml}
 }
 \description{
 \code{brand_init} initializes the branding configuration by creating two files:

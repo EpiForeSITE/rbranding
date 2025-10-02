@@ -6,7 +6,8 @@
 #' It is intended to be run once. Use `get_brand()` to download/update the brand
 #' file.
 #'
-#' @returns NULL. Called for its side effects: creating `rbranding_config.yml` and `_brand.yml`
+#' @returns NULL. Called for its side effects: creating `rbranding_config.yml`
+#' and `_brand.yml`
 #' @export
 #'
 #' @importFrom yaml write_yaml

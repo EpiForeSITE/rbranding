@@ -2,27 +2,34 @@
 % Please edit documentation in R/get_brand.R
 \name{get_brand}
 \alias{get_brand}
-\title{Get the Latest Branding File}
+\title{Download the latest branding file}
 \usage{
-get_brand()
+get_brand(config_file = "rbranding_config.yml")
+}
+\arguments{
+\item{config_file}{Path to the configuration file. Default is \code{rbranding_config.yml}.}
 }
 \value{
-No return value. Side effects: may overwrite _brand.yml and create bak_brand.yml.
+NULL. Called for its side effects: updating \verb{_brand.yml} and possibly creating \code{bak_brand.yml}
 }
 \description{
-Downloads the latest _brand.yml file from the repository and compares it with the local _brand.yml file. If they are different, prompts the user to overwrite the local file. If the local file does not exist, it will be created.
+\code{get_brand} downloads the latest \verb{_brand.yml} file from the host and URL
+specified in \code{rbranding_config.yml}. If the local \verb{_brand.yml} file is
+different from the remote file, the user is prompted to overwrite the local
+file. If the local file does not exist, it will be created.
 }
 \details{
 Reads configuration from rbranding_config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ.
 }
 \examples{
-# Initialize config and local brand file
-brand_init()
-# Update local brand file if needed
-\dontrun{
-  # Don't run example (requires github access token)
-  get_brand()
+if (interactive()) {
+ # Initialize config and local brand file
+ brand_init()
+
+ # Update local brand file if needed
+ get_brand()
+
+ # Cleanup
+ file.remove("rbranding_config.yml", "_brand.yml", "bak_brand.yml")
 }
-# Cleanup
-file.remove("rbranding_config.yml", "_brand.yml")
 }
