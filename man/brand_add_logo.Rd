@@ -19,7 +19,8 @@ brand_add_logo(x = 0.9, y = 0.1, size = 0.05, logo_type = "icon")
 A ggplot2 annotation_custom layer that can be added to a plot with \code{+}.
 }
 \description{
-Adds a logo from the brand configuration as an annotation to a ggplot2 plot.
+\code{brand_add_logo} adds a logo from the brand configuration as an
+annotation to a ggplot2 plot.
 }
 \details{
 This function reads the logo path from the stored brand configuration and creates
