@@ -2,25 +2,37 @@
 % Please edit documentation in R/get_template.R
 \name{get_template}
 \alias{get_template}
-\title{Get Shiny Templates
-Copy Example App Files from inst/examples to inst/app}
+\title{Copy template files into project}
 \usage{
-get_template(example_name = NULL, install_to = "")
+get_template(template_name = NULL, install_to = NULL)
 }
 \arguments{
-\item{example_name}{Optional string. Name of the example folder under inst/examples. If NULL, the function will list available examples and prompt the user to select one.}
+\item{template_name}{Optional string. Name of the template to use.
+Corresponds to a folder name \verb{examples/}. If NULL (default) within an
+interactive session, the function will list available examples and
+prompt the user to select one.}
 
-\item{install_to}{Directory where the example files should be copied. Defaults to the current working directory.}
+\item{install_to}{Optional string. Directory where the example files
+should be copied. If NULL (default), the current working directory
+will be used.}
 }
 \value{
-NULL (called for side effects)
+NULL. Called for its side effects: copying template files into
+the user's project directory.
 }
 \description{
-Get Shiny Templates
-Copy Example App Files from inst/examples to inst/app
+\code{get_template} copies example files from the package's \code{examples}
+directory into the user's current working directory or a
+specified subdirectory.
 }
 \examples{
 if (interactive()) {
   get_template() # prompts user to select an example
 }
+
+tmpdir <- tempdir()
+get_template(template_name = "shiny1", install_to = tmpdir)
+
+# Cleanup
+unlink(tmpdir, recursive = TRUE)
 }

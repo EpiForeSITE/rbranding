@@ -1,21 +1,44 @@
-#' @title Get Shiny Templates
-#' Copy Example App Files from inst/examples to inst/app
+#' Copy template files into project
 #'
-#' @param example_name Optional string. Name of the example folder under inst/examples. If NULL, the function will list available examples and prompt the user to select one.
-#' @param install_to Directory where the example files should be copied. Defaults to the current working directory.
+#' `get_template` copies example files from the package's `examples`
+#' directory into the user's current working directory or a
+#' specified subdirectory.
 #'
-#' @returns NULL (called for side effects)
+#' @param template_name Optional string. Name of the template to use.
+#' Corresponds to a folder name `examples/`. If NULL (default) within an
+#' interactive session, the function will list available examples and
+#' prompt the user to select one.
+#' @param install_to Optional string. Directory where the example files
+#' should be copied. If NULL (default), the current working directory
+#' will be used.
+#'
+#' @returns NULL. Called for its side effects: copying template files into
+#' the user's project directory.
 #' @export
 #'
 #' @examples
 #' if (interactive()) {
 #'   get_template() # prompts user to select an example
 #' }
-get_template <- function(example_name = NULL, install_to = "") {
+#'
+#' tmpdir <- tempdir()
+#' get_template(template_name = "shiny1", install_to = tmpdir)
+#'
+#' # Cleanup
+#' unlink(tmpdir, recursive = TRUE)
+get_template <- function(template_name = NULL, install_to = NULL) {
 
-  if (is.null(example_name)) {
+  if (is.null(template_name)) {
 
-    examples <- list.dirs(system.file("examples", package = "rbranding"), full.names = FALSE, recursive = FALSE)
+    if (!interactive()) {
+      stop("template_name must be provided in non-interactive sessions")
+    }
+
+    examples <- list.dirs(
+      system.file("examples", package = "rbranding"),
+      full.names = FALSE,
+      recursive = FALSE
+    )
 
     message("Choose from the following templates:")
     for (i in 1:length(examples)) {
@@ -31,27 +54,35 @@ get_template <- function(example_name = NULL, install_to = "") {
       return(invisible())
     }
 
-    example_name <- examples[answer]
+    template_name <- examples[answer]
   }
 
   # Find the source directory inside the package
-  source_dir <- system.file("examples", example_name, package = "rbranding")
+  source_dir <- system.file("examples", template_name, package = "rbranding")
   if (source_dir == "") {
-    stop(paste0("Example folder '", example_name, "' not found in the package under inst/examples."))
+    stop(
+      "Template '",
+      template_name,
+      "' not found in package. Please select a different template."
+    )
   }
-  # Target directory in user's project
-  target_dir <- file.path(getwd(), install_to)
-  if (!dir.exists(target_dir)) {
-    dir.create(target_dir, recursive = TRUE)
-  }
+
   # List all files in the source directory
   files <- list.files(source_dir, full.names = TRUE)
   if (length(files) == 0) {
-    stop(paste0("No files found in example folder '", example_name, "'."))
+    stop("No files found for template '", template_name, "'.")
   }
+
+  # Target directory in user's project
+  target_dir <- install_to %||% getwd()
+
+  if (!dir.exists(target_dir)) {
+    dir.create(target_dir, recursive = TRUE)
+  }
+
   # Copy each file to the target directory
   for (f in files) {
-    file.copy(f, file.path(target_dir, basename(f)), overwrite = TRUE, recursive = TRUE)
+    file.copy(f, file.path(target_dir, basename(f)), overwrite = TRUE)
     message("Copied ", basename(f), " to ", target_dir)
   }
 }
