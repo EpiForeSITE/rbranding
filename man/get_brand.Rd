@@ -13,13 +13,14 @@ get_brand(config_file = "rbranding_config.yml")
 NULL. Called for its side effects: updating \verb{_brand.yml} and possibly creating \code{bak_brand.yml}
 }
 \description{
-\code{get_brand} downloads the latest \verb{_brand.yml} file from the host and URL
-specified in \code{rbranding_config.yml}. If the local \verb{_brand.yml} file is
-different from the remote file, the user is prompted to overwrite the local
-file. If the local file does not exist, it will be created.
-}
-\details{
-Reads configuration from rbranding_config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ.
+\code{get_brand} downloads the latest \verb{_brand.yml} file from the remote host
+and URL specified in \code{rbranding_config.yml}. If the local \verb{_brand.yml}
+file does not exist, it will be created. If the local file is different
+from the remote file, the function will save the contents to
+\code{bak_brand.yml} (as backup) and overwrite the local file with the contents
+of the remote file. When the function is run interactively (e.g., in
+RStudio console), the user is instead prompted to choose whether to
+overwrite the file and whether or not to create the backup.
 }
 \examples{
 if (interactive()) {

@@ -46,7 +46,8 @@ compare_branding_files <- function(local_file, remote_file) {
 #'
 #' @param local_file Path to the local branding file
 #' @param remote_file Path to the remote branding file
-#' @param backup Logical indicating whether to create a backup of the local file
+#' @param backup Logical indicating whether to create a
+#' backup of the local file (default: FALSE)
 #'
 #' @returns NULL. Called for its side effects: updating the local branding file and possibly
 #' creating a backup file
@@ -61,14 +62,17 @@ update_branding_file <- function(local_file, remote_file, backup = FALSE) {
 
 #' Download the latest branding file
 #'
-#' `get_brand` downloads the latest `_brand.yml` file from the host and URL
-#' specified in `rbranding_config.yml`. If the local `_brand.yml` file is
-#' different from the remote file, the user is prompted to overwrite the local
-#' file. If the local file does not exist, it will be created.
+#' `get_brand` downloads the latest `_brand.yml` file from the remote host
+#' and URL specified in `rbranding_config.yml`. If the local `_brand.yml`
+#' file does not exist, it will be created. If the local file is different
+#' from the remote file, the function will save the contents to
+#' `bak_brand.yml` (as backup) and overwrite the local file with the contents
+#' of the remote file. When the function is run interactively (e.g., in
+#' RStudio console), the user is instead prompted to choose whether to
+#' overwrite the file and whether or not to create the backup.
 #'
 #' @param config_file Path to the configuration file. Default is `rbranding_config.yml`.
 #'
-#' @details Reads configuration from rbranding_config.yml. Handles download errors and file comparison using MD5 hashes. Prompts user for action if files differ.
 #' @returns NULL. Called for its side effects: updating `_brand.yml` and possibly creating `bak_brand.yml`
 #' @export
 #'
