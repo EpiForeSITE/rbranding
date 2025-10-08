@@ -7,20 +7,25 @@
 brand_set_ggplot(brand_file = NULL, use_fonts = TRUE)
 }
 \arguments{
-\item{brand_file}{Path to the _brand.yml file. If NULL, looks for _brand.yml in the current directory.}
+\item{brand_file}{Path to the _brand.yml file. If NULL, looks for
+_brand.yml in the current directory.}
 
-\item{use_fonts}{Logical. Whether to attempt to load and use custom fonts from the brand file. Default is TRUE.}
+\item{use_fonts}{Logical. Whether to attempt to load and use custom
+fonts from the brand file. Default is TRUE.}
 }
 \value{
-Invisibly returns the previous ggplot2 theme (for potential restoration).
+Invisibly returns the previous ggplot2 theme (for
+potential restoration).
 }
 \description{
-Sets the ggplot2 theme based on colors and typography defined in a _brand.yml file.
-This function reads the brand configuration and applies it as the default ggplot2 theme.
+\code{brand_set_ggplot} sets the ggplot2 theme based on colors and
+typography defined in a _brand.yml file. This function reads the
+brand configuration and applies it as the default ggplot2 theme.
 }
 \details{
-This function reads a brand.yml file and extracts color and typography information to
-create a custom ggplot2 theme. The function:
+This function reads a brand.yml file and extracts color and =
+typography information to create a custom ggplot2 theme.
+The function:
 \itemize{
 \item Maps brand colors to ggplot2 theme elements
 \item Attempts to load Google Fonts specified in the brand file

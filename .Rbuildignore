@@ -19,6 +19,7 @@
 ^_brand\.yml$
 ^bak_brand\.yml$
 ^config\.yml$
+^rbranding_config\.yml$
 
 ^[.].*$
 ^.*/[.].*$

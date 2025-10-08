@@ -7,10 +7,12 @@
 brand_reset_ggplot()
 }
 \value{
-Invisibly returns TRUE if reset was successful, FALSE if no previous theme was stored.
+Invisibly returns TRUE if reset was successful, FALSE if no
+previous theme was stored.
 }
 \description{
-Resets the ggplot2 theme to the state it was in before brand_set_ggplot() was called.
+\code{brand_reset_ggplot} resets the ggplot2 theme to the state it was in
+before brand_set_ggplot() was called.
 }
 \examples{
 \dontrun{

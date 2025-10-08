@@ -2,24 +2,26 @@
 % Please edit documentation in R/brand_init.R
 \name{brand_init}
 \alias{brand_init}
-\title{Initialize Branding Config}
+\title{Initialize branding configuration}
 \usage{
-brand_init(get_default_brand = TRUE)
-}
-\arguments{
-\item{get_default_brand}{Logical. If TRUE, calls get_brand() to download the latest branding file after initialization. Default is TRUE.}
+brand_init()
 }
 \value{
-No return value. Side effects: creates config.yml and _brand.yml.
+NULL. Called for its side effects: creating \code{rbranding_config.yml}
+and \verb{_brand.yml}
 }
 \description{
-Initializes the branding by creating a config.yml file with the remote and local file paths, and a placeholder _brand.yml file.
+\code{brand_init} initializes the branding configuration by creating two files:
+\itemize{
+\item \code{rbranding_config.yml}: contains remote and local file paths to brand files
+\item \verb{_brand.yml}: a placeholder branding file
+It is intended to be run once. Use \code{get_brand()} to download/update the brand
+file.
 }
-\details{
-This function is intended to be run once to set up the configuration for branding file management.
 }
 \examples{
-brand_init(get_default_brand = FALSE)
-# Cleanup
-file.remove("config.yml", "_brand.yml")
+brand_init()
+
+# Clean up
+file.remove("rbranding_config.yml", "_brand.yml")
 }

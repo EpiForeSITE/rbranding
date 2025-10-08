@@ -3,17 +3,22 @@
 
 #' Set ggplot2 Theme from Brand Configuration
 #'
-#' Sets the ggplot2 theme based on colors and typography defined in a _brand.yml file.
-#' This function reads the brand configuration and applies it as the default ggplot2 theme.
+#' `brand_set_ggplot` sets the ggplot2 theme based on colors and
+#' typography defined in a _brand.yml file. This function reads the
+#' brand configuration and applies it as the default ggplot2 theme.
 #'
-#' @param brand_file Path to the _brand.yml file. If NULL, looks for _brand.yml in the current directory.
-#' @param use_fonts Logical. Whether to attempt to load and use custom fonts from the brand file. Default is TRUE.
+#' @param brand_file Path to the _brand.yml file. If NULL, looks for
+#' _brand.yml in the current directory.
+#' @param use_fonts Logical. Whether to attempt to load and use custom
+#' fonts from the brand file. Default is TRUE.
 #'
-#' @return Invisibly returns the previous ggplot2 theme (for potential restoration).
+#' @return Invisibly returns the previous ggplot2 theme (for
+#' potential restoration).
 #'
 #' @details
-#' This function reads a brand.yml file and extracts color and typography information to
-#' create a custom ggplot2 theme. The function:
+#' This function reads a brand.yml file and extracts color and =
+#' typography information to create a custom ggplot2 theme.
+#' The function:
 #' \itemize{
 #'   \item Maps brand colors to ggplot2 theme elements
 #'   \item Attempts to load Google Fonts specified in the brand file
@@ -172,9 +177,11 @@ brand_set_ggplot <- function(brand_file = NULL, use_fonts = TRUE) {
 
 #' Reset ggplot2 Theme to Previous State
 #'
-#' Resets the ggplot2 theme to the state it was in before brand_set_ggplot() was called.
+#' `brand_reset_ggplot` resets the ggplot2 theme to the state it was in
+#' before brand_set_ggplot() was called.
 #'
-#' @return Invisibly returns TRUE if reset was successful, FALSE if no previous theme was stored.
+#' @return Invisibly returns TRUE if reset was successful, FALSE if no
+#' previous theme was stored.
 #'
 #' @examples
 #' \dontrun{
@@ -201,7 +208,8 @@ brand_reset_ggplot <- function() {
 
 #' Add Brand Logo to ggplot2 Plot
 #'
-#' Adds a logo from the brand configuration as an annotation to a ggplot2 plot.
+#' `brand_add_logo` adds a logo from the brand configuration as an
+#' annotation to a ggplot2 plot.
 #'
 #' @param x Numeric. Horizontal position of the logo (0-1 scale). Default is 0.9.
 #' @param y Numeric. Vertical position of the logo (0-1 scale). Default is 0.1.

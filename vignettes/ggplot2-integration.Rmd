@@ -46,7 +46,7 @@ library(ggplot2)
 Start by initializing the branding configuration and getting the latest brand file:
 
 ```{r eval=FALSE}
-# Initialize branding (creates config.yml and placeholder _brand.yml)
+# Initialize branding (creates rbranding_config.yml and placeholder _brand.yml)
 brand_init()
 
 # Get the latest brand file from the repository
