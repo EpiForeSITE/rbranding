@@ -101,14 +101,9 @@ get_brand <- function(config_file = "rbranding_config.yml") {
   remote_host <- config$remote_host
 
   # Get authentication token (needed if accessing private repo)
-  # - If we're testing, use GITHUB_TOKEN
-  # - Otherwise, check the git credential store for the provided host
-  auth_token <- if (Sys.getenv("USE_TOKEN") == TRUE) {
-    token <- Sys.getenv("GITHUB_TOKEN")
-    if (token == "") {
-      stop("GITHUB_TOKEN environment variable is required when USE_TOKEN is set")
-    }
-    token
+  # - Check for GITHUB_TOKEN, otherwise, check the git credential store for the provided host
+  auth_token <- if (Sys.getenv("GITHUB_TOKEN", "FALSE") != "FALSE") {
+    Sys.getenv("GITHUB_TOKEN")
   } else {
     credentials::git_credential_ask(remote_host)$password
   }
