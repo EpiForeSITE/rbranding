@@ -36,10 +36,8 @@ get_brand <- function() {
   remote_host <- config$remote_host
 
   # If we're in GHA test mode, use GITHUB_TOKEN directly
-  auth_token <- if (Sys.getenv("GHA_TEST") == TRUE) {
+  auth_token <- if (Sys.getenv("GITHUB_TOKEN", "FALSE") != "FALSE") {
     token <- Sys.getenv("GITHUB_TOKEN")
-    if (token == "") {
-      stop("GITHUB_TOKEN environment variable is required when GHA_TEST is set")
     }
     token
   } else {
