@@ -50,7 +50,7 @@
 <div class="section level2">
 <h2 id="core-package-functions">Core Package Functions<a class="anchor" aria-label="anchor" href="#core-package-functions"></a></h2>
 <ul><li>
-<code><a href="reference/brand_init.html">brand_init()</a></code> - Initializes branding configuration by creating config.yml and _brand.yml files</li>
+<code><a href="reference/brand_init.html">brand_init()</a></code> - Initializes branding configuration by creating rbranding_config.yml and _brand.yml files</li>
 <li>
 <code><a href="reference/get_brand.html">get_brand()</a></code> - Downloads/updates latest branding files from remote repository with user prompts</li>
 <li>
@@ -149,7 +149,7 @@
 <li>
 <p><strong>Core Function Test</strong>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'library(rbranding); brand_init()'</span> <span class="kw">|</span> <span class="ex">R</span> <span class="at">--no-save</span> <span class="at">--quiet</span></span></code></pre></div>
-<p>Should create config.yml and _brand.yml files.</p>
+<p>Should create rbranding_config.yml and _brand.yml files.</p>
 </li>
 <li>
 <p><strong>Package Help Test</strong>:</p>
@@ -164,7 +164,7 @@
 </ol></div>
 <div class="section level3">
 <h3 id="manual-testing-workflow">Manual Testing Workflow<a class="anchor" aria-label="anchor" href="#manual-testing-workflow"></a></h3>
-<p><strong>When dependencies are NOT available (common in restricted environments):</strong> 1. Test core package functions: <code>bash    echo 'library(rbranding); brand_init()' | R --no-save --quiet</code> Should create config.yml and _brand.yml files without errors.</p>
+<p><strong>When dependencies are NOT available (common in restricted environments):</strong> 1. Test core package functions: <code>bash    echo 'library(rbranding); brand_init()' | R --no-save --quiet</code> Should create rbranding_config.yml and _brand.yml files without errors.</p>
 <ol start="2" style="list-style-type: decimal"><li>
 <p>Test package loading and help:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'library(rbranding); help(package="rbranding")'</span> <span class="kw">|</span> <span class="ex">R</span> <span class="at">--no-save</span> <span class="at">--quiet</span></span></code></pre></div>
@@ -202,7 +202,7 @@
 <li>
 <code>_brand.yml</code> - Default branding configuration</li>
 <li>
-<code>config.yml</code> - Package configuration template</li>
+<code>rbranding_config.yml</code> - Package configuration template</li>
 </ul></div>
 </div>
 <div class="section level2">
