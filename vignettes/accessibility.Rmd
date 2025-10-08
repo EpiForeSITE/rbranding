@@ -113,4 +113,4 @@ In addition to automated tools, always perform manual checks with a screen reade
 
 ## Accessiblity Guidelines Cheatsheet
 
-We created a cheatsheet for the above accessiblity guidelines. You may download the cheatsheet as a [PDF](https://github.com/EpiForeSITE/branding-package/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.pdf) or [SVG](https://github.com/EpiForeSITE/branding-package/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.svg)
+We created a cheatsheet for the above accessiblity guidelines. You may download the cheatsheet as a [PDF](https://github.com/EpiForeSITE/rbranding/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.pdf) or [SVG](https://github.com/EpiForeSITE/rbranding/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.svg)

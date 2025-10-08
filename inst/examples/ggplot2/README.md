@@ -12,7 +12,7 @@ This directory contains examples of how to integrate ggplot2 visualizations with
 1. Install and load the package:
 ```r
 # Install from GitHub
-remotes::install_github("EpiForeSITE/branding-package")
+remotes::install_github("EpiForeSITE/rbranding")
 library(rbranding)
 ```
 

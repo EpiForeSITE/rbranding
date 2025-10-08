@@ -1,6 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+.Rprofile
 .Ruserdata
 ._bakgit/*
 rbranding.Pproj
