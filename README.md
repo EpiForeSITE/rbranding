@@ -56,9 +56,9 @@ To initialize the branding config, use `brand_init()`:
 brand_init()
 ```
 
-This will generate the `config.yml` and `_brand.yml` files. The
-`_brand.yml` file contains placeholder text. You will need to edit the
-config file with the URL of your brand file, then download that file
+This will generate the `rbranding_config.yml` and `_brand.yml` files.
+The `_brand.yml` file contains placeholder text. You will need to edit
+the config file with the URL of your brand file, then download that file
 using:
 
 ``` r

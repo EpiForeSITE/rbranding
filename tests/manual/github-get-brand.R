@@ -23,7 +23,7 @@ run_get_brand_with_input <- function() {
 
 # Test Case 1: Public Repository
 message("\nTesting get_brand() with public repository...")
-file.copy("tests/manual/config-public.yml", "config.yml", overwrite = TRUE)
+file.copy("tests/manual/config-public.yml", "rbranding_config.yml", overwrite = TRUE)
 tryCatch({
     run_get_brand_with_input()
     if (!file.exists("_brand.yml")) {
@@ -36,7 +36,7 @@ tryCatch({
 
 # Test Case 2: Private Repository
 message("\nTesting get_brand() with private repository...")
-file.copy("tests/manual/config-private.yml", "config.yml", overwrite = TRUE)
+file.copy("tests/manual/config-private.yml", "rbranding_config.yml", overwrite = TRUE)
 
 tryCatch({
     run_get_brand_with_input()
