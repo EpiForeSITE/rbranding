@@ -30,7 +30,7 @@ if (interactive()) {
   get_template() # prompts user to select an example
 }
 
-tmpdir <- tempdir()
+tmpdir <- file.path(tempdir(), "shiny1_test")
 get_template(template_name = "shiny1", install_to = tmpdir)
 
 # Cleanup
