@@ -1,26 +1,33 @@
-#' @title Install rbranding Auto-Update in .Rprofile
-#' @description Adds code to .Rprofile that automatically checks and updates the _brand.yml file when R starts.
-#' @details
-#' This function modifies or creates an .Rprofile file in the specified project directory.
-#' The added code will automatically check for updates to the _brand.yml file each time
-#' R starts (unless --vanilla is used).
+#' Install rbranding auto-update in .Rprofile
 #'
-#' The code block is wrapped with hash markers including a checksum for easy identification
-#' and updates. All operations are wrapped in local() to avoid polluting the global environment
-#' and in tryCatch() for safe error handling.
+#' Adds code to .Rprofile that automatically checks and updates the _brand.yml
+#' file when R starts.
 #'
-#' @param project_path Character string specifying the project directory. Default is "." (current directory).
-#' @return No return value. Side effects: creates or modifies .Rprofile in project_path.
+#' This function modifies or creates an .Rprofile file in the specified project
+#' directory. The added code will automatically check for updates to the
+#' _brand.yml file each time R starts (unless --vanilla is used).
+#'
+#' The code block is wrapped with hash markers including a checksum for easy
+#' identification and updates. All operations are wrapped in local() to avoid
+#' polluting the global environment and in tryCatch() for safe error handling.
+#'
+#' @param project_path Character string specifying the project directory.
+#' Default is "." (current directory).
+#'
+#' @returns NULL. Called for its side effects: creates or modifies .Rprofile
+#' in project_path.
+#'
+#' @export
+#'
 #' @examples
 #' \dontrun{
 #' # Install in current directory
-#' install_rbranding()
+#' install_rbranding_autoupdate()
 #'
 #' # Install in a specific project
-#' install_rbranding("~/my_project")
+#' install_rbranding_autoupdate("~/my_project")
 #' }
-#' @export
-install_rbranding <- function(project_path = ".") {
+install_rbranding_autoupdate <- function(project_path = ".") {
   tryCatch({
     # Normalize the path
     project_path <- normalizePath(project_path, mustWork = TRUE)
@@ -92,22 +99,32 @@ install_rbranding <- function(project_path = ".") {
   })
 }
 
-#' @title Update rbranding Auto-Update Code in .Rprofile
-#' @description Updates the rbranding auto-update code in .Rprofile if a new version is available.
-#' @details This is a convenience wrapper around install_rbranding() that performs the same operation.
-#' @param project_path Character string specifying the project directory. Default is "." (current directory).
-#' @return No return value. Side effects: modifies .Rprofile in project_path if update is needed.
+#' Update rbranding auto-update code in .Rprofile
+#'
+#' Updates the rbranding auto-update code in .Rprofile if a new version is
+#' available.
+#'
+#' This is a convenience wrapper around install_rbranding_autoupdate() that
+#' performs the same operation.
+#'
+#' @param project_path Character string specifying the project directory.
+#' Default is "." (current directory).
+#'
+#' @returns NULL. Called for its side effects: modifies .Rprofile in
+#' project_path if update is needed.
+#'
+#' @export
+#'
 #' @examples
 #' \dontrun{
 #' # Update in current directory
-#' update_rbranding()
+#' update_rbranding_autoupdate()
 #'
 #' # Update in a specific project
-#' update_rbranding("~/my_project")
+#' update_rbranding_autoupdate("~/my_project")
 #' }
-#' @export
-update_rbranding <- function(project_path = ".") {
-  install_rbranding(project_path)
+update_rbranding_autoupdate <- function(project_path = ".") {
+  install_rbranding_autoupdate(project_path)
 }
 
 #' Generate the update code to be inserted into .Rprofile
@@ -118,7 +135,7 @@ update_rbranding <- function(project_path = ".") {
     "local({",
     "  tryCatch({",
     "    # Check if rbranding config exists",
-    "    if (file.exists(\"config.yml\") && file.exists(\"_brand.yml\")) {",
+    "    if (file.exists(\"rbranding_config.yml\") && file.exists(\"_brand.yml\")) {",
     "      # Check for updates",
     "      if (requireNamespace(\"rbranding\", quietly = TRUE)) {",
     "        rbranding::update_brand_silent()",
@@ -144,23 +161,25 @@ update_rbranding <- function(project_path = ".") {
   as.character(hash)
 }
 
-#' @title Silently Update Brand File
-#' @description Non-interactive version of get_brand() for use in .Rprofile
-#' @details
-#' This function checks if the local _brand.yml file differs from the remote version
-#' and automatically updates it if needed. It returns a message indicating the result
-#' but does not prompt for user input.
+#' Silently update brand file
 #'
-#' This function is primarily intended for internal use by the .Rprofile automation,
-#' but is exported so it can be called from there.
+#' Non-interactive version of get_brand() for use in .Rprofile.
 #'
-#' @return Character string with status message (invisible).
+#' This function checks if the local _brand.yml file differs from the remote
+#' version and automatically updates it if needed. It returns a message
+#' indicating the result but does not prompt for user input.
+#'
+#' This function is primarily intended for internal use by the .Rprofile
+#' automation, but is exported so it can be called from there.
+#'
+#' @returns Character string with status message (invisible).
+#'
 #' @export
 update_brand_silent <- function() {
   tryCatch({
     # Check if config exists
-    if (!file.exists("config.yml")) {
-      message("No config.yml found - run brand_init() to set up branding")
+    if (!file.exists("rbranding_config.yml")) {
+      message("No rbranding_config.yml found - run brand_init() to set up branding")
       return(invisible("no_config"))
     }
 
@@ -169,39 +188,29 @@ update_brand_silent <- function() {
       return(invisible("no_brand"))
     }
 
+    # Use get_brand() but suppress interactive prompts
+    # We'll capture the output to determine what happened
+    old_interactive <- getOption("interactive")
+    on.exit(options(interactive = old_interactive))
+    options(interactive = FALSE)
+    
     # Read config
-    config <- yaml::yaml.load_file("config.yml")
-    remote_file <- config$remote_file
+    config <- yaml::yaml.load_file("rbranding_config.yml")
     local_file <- config$local_file
-
-    # Download remote file to temp location
-    temp_file <- tempfile()
-
-    # Try download without authentication (for public repos)
-    download_success <- tryCatch({
-      download.file(remote_file, destfile = temp_file, quiet = TRUE, method = "auto")
-      TRUE
-    }, error = function(e) {
-      FALSE
-    })
-
-    if (!download_success) {
-      # Silently fail - couldn't download
-      return(invisible("download_failed"))
-    }
-
-    # Compare hashes
-    temp_hash <- tools::md5sum(temp_file)
-    local_hash <- tools::md5sum(local_file)
-
-    if (is.na(temp_hash)) {
-      # Download didn't work properly
-      return(invisible("download_failed"))
-    }
-
-    if (local_hash != temp_hash) {
-      # Update needed
-      file.copy(temp_file, local_file, overwrite = TRUE)
+    
+    # Store the hash before calling get_brand
+    old_hash <- if (file.exists(local_file)) tools::md5sum(local_file) else NA
+    
+    # Call get_brand - it will update if needed
+    suppressMessages(get_brand())
+    
+    # Check if file was updated
+    new_hash <- if (file.exists(local_file)) tools::md5sum(local_file) else NA
+    
+    if (is.na(old_hash)) {
+      message("_brand.yml created from remote repository")
+      return(invisible("created"))
+    } else if (!identical(old_hash, new_hash)) {
       message("_brand.yml updated to latest version")
       return(invisible("updated"))
     } else {

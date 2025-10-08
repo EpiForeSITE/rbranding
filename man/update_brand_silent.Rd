@@ -2,7 +2,7 @@
 % Please edit documentation in R/rprofile_setup.R
 \name{update_brand_silent}
 \alias{update_brand_silent}
-\title{Silently Update Brand File}
+\title{Silently update brand file}
 \usage{
 update_brand_silent()
 }
@@ -10,13 +10,13 @@ update_brand_silent()
 Character string with status message (invisible).
 }
 \description{
-Non-interactive version of get_brand() for use in .Rprofile
+Non-interactive version of get_brand() for use in .Rprofile.
 }
 \details{
-This function checks if the local _brand.yml file differs from the remote version
-and automatically updates it if needed. It returns a message indicating the result
-but does not prompt for user input.
+This function checks if the local _brand.yml file differs from the remote
+version and automatically updates it if needed. It returns a message
+indicating the result but does not prompt for user input.
 
-This function is primarily intended for internal use by the .Rprofile automation,
-but is exported so it can be called from there.
+This function is primarily intended for internal use by the .Rprofile
+automation, but is exported so it can be called from there.
 }
