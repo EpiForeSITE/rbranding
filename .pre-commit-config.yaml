@@ -1,0 +1,22 @@
+exclude: ^(inst/|man/|.github/|vignettes/|playground/|resources/|.devcontainer/|README.md)
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: detect-private-key
+
+-   repo: https://github.com/lorenzwalthert/precommit
+    # This version of precommit uses R 4.4.1 (renv.lock)
+    # See the pre-commit.yaml workflow file for more details.
+    rev: v0.4.3.9009
+    hooks:
+      - id: readme-rmd-rendered
+      - id: roxygenize
+        additional_dependencies:
+        - credentials
+        - ggplot2
+      - id: use-tidy-description

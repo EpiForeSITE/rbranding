@@ -1,7 +1,7 @@
 meta:
-  name: rbranding 
+  name: rbranding
   links:
-    docs: https://epiforesite.github.io/branding-package/ 
+    docs: https://epiforesite.github.io/branding-package/
     github: https://github.com/EpiForeSITE/branding-package
 
 logo:
@@ -13,7 +13,7 @@ logo:
       path: logo.png
       alt: "Full company logo with tagline"
   small: icon
-  
+
 
 
 color:
@@ -53,4 +53,3 @@ defaults:
       # basic format-specific settings
   shiny:
     # shiny specific settings
-

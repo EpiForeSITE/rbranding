@@ -1,28 +1,38 @@
+# R Files
 ^.*\.Rproj$
 ^\.Rproj\.user$
-
-^\.github$
-^\.git\*$
 ^\.\.Rcheck$
 
-# Other files to ignore
-^run_app\.sh$
+# Git and Dev Files
+^\.github$
+^\.git\*$
 ^\.vscode$
-^playground$
-^_brand\.yml$
-^config\.yml$
-
 ^\.devcontainer$
-^_pkgdown\.yml$
-^docs$
-^pkgdown$
+^playground$
+
+# Other files to ignore
+^LICENSE\.md$
+^Makefile$
+^run_app\.sh$
+
+## Branding Files
+^_brand\.yml$
+^bak_brand\.yml$
+^config\.yml$
 
 ^[.].*$
 ^.*/[.].*$
 
 # Articles
 ^vignettes/accessibility\.Rmd$
-^vignettes/accessibility_files/.*$
+^vignettes/accessibility_files$
 
 # Resources
-^resources/.*$
+^resources$
+
+# Website
+^docs$
+^_pkgdown\.yml$
+^pkgdown$
+
+^README\.Rmd$
