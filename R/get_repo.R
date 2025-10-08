@@ -37,9 +37,7 @@ get_brand <- function() {
 
   # If we're in GHA test mode, use GITHUB_TOKEN directly
   auth_token <- if (Sys.getenv("GITHUB_TOKEN", "FALSE") != "FALSE") {
-    token <- Sys.getenv("GITHUB_TOKEN")
-    }
-    token
+    Sys.getenv("GITHUB_TOKEN")
   } else {
     credentials::git_credential_ask(remote_host)$password
   }
