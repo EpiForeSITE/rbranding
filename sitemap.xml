@@ -1,6 +1,9 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://epiforesite.github.io/rbranding/404.html</loc></url>
+<url><loc>https://epiforesite.github.io/rbranding/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://epiforesite.github.io/rbranding/CONTRIBUTING.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/LICENSE-text.html</loc></url>
+<url><loc>https://epiforesite.github.io/rbranding/LICENSE.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/articles/accessibility.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/articles/ggplot2-integration.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/articles/index.html</loc></url>
@@ -10,6 +13,7 @@
 <url><loc>https://epiforesite.github.io/rbranding/authors.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/copilot-instructions.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/index.html</loc></url>
+<url><loc>https://epiforesite.github.io/rbranding/news/index.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/reference/brand_add_logo.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/reference/brand_init.html</loc></url>
 <url><loc>https://epiforesite.github.io/rbranding/reference/brand_reset_ggplot.html</loc></url>
