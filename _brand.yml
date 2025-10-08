@@ -1,8 +1,8 @@
 meta:
   name: rbranding
   links:
-    docs: https://epiforesite.github.io/branding-package/
-    github: https://github.com/EpiForeSITE/branding-package
+    docs: https://epiforesite.github.io/rbranding/
+    github: https://github.com/EpiForeSITE/rbranding
 
 logo:
   images:
