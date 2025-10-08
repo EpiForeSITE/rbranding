@@ -119,12 +119,10 @@ update_rbranding <- function(project_path = ".") {
     "  tryCatch({",
     "    # Check if rbranding config exists",
     "    if (file.exists(\"config.yml\") && file.exists(\"_brand.yml\")) {",
-    "      # Silently check for updates",
-    "      suppressMessages({",
-    "        if (requireNamespace(\"rbranding\", quietly = TRUE)) {",
-    "          rbranding::update_brand_silent()",
-    "        }",
-    "      })",
+    "      # Check for updates",
+    "      if (requireNamespace(\"rbranding\", quietly = TRUE)) {",
+    "        rbranding::update_brand_silent()",
+    "      }",
     "    }",
     "  }, error = function(e) {",
     "    # Silently ignore errors to not disrupt R startup",
@@ -153,9 +151,11 @@ update_rbranding <- function(project_path = ".") {
 #' and automatically updates it if needed. It returns a message indicating the result
 #' but does not prompt for user input.
 #'
+#' This function is primarily intended for internal use by the .Rprofile automation,
+#' but is exported so it can be called from there.
+#'
 #' @return Character string with status message (invisible).
-#' @keywords internal
-#' @noRd
+#' @export
 update_brand_silent <- function() {
   tryCatch({
     # Check if config exists
