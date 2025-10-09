@@ -4,7 +4,16 @@
 \alias{brand_init}
 \title{Initialize branding configuration}
 \usage{
-brand_init()
+brand_init(brand_url = NULL, host_url = NULL, install_path = ".")
+}
+\arguments{
+\item{brand_url}{Optional URL. Points to the remote brand file. If \code{NULL}, defaults to
+rbranding's brand file on GitHub.}
+
+\item{host_url}{Optional URL. Points to the remote host. If \code{NULL}, defaults to GitHub.}
+
+\item{install_path}{Optional string. Directory where the files should be created.
+Defaults to the current working directory.}
 }
 \value{
 NULL. Called for its side effects: creating \code{rbranding_config.yml}
@@ -20,8 +29,10 @@ file.
 }
 }
 \examples{
-brand_init()
+tmpdir <- file.path(tempdir(), "brand_files")
+
+brand_init(install_path = tmpdir)
 
 # Clean up
-file.remove("rbranding_config.yml", "_brand.yml")
+unlink(tmpdir, recursive = TRUE)
 }
