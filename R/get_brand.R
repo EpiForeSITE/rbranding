@@ -120,9 +120,16 @@ get_brand <- function(
   local_file <- local_file %||% config$local_file
 
   if (is.null(remote_file) | is.null(remote_host) | is.null(local_file)) {
-    stop(
-      "Missing parameters. Please provide all parameters directly or create a configuration file with brand_init()"
-    )
+    if (!file.exists(config_file)) {
+      stop(
+        "Configuration file '", config_file, "' does not exist and not all parameters were provided.\n",
+        "Please provide all parameters directly or create a configuration file with brand_init()"
+        )
+    } else {
+      stop(
+        "Missing parameters. Please provide all parameters directly or through a configuration file created with brand_init()"
+      )
+    }
   }
 
   # Get authentication token (needed if accessing private repo)
