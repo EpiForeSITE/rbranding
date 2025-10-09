@@ -21,8 +21,8 @@
 #'   get_template() # prompts user to select an example
 #' }
 #'
-#' tmpdir <- file.path(tempdir(), "shiny1_test")
-#' get_template(template_name = "shiny1", install_to = tmpdir)
+#' tmpdir <- file.path(tempdir(), "wastewater_test")
+#' get_template(template_name = "wastewater", install_to = tmpdir)
 #'
 #' # Cleanup
 #' unlink(tmpdir, recursive = TRUE)
@@ -39,9 +39,13 @@ get_template <- function(template_name = NULL, install_to = NULL) {
       full.names = FALSE,
       recursive = FALSE
     )
+    
+    # Filter out excluded templates (hardcoded exclusion list)
+    excluded_templates <- c("wastewater")
+    examples <- examples[!examples %in% excluded_templates]
 
     message("Choose from the following templates:")
-    for (i in 1:length(examples)) {
+    for (i in seq_along(examples)) {
       message(i, ": ", examples[i])
     }
     message("Press enter: Abort")
