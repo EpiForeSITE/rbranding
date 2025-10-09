@@ -41,3 +41,12 @@ Install with:
 ```{r, eval=FALSE}
 rbranding::get_template("qwebsite")
 ```
+
+## qggplot2:  Quarto report with ggplot2-themed styling
+```{r, echo=FALSE, out.width="50%" }
+knitr::include_graphics("qggplot2.jpg")
+```
+Install with:
+```{r, eval=FALSE}
+rbranding::get_template("qggplot2")
+```
