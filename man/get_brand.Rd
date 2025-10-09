@@ -4,10 +4,28 @@
 \alias{get_brand}
 \title{Download the latest branding file}
 \usage{
-get_brand(config_file = "rbranding_config.yml")
+get_brand(
+  brand_url = NULL,
+  host_url = NULL,
+  local_file = NULL,
+  config_file = "rbranding_config.yml",
+  backup_folder = "."
+)
 }
 \arguments{
+\item{brand_url}{Optional URL. Points to the remote brand file. If \code{NULL}, the value
+in the configuration file will be used.}
+
+\item{host_url}{Optional URL. Points to the remote host. If \code{NULL}, the value
+in the configuration file will be used.}
+
+\item{local_file}{Optional string. Path to the local branding file. If \code{NULL},
+the value in the configuration file will be used.}
+
 \item{config_file}{Path to the configuration file. Default is \code{rbranding_config.yml}.}
+
+\item{backup_folder}{Folder where the backup file should be saved, if needed.
+Defaults to current working directory.}
 }
 \value{
 NULL. Called for its side effects: updating \verb{_brand.yml} and possibly creating \code{bak_brand.yml}

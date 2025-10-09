@@ -6,6 +6,12 @@
 #' It is intended to be run once. Use `get_brand()` to download/update the brand
 #' file.
 #'
+#' @param brand_url Optional URL. Points to the remote brand file. If `NULL`, defaults to
+#' rbranding's brand file on GitHub.
+#' @param host_url Optional URL. Points to the remote host. If `NULL`, defaults to GitHub.
+#' @param install_path Optional string. Directory where the files should be created.
+#' Defaults to the current working directory.
+#'
 #' @returns NULL. Called for its side effects: creating `rbranding_config.yml`
 #' and `_brand.yml`
 #' @export
@@ -13,30 +19,41 @@
 #' @importFrom yaml write_yaml
 #'
 #' @examples
-#' brand_init()
+#' tmpdir <- file.path(tempdir(), "brand_files")
+#'
+#' brand_init(install_path = tmpdir)
 #'
 #' # Clean up
-#' file.remove("rbranding_config.yml", "_brand.yml")
-brand_init <- function() {
+#' unlink(tmpdir, recursive = TRUE)
+brand_init <- function(brand_url = NULL, host_url = NULL, install_path = ".") {
 
-  brand_filename <- "_brand.yml"
-  config_filename <- "rbranding_config.yml"
+  # Create install directory if it doesn't already exist
+  if (!dir.exists(install_path)) {
+    dir.create(install_path, recursive = TRUE)
+  }
 
+  # Define file paths
+  brand_filename <- file.path(install_path, "_brand.yml")
+  config_filename <- file.path(install_path, "rbranding_config.yml")
+
+  # Define config content
   config <- list(
-    remote_file = "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
-    remote_host = "https://github.com/",
+    remote_file = brand_url %||% "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
+    remote_host = host_url %||% "https://github.com/",
     local_file = brand_filename
   )
 
-  # make a yml file with these keys
+  # Create config file
   yaml::write_yaml(config, config_filename)
 
+  # Create placeholder brand file
   fileConn <- file(brand_filename)
-  writeLines(c("Update file with rbranding::get_brand()"), fileConn)
+  writeLines(c("Update this file with rbranding::get_brand()"), fileConn)
   close(fileConn)
 
   message(
     "Created files '", config_filename,
-    "' and placeholder '_brand.yml' in current working directory."
+    "' and placeholder '_brand.yml' in ",
+    ifelse(install_path == ".", "current working directory", install_path)
   )
 }

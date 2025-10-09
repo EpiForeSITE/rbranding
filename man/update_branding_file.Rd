@@ -4,7 +4,12 @@
 \alias{update_branding_file}
 \title{Helper function to update the local branding file}
 \usage{
-update_branding_file(local_file, remote_file, backup = FALSE)
+update_branding_file(
+  local_file,
+  remote_file,
+  backup = FALSE,
+  backup_folder = "."
+)
 }
 \arguments{
 \item{local_file}{Path to the local branding file}
@@ -12,7 +17,9 @@ update_branding_file(local_file, remote_file, backup = FALSE)
 \item{remote_file}{Path to the remote branding file}
 
 \item{backup}{Logical indicating whether to create a
-backup of the local file (default: FALSE)}
+backup of the local file. Defaults to FALSE}
+
+\item{backup_folder}{Folder where the backup file should be saved. Defaults to current working directory}
 }
 \value{
 NULL. Called for its side effects: updating the local branding file and possibly
