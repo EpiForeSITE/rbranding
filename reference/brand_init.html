@@ -62,9 +62,27 @@ file.</p></li>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">brand_init</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">brand_init</span><span class="op">(</span>brand_url <span class="op">=</span> <span class="cn">NULL</span>, host_url <span class="op">=</span> <span class="cn">NULL</span>, install_path <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
+
+
+<dl><dt id="arg-brand-url">brand_url<a class="anchor" aria-label="anchor" href="#arg-brand-url"></a></dt>
+<dd><p>Optional URL. Points to the remote brand file. If <code>NULL</code>, defaults to
+rbranding's brand file on GitHub.</p></dd>
+
+
+<dt id="arg-host-url">host_url<a class="anchor" aria-label="anchor" href="#arg-host-url"></a></dt>
+<dd><p>Optional URL. Points to the remote host. If <code>NULL</code>, defaults to GitHub.</p></dd>
+
+
+<dt id="arg-install-path">install_path<a class="anchor" aria-label="anchor" href="#arg-install-path"></a></dt>
+<dd><p>Optional string. Directory where the files should be created.
+Defaults to the current working directory.</p></dd>
+
+</dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>NULL. Called for its side effects: creating <code>rbranding_config.yml</code>
@@ -73,12 +91,13 @@ and <code>_brand.yml</code></p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">brand_init</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Created files 'rbranding_config.yml' and placeholder '_brand.yml' in current working directory.</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">tmpdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"brand_files"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">brand_init</span><span class="op">(</span>install_path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Created files '/tmp/RtmpFM26bL/brand_files/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpFM26bL/brand_files</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Clean up</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="st">"rbranding_config.yml"</span>, <span class="st">"_brand.yml"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE TRUE</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">tmpdir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

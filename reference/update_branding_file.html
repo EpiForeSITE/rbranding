@@ -47,7 +47,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">update_branding_file</span><span class="op">(</span><span class="va">local_file</span>, <span class="va">remote_file</span>, backup <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">update_branding_file</span><span class="op">(</span></span>
+<span>  <span class="va">local_file</span>,</span>
+<span>  <span class="va">remote_file</span>,</span>
+<span>  backup <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  backup_folder <span class="op">=</span> <span class="st">"."</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -64,7 +69,11 @@
 
 <dt id="arg-backup">backup<a class="anchor" aria-label="anchor" href="#arg-backup"></a></dt>
 <dd><p>Logical indicating whether to create a
-backup of the local file (default: FALSE)</p></dd>
+backup of the local file. Defaults to FALSE</p></dd>
+
+
+<dt id="arg-backup-folder">backup_folder<a class="anchor" aria-label="anchor" href="#arg-backup-folder"></a></dt>
+<dd><p>Folder where the backup file should be saved. Defaults to current working directory</p></dd>
 
 </dl></div>
     <div class="section level2">

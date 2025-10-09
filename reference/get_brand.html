@@ -68,15 +68,41 @@ overwrite the file and whether or not to create the backup.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_brand</span><span class="op">(</span>config_file <span class="op">=</span> <span class="st">"rbranding_config.yml"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_brand</span><span class="op">(</span></span>
+<span>  brand_url <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  host_url <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  local_file <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  config_file <span class="op">=</span> <span class="st">"rbranding_config.yml"</span>,</span>
+<span>  backup_folder <span class="op">=</span> <span class="st">"."</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-config-file">config_file<a class="anchor" aria-label="anchor" href="#arg-config-file"></a></dt>
+<dl><dt id="arg-brand-url">brand_url<a class="anchor" aria-label="anchor" href="#arg-brand-url"></a></dt>
+<dd><p>Optional URL. Points to the remote brand file. If <code>NULL</code>, the value
+in the configuration file will be used.</p></dd>
+
+
+<dt id="arg-host-url">host_url<a class="anchor" aria-label="anchor" href="#arg-host-url"></a></dt>
+<dd><p>Optional URL. Points to the remote host. If <code>NULL</code>, the value
+in the configuration file will be used.</p></dd>
+
+
+<dt id="arg-local-file">local_file<a class="anchor" aria-label="anchor" href="#arg-local-file"></a></dt>
+<dd><p>Optional string. Path to the local branding file. If <code>NULL</code>,
+the value in the configuration file will be used.</p></dd>
+
+
+<dt id="arg-config-file">config_file<a class="anchor" aria-label="anchor" href="#arg-config-file"></a></dt>
 <dd><p>Path to the configuration file. Default is <code>rbranding_config.yml</code>.</p></dd>
+
+
+<dt id="arg-backup-folder">backup_folder<a class="anchor" aria-label="anchor" href="#arg-backup-folder"></a></dt>
+<dd><p>Folder where the backup file should be saved, if needed.
+Defaults to current working directory.</p></dd>
 
 </dl></div>
     <div class="section level2">
