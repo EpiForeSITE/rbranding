@@ -47,13 +47,18 @@ compare_branding_files <- function(local_file, remote_file) {
 #' @param local_file Path to the local branding file
 #' @param remote_file Path to the remote branding file
 #' @param backup Logical indicating whether to create a
-#' backup of the local file (default: FALSE)
+#' backup of the local file. Defaults to FALSE
+#' @param backup_folder Folder where the backup file should be saved. Defaults to current working directory
 #'
 #' @returns NULL. Called for its side effects: updating the local branding file and possibly
 #' creating a backup file
-update_branding_file <- function(local_file, remote_file, backup = FALSE) {
+update_branding_file <- function(local_file, remote_file, backup = FALSE, backup_folder = ".") {
   if (backup) {
-    file.copy(local_file, "bak_brand.yml", overwrite = TRUE)
+    if (!dir.exists(backup_folder)) {
+      dir.create(backup_folder, recursive = TRUE)
+    }
+
+    file.copy(local_file, file.path(backup_folder, "bak_brand.yml"), overwrite = TRUE)
     message("Backup of local file saved to 'bak_brand.yml'")
   }
   file.copy(remote_file, local_file, overwrite = TRUE)
@@ -71,7 +76,15 @@ update_branding_file <- function(local_file, remote_file, backup = FALSE) {
 #' RStudio console), the user is instead prompted to choose whether to
 #' overwrite the file and whether or not to create the backup.
 #'
+#' @param brand_url Optional URL. Points to the remote brand file. If `NULL`, the value
+#' in the configuration file will be used.
+#' @param host_url Optional URL. Points to the remote host. If `NULL`, the value
+#' in the configuration file will be used.
+#' @param local_file Optional string. Path to the local branding file. If `NULL`,
+#' the value in the configuration file will be used.
 #' @param config_file Path to the configuration file. Default is `rbranding_config.yml`.
+#' @param backup_folder Folder where the backup file should be saved, if needed.
+#' Defaults to current working directory.
 #'
 #' @returns NULL. Called for its side effects: updating `_brand.yml` and possibly creating `bak_brand.yml`
 #' @export
@@ -91,14 +104,26 @@ update_branding_file <- function(local_file, remote_file, backup = FALSE) {
 #'  # Cleanup
 #'  file.remove("rbranding_config.yml", "_brand.yml", "bak_brand.yml")
 #' }
-get_brand <- function(config_file = "rbranding_config.yml") {
+get_brand <- function(
+  brand_url = NULL,
+  host_url = NULL,
+  local_file = NULL,
+  config_file = "rbranding_config.yml",
+  backup_folder = ".") {
 
   # Read the configuration file
-  config <- yaml::read_yaml(config_file)
+  config <- if(file.exists(config_file)) { yaml::read_yaml(config_file) } else { list() }
 
-  remote_file <- config$remote_file
-  local_file <- config$local_file
-  remote_host <- config$remote_host
+  # Set parameters from function arguments or config file
+  remote_file <- brand_url %||% config$remote_file
+  remote_host <- host_url %||% config$remote_host
+  local_file <- local_file %||% config$local_file
+
+  if (is.null(remote_file) | is.null(remote_host) | is.null(local_file)) {
+    stop(
+      "Missing parameters. Please provide all parameters directly or create a configuration file with brand_init()"
+    )
+  }
 
   # Get authentication token (needed if accessing private repo)
   # - Check for GITHUB_TOKEN, otherwise, check the git credential store for the provided host
@@ -136,10 +161,10 @@ get_brand <- function(config_file = "rbranding_config.yml") {
 
     switch(answer,
       "1" = update_branding_file(local_file, tmp_file, backup = FALSE),
-      "2" = update_branding_file(local_file, tmp_file, backup = TRUE),
+      "2" = update_branding_file(local_file, tmp_file, backup = TRUE, backup_folder = backup_folder),
       { message("No action taken.") }
     )
   } else {
-    update_branding_file(local_file, tmp_file, backup = TRUE)
+    update_branding_file(local_file, tmp_file, backup = TRUE, backup_folder = backup_folder)
   }
 }
