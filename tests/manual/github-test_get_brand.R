@@ -13,7 +13,7 @@ message("\nTesting get_brand_public()...")
 tryCatch({
 
     get_brand_public(
-        remote_brand_file = "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
+        remote_file = "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
         local_file = brand_filepath,
         run_interactive = FALSE
     )
@@ -42,7 +42,7 @@ message("\nTesting get_brand_private_github()...")
 tryCatch({
 
     get_brand_private_github(
-        remote_brand_file = "https://raw.githubusercontent.com/EpiForeSITE/test-private-gha/main/_brand.yml",
+        remote_file = "https://raw.githubusercontent.com/EpiForeSITE/test-private-gha/main/_brand.yml",
         local_file = brand_filepath,
         run_interactive = FALSE
     )

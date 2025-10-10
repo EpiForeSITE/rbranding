@@ -55,7 +55,7 @@ brand_set_ggplot <- function(brand_file = NULL, use_fonts = TRUE) {
   # Check if file exists
   if (!file.exists(brand_file)) {
     stop("Brand file not found: ", brand_file,
-         "\nPlease run brand_init() and get_brand() first, or provide a valid path.")
+         "\nPlease run brand_init() and a get_brand_*() function first, or provide a valid path.")
   }
 
   # Read the YAML file

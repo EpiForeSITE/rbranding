@@ -47,7 +47,7 @@ expect_message(get_brand_public(
 ), "Backup of local branding file saved")
 
 bak_contents <- yaml::read_yaml(file.path(test_dir, "bak_brand.yml"))
-expect_identical(bak_contents, "Update this file with rbranding::get_brand()")
+expect_identical(bak_contents, "Update this file with rbranding::get_brand_public() (or another `get_brand_*` function)")
 
 # Cleanup
 unlink(test_dir, recursive = TRUE)
@@ -64,7 +64,7 @@ if (at_home()) {
 
     # Test with auth token from git credential store
     expect_message(get_brand_private_github(
-        remote_brand_file = "https://raw.githubusercontent.com/EpiForeSITE/test-private-gha/main/_brand.yml",
+        remote_file = "https://raw.githubusercontent.com/EpiForeSITE/test-private-gha/main/_brand.yml",
         config_file = file.path(test_dir, "rbranding_config.yml"),
         run_interactive = FALSE,
     ), "Local branding file overwritten with remote file")

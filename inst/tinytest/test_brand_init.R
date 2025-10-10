@@ -8,7 +8,7 @@ config_filepath <- file.path(test_dir, "rbranding_config.yml")
 expect_true(file.exists(config_filepath))
 expect_true(file.exists(brand_filepath))
 
-expect_true(grepl("Update this file with rbranding::get_brand()", readLines(brand_filepath)))
+expect_true(grepl("Update this file with rbranding::get_brand_public()", readLines(brand_filepath)))
 
 unlink(test_dir, recursive = TRUE)
 

@@ -5,7 +5,7 @@
 \title{Download the latest branding file from a public source}
 \usage{
 get_brand_public(
-  remote_brand_file = NULL,
+  remote_file = NULL,
   local_file = NULL,
   config_file = "rbranding_config.yml",
   run_interactive = TRUE,
@@ -14,7 +14,7 @@ get_brand_public(
 )
 }
 \arguments{
-\item{remote_brand_file}{Optional URL. Points to the remote brand file.
+\item{remote_file}{Optional URL. Points to the remote brand file.
 If \code{NULL}, the value in the configuration file will be used.}
 
 \item{local_file}{Optional string. Path to the local branding file.

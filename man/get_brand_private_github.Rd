@@ -5,7 +5,7 @@
 \title{Download the latest branding file from a private GitHub repository}
 \usage{
 get_brand_private_github(
-  remote_brand_file = NULL,
+  remote_file = NULL,
   local_file = NULL,
   auth_token = NULL,
   config_file = "rbranding_config.yml",
@@ -15,7 +15,7 @@ get_brand_private_github(
 )
 }
 \arguments{
-\item{remote_brand_file}{Optional URL. Points to the remote brand file.
+\item{remote_file}{Optional URL. Points to the remote brand file.
 If \code{NULL}, the value in the configuration file will be used.}
 
 \item{local_file}{Optional string. Path to the local branding file.

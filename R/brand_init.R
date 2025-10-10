@@ -3,8 +3,8 @@
 #' `brand_init` initializes the branding configuration by creating two files:
 #' - `rbranding_config.yml`: contains remote and local file paths to brand files
 #' - `_brand.yml`: a placeholder branding file
-#' It is intended to be run once. Use `get_brand()` to download/update the brand
-#' file.
+#' It is intended to be run once. Use a `get_brand_*()` function to download/update
+#' the brand file.
 #'
 #' @param brand_url Optional URL. Points to the remote brand file. If `NULL`, defaults to
 #' rbranding's brand file on GitHub.
@@ -46,7 +46,7 @@ brand_init <- function(brand_url = NULL, install_path = ".") {
 
   # Create placeholder brand file
   fileConn <- file(brand_filename)
-  writeLines(c("Update this file with rbranding::get_brand()"), fileConn)
+  writeLines(c("Update this file with rbranding::get_brand_public() (or another `get_brand_*` function)"), fileConn)
   close(fileConn)
 
   message(

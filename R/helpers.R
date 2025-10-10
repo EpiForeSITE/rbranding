@@ -30,11 +30,7 @@ validate_config <- function(config) {
 #' and parameters are provided, the parameters will override the config file values.
 #' If neither the config file nor the parameters are provided, an error is thrown.
 #'
-#' @param config_file Path to the configuration file. Default is `rbranding_config.yml`.
-#' @param remote_file Optional URL. Points to the remote brand file. If `NULL`, the value
-#' in the configuration file will be used.
-#' @param local_file Optional string. Path to the local branding file. If `NULL`,
-#' the value in the configuration file will be used.
+#' @inheritParams get_brand_private_github
 #'
 #' @returns Named list. Config containing `remote_file` and `local_file`
 #'
@@ -80,7 +76,7 @@ get_config <- function(
 
 #' Helper function for downloading the branding file from public source
 #'
-#' @param remote_file URL of the remote branding file
+#' @inheritParams download_private_branding_file_gh
 #'
 #' @returns Path to the temporary file where the remote branding file is downloaded
 #'
@@ -109,7 +105,7 @@ download_public_branding_file <- function(remote_file) {
 
 #' Helper function for downloading the branding file from private GitHub
 #'
-#' @param remote_file URL of the remote branding file
+#' @param remote_file URL. Points to the remote brand file.
 #' @param auth_token Authentication token for accessing private repositories
 #'
 #' @returns Path to the temporary file where the remote branding file is downloaded
@@ -143,8 +139,7 @@ download_private_branding_file_gh <- function(remote_file, auth_token) {
 
 #' Helper function to compare local and remote branding files using MD5 hashes
 #'
-#' @param local_file Path to the local branding file
-#' @param remote_file Path to the remote branding file
+#' @inheritParams update_branding_file
 #'
 #' @returns TRUE if files are identical, FALSE otherwise
 #'
@@ -165,9 +160,7 @@ compare_branding_files <- function(local_file, remote_file) {
 #' `backup_branding_file` creates a backup copy of the local branding file
 #' named `bak_brand.yml` in the specified backup folder.
 #'
-#' @param local_file Path to the local branding file
-#' @param backup_folder Folder where the backup file should be saved. Defaults to
-#' current working directory.
+#' @inheritParams update_branding_file
 #'
 #' @returns NULL. Called for its side effects: creating a backup file
 #'
@@ -194,18 +187,19 @@ backup_branding_file <- function(local_file, backup_folder = ".") {
 
 #' Helper function to overwrite the local branding file with the remote file
 #'
-#' @param local_file Path to the local branding file
-#' @param remote_file Path to the remote branding file
-#' @param backup Logical indicating whether to create a
-#' backup of the local file. Defaults to FALSE
-#' @param backup_folder Folder where the backup file should be saved. Defaults to current working directory
+#' @inheritParams update_branding_file
 #'
 #' @returns NULL. Called for its side effects: updating the local branding file and possibly
 #' creating a backup file
 #'
 #' @keywords internal
 #' @noRd
-overwrite_local_brand_file <- function(local_file, remote_file, backup = FALSE, backup_folder = ".") {
+overwrite_local_brand_file <- function(
+  local_file,
+  remote_file,
+  backup = FALSE,
+  backup_folder = "."
+  ) {
 
   if (backup) {
     backup_branding_file(local_file, backup_folder)
@@ -213,4 +207,72 @@ overwrite_local_brand_file <- function(local_file, remote_file, backup = FALSE, 
 
   file.copy(remote_file, local_file, overwrite = TRUE)
   message("Local branding file overwritten with remote file")
+}
+
+
+#' Helper function to update or create the local branding file
+#'
+#' `update_branding_file` checks if the local branding file exists and whether it is
+#' different from the remote branding file. If the local file does not exist, it is
+#' created from the remote file.
+#' If the files are different and the function is running interactively, the user is
+#' prompted to choose whether to overwrite the local file and whether or not to create
+#' a backup.
+#' If not running interactively, the local file is overwritten and a backup is created
+#' according to the given parameters.
+#'
+#' @param local_file String. Path to the local branding file
+#' @param remote_file String. Path to the remote branding file (saved as a temp file)
+#' @inheritParams get_brand_private_github
+#'
+#' @returns NULL. Called for its side effects: updating the local branding file and possibly
+#' creating a backup file
+#'
+#' @keywords internal
+#' @noRd
+update_branding_file <- function(
+  local_file,
+  remote_file,
+  run_interactive = TRUE,
+  backup = FALSE,
+  backup_folder = "."
+  ) {
+
+  if (!file.exists(local_file)) {
+    # If local file does not exist, copy the temp file to local file
+    file.copy(remote_file, local_file, overwrite = TRUE)
+    message("Local branding file created from remote file.")
+
+  } else if (compare_branding_files(local_file, remote_file)) {
+    # If files are the same, do nothing
+    message("The local file is the same as the remote file. No action taken.")
+
+  } else if (run_interactive & interactive()) {
+    # If files are different and running interactively, prompt user for action
+
+    message(
+      "The local branding file is different from the remote file. Select an option:\n\n",
+      "1: Overwrite the local file\n",
+      "2: Overwrite the local file and save a backup to bak_brand.yml\n\n",
+      "Type your selection or hit 'Enter' to do nothing:"
+    )
+
+    answer <- readline()
+
+    switch(answer,
+      "1" = overwrite_local_brand_file(local_file, remote_file, backup = FALSE),
+      "2" = overwrite_local_brand_file(local_file, remote_file, backup = TRUE, backup_folder = backup_folder),
+      { message("No action taken.") }
+    )
+
+  } else {
+    # If files are different and not running interactively, overwrite and create backup according to given parameteres
+    overwrite_local_brand_file(
+      local_file,
+      remote_file,
+      backup = backup,
+      backup_folder = backup_folder
+    )
+
+  }
 }
