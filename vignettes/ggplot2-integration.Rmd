@@ -50,10 +50,10 @@ Start by initializing the branding configuration and getting the latest brand fi
 brand_init()
 
 # Get the latest brand file from the repository
-get_brand()
+get_brand_public()
 
 # to install these files directly to your working directory:
-get_template("ggplot2)
+get_template("ggplot2")
 ```
 
 For this vignette, we'll use the existing `_brand.yml` file in the package:

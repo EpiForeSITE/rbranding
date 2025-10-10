@@ -8,7 +8,8 @@ This is an R package called `rbranding` that facilitates the creation of Shiny a
 
 ## Core Package Functions
 - `brand_init()` - Initializes branding configuration by creating rbranding_config.yml and _brand.yml files
-- `get_brand()` - Downloads/updates latest branding files from remote repository with user prompts
+- `get_brand_public()` - Downloads/updates latest branding files from public source with user prompts
+- `get_brand_private_github()` - Downloads/updates latest branding files from private GitHub repositories with authentication
 - `link_leaflet_dt()` - Links leaflet maps with DT data tables for interactive dashboards
 
 ## Dependencies and Installation
@@ -174,7 +175,7 @@ Rscript -e "shiny::runApp('app.R', host='0.0.0.0', port=3838)"
 
 ### Network Issues  
 - **CRAN access blocked**: Use apt packages instead of CRAN when possible.
-- **Download failures in get_brand()**: Normal behavior, function includes error handling.
+- **Download failures in get_brand_*() functions**: Normal behavior, function includes error handling.
 
 ### Application Issues
 - **Missing leaflet/DT**: Example apps require these packages. Core package functions work without them.

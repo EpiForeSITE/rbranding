@@ -1,3 +1,0 @@
-remote_host: https://github.com/
-remote_file: https://raw.githubusercontent.com/EpiForeSITE/test-private-gha/main/_brand.yml
-local_file: _brand.yml

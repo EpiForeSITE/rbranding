@@ -14,24 +14,24 @@ knitr::opts_chunk$set(
 )
 ```
 
-#Get started on your Shiny app with rbranding:
+# Get started on your Shiny app with rbranding:
 
 ## In the R console:
 
 Install the package from github (if necessary): 
 ```{r, eval = FALSE}
-#In the r terminal:
-#Install the package from github (if necessary):
->devtools::install_github("rbranding/rbranding")
-#load the library:
->library(rbranding)
+# In the R terminal:
+# Install the package from github (if necessary):
+devtools::install_github("rbranding/rbranding")
+# load the library:
+library(rbranding)
 
 #Initialize the rbranding package:
->rbranding::init_rbranding()
+rbranding::brand_init()
 
-#get the latest version of the _brand.yml file:
->rbranding::get_brand()
+# get the latest version of the _brand.yml file:
+rbranding::get_brand_public()
 
-#install the example1 template:
->rbranding::get_template("example1")
+# install the example1 template:
+rbranding::get_template("example1")
 ```

@@ -7,7 +7,7 @@ library(ggplot2)
 # Step 1: Initialize and get brand (run once)
 message("Step 1: Setting up brand configuration...")
 # brand_init()  # Uncomment for first-time setup
-# get_brand()   # Uncomment to get latest brand file
+# get_brand_public()   # Uncomment to get latest brand file
 
 # Step 2: Set ggplot2 theme from brand
 message("Step 2: Applying brand theme to ggplot2...")

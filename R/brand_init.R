@@ -3,12 +3,11 @@
 #' `brand_init` initializes the branding configuration by creating two files:
 #' - `rbranding_config.yml`: contains remote and local file paths to brand files
 #' - `_brand.yml`: a placeholder branding file
-#' It is intended to be run once. Use `get_brand()` to download/update the brand
-#' file.
+#' It is intended to be run once. Use a `get_brand_*()` function to download/update
+#' the brand file.
 #'
 #' @param brand_url Optional URL. Points to the remote brand file. If `NULL`, defaults to
 #' rbranding's brand file on GitHub.
-#' @param host_url Optional URL. Points to the remote host. If `NULL`, defaults to GitHub.
 #' @param install_path Optional string. Directory where the files should be created.
 #' Defaults to the current working directory.
 #'
@@ -25,7 +24,7 @@
 #'
 #' # Clean up
 #' unlink(tmpdir, recursive = TRUE)
-brand_init <- function(brand_url = NULL, host_url = NULL, install_path = ".") {
+brand_init <- function(brand_url = NULL, install_path = ".") {
 
   # Create install directory if it doesn't already exist
   if (!dir.exists(install_path)) {
@@ -39,7 +38,6 @@ brand_init <- function(brand_url = NULL, host_url = NULL, install_path = ".") {
   # Define config content
   config <- list(
     remote_file = brand_url %||% "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
-    remote_host = host_url %||% "https://github.com/",
     local_file = brand_filename
   )
 
@@ -48,7 +46,7 @@ brand_init <- function(brand_url = NULL, host_url = NULL, install_path = ".") {
 
   # Create placeholder brand file
   fileConn <- file(brand_filename)
-  writeLines(c("Update this file with rbranding::get_brand()"), fileConn)
+  writeLines(c("Update this file with rbranding::get_brand_public() (or another `get_brand_*` function)"), fileConn)
   close(fileConn)
 
   message(

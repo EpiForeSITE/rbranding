@@ -59,17 +59,11 @@ brand_init()
 This will generate the `rbranding_config.yml` and `_brand.yml` files.
 The `_brand.yml` file contains placeholder text. You will need to edit
 the config file with the URL of your brand file, then download that file
-using:
+using `get_brand_public()` or `get_brand_private_github()`, depending on
+whether your brand file is in a public or private GitHub repository.
 
-``` r
-get_brand()
-```
-
-`get_brand()` will also update the local `_brand.yml` file, if it
+These same functions will also update the local `_brand.yml` file, if it
 already exists.
-
-> \[!NOTE\] `brand_init()` and `get_brand()` are intended to be run
-> interactively from the R console, not inside scripts.
 
 ## Use in Shiny Apps
 

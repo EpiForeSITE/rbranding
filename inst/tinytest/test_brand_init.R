@@ -8,7 +8,7 @@ config_filepath <- file.path(test_dir, "rbranding_config.yml")
 expect_true(file.exists(config_filepath))
 expect_true(file.exists(brand_filepath))
 
-expect_true(grepl("Update this file with rbranding::get_brand()", readLines(brand_filepath)))
+expect_true(grepl("Update this file with rbranding::get_brand_public()", readLines(brand_filepath)))
 
 unlink(test_dir, recursive = TRUE)
 
@@ -22,7 +22,6 @@ test_file <- "https://example.com/brand.yml"
 
 suppressMessages(brand_init(
     brand_url = test_file,
-    host_url = test_host,
     install_path = test_dir
     ))
 
@@ -32,5 +31,4 @@ expect_true(file.exists(file.path(test_dir, "_brand.yml")))
 created_config <- yaml::read_yaml(file.path(test_dir, "rbranding_config.yml"))
 
 expect_true(created_config$remote_file == test_file)
-expect_true(created_config$remote_host == test_host)
 expect_true(created_config$local_file == file.path(test_dir, "_brand.yml"))

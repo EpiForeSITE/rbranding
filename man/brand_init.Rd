@@ -4,13 +4,11 @@
 \alias{brand_init}
 \title{Initialize branding configuration}
 \usage{
-brand_init(brand_url = NULL, host_url = NULL, install_path = ".")
+brand_init(brand_url = NULL, install_path = ".")
 }
 \arguments{
 \item{brand_url}{Optional URL. Points to the remote brand file. If \code{NULL}, defaults to
 rbranding's brand file on GitHub.}
-
-\item{host_url}{Optional URL. Points to the remote host. If \code{NULL}, defaults to GitHub.}
 
 \item{install_path}{Optional string. Directory where the files should be created.
 Defaults to the current working directory.}
@@ -24,8 +22,8 @@ and \verb{_brand.yml}
 \itemize{
 \item \code{rbranding_config.yml}: contains remote and local file paths to brand files
 \item \verb{_brand.yml}: a placeholder branding file
-It is intended to be run once. Use \code{get_brand()} to download/update the brand
-file.
+It is intended to be run once. Use a \verb{get_brand_*()} function to download/update
+the brand file.
 }
 }
 \examples{
