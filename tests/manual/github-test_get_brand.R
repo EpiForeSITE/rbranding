@@ -1,6 +1,10 @@
 library(rbranding)
 
-test_dir <- tempdir()
+test_dir <- file.path(tempdir(), "test_get_brand_gha")
+if (!dir.exists(test_dir)) {
+    dir.create(test_dir, recursive = TRUE)
+}
+
 config_filepath <- file.path(test_dir, "rbranding_config.yml")
 brand_filepath <- file.path(test_dir, "_brand.yml")
 
