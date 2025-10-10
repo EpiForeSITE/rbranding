@@ -4,13 +4,11 @@
 \alias{brand_init}
 \title{Initialize branding configuration}
 \usage{
-brand_init(brand_url = NULL, host_url = NULL, install_path = ".")
+brand_init(brand_url = NULL, install_path = ".")
 }
 \arguments{
 \item{brand_url}{Optional URL. Points to the remote brand file. If \code{NULL}, defaults to
 rbranding's brand file on GitHub.}
-
-\item{host_url}{Optional URL. Points to the remote host. If \code{NULL}, defaults to GitHub.}
 
 \item{install_path}{Optional string. Directory where the files should be created.
 Defaults to the current working directory.}

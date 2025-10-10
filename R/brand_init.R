@@ -8,7 +8,6 @@
 #'
 #' @param brand_url Optional URL. Points to the remote brand file. If `NULL`, defaults to
 #' rbranding's brand file on GitHub.
-#' @param host_url Optional URL. Points to the remote host. If `NULL`, defaults to GitHub.
 #' @param install_path Optional string. Directory where the files should be created.
 #' Defaults to the current working directory.
 #'
@@ -25,7 +24,7 @@
 #'
 #' # Clean up
 #' unlink(tmpdir, recursive = TRUE)
-brand_init <- function(brand_url = NULL, host_url = NULL, install_path = ".") {
+brand_init <- function(brand_url = NULL, install_path = ".") {
 
   # Create install directory if it doesn't already exist
   if (!dir.exists(install_path)) {
@@ -39,7 +38,6 @@ brand_init <- function(brand_url = NULL, host_url = NULL, install_path = ".") {
   # Define config content
   config <- list(
     remote_file = brand_url %||% "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
-    remote_host = host_url %||% "https://github.com/",
     local_file = brand_filename
   )
 
