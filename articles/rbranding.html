@@ -72,27 +72,32 @@
 
     
     
-<p>#Get started on your Shiny app with rbranding:</p>
 <div class="section level2">
-<h2 id="in-the-r-console">In the R console:<a class="anchor" aria-label="anchor" href="#in-the-r-console"></a>
+<h2 id="get-started-on-your-shiny-app-with-rbranding">Get started on your Shiny app with rbranding:<a class="anchor" aria-label="anchor" href="#get-started-on-your-shiny-app-with-rbranding"></a>
 </h2>
+<div class="section level3">
+<h3 id="in-the-r-console">In the R console:<a class="anchor" aria-label="anchor" href="#in-the-r-console"></a>
+</h3>
 <p>Install the package from github (if necessary):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#In the r terminal:</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#Install the package from github (if necessary):</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="sc">&gt;</span>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"rbranding/rbranding"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#load the library:</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="sc">&gt;</span><span class="fu">library</span>(rbranding)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#Initialize the rbranding package:</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="sc">&gt;</span>rbranding<span class="sc">::</span><span class="fu">init_rbranding</span>()</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#get the latest version of the _brand.yml file:</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="sc">&gt;</span>rbranding<span class="sc">::</span><span class="fu">get_brand</span>()</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#install the example1 template:</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="sc">&gt;</span>rbranding<span class="sc">::</span><span class="fu">get_template</span>(<span class="st">"example1"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># In the R terminal:</span></span>
+<span><span class="co"># Install the package from github (if necessary):</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rbranding/rbranding"</span><span class="op">)</span></span>
+<span><span class="co"># load the library:</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiforesite.github.io/rbranding/">rbranding</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#Initialize the rbranding package:</span></span>
+<span><span class="fu">rbranding</span><span class="fu">::</span><span class="fu"><a href="../reference/brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># get the latest version of the _brand.yml file:</span></span>
+<span><span class="fu">rbranding</span><span class="fu">::</span><span class="fu"><a href="../reference/get_brand_public.html">get_brand_public</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># install the example1 template:</span></span>
+<span><span class="fu">rbranding</span><span class="fu">::</span><span class="fu"><a href="../reference/get_template.html">get_template</a></span><span class="op">(</span><span class="st">"example1"</span><span class="op">)</span></span></code></pre></div>
 </div>
-  </main>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

@@ -52,7 +52,9 @@
 <ul><li>
 <code><a href="reference/brand_init.html">brand_init()</a></code> - Initializes branding configuration by creating rbranding_config.yml and _brand.yml files</li>
 <li>
-<code><a href="reference/get_brand.html">get_brand()</a></code> - Downloads/updates latest branding files from remote repository with user prompts</li>
+<code><a href="reference/get_brand_public.html">get_brand_public()</a></code> - Downloads/updates latest branding files from public source with user prompts</li>
+<li>
+<code><a href="reference/get_brand_private_github.html">get_brand_private_github()</a></code> - Downloads/updates latest branding files from private GitHub repositories with authentication</li>
 <li>
 <code>link_leaflet_dt()</code> - Links leaflet maps with DT data tables for interactive dashboards</li>
 </ul></div>
@@ -220,8 +222,7 @@
 <h3 id="network-issues">Network Issues<a class="anchor" aria-label="anchor" href="#network-issues"></a></h3>
 <ul><li>
 <strong>CRAN access blocked</strong>: Use apt packages instead of CRAN when possible.</li>
-<li>
-<strong>Download failures in get_brand()</strong>: Normal behavior, function includes error handling.</li>
+<li>**Download failures in get_brand_*() functions**: Normal behavior, function includes error handling.</li>
 </ul></div>
 <div class="section level3">
 <h3 id="application-issues">Application Issues<a class="anchor" aria-label="anchor" href="#application-issues"></a></h3>

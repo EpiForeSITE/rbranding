@@ -93,13 +93,8 @@
 <p>To initialize the branding config, use <code><a href="reference/brand_init.html">brand_init()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>This will generate the <code>rbranding_config.yml</code> and <code>_brand.yml</code> files. The <code>_brand.yml</code> file contains placeholder text. You will need to edit the config file with the URL of your brand file, then download that file using:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/get_brand.html">get_brand</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><code><a href="reference/get_brand.html">get_brand()</a></code> will also update the local <code>_brand.yml</code> file, if it already exists.</p>
-<blockquote>
-<p>[!NOTE] <code><a href="reference/brand_init.html">brand_init()</a></code> and <code><a href="reference/get_brand.html">get_brand()</a></code> are intended to be run interactively from the R console, not inside scripts.</p>
-</blockquote>
+<p>This will generate the <code>rbranding_config.yml</code> and <code>_brand.yml</code> files. The <code>_brand.yml</code> file contains placeholder text. You will need to edit the config file with the URL of your brand file, then download that file using <code><a href="reference/get_brand_public.html">get_brand_public()</a></code> or <code><a href="reference/get_brand_private_github.html">get_brand_private_github()</a></code>, depending on whether your brand file is in a public or private GitHub repository.</p>
+<p>These same functions will also update the local <code>_brand.yml</code> file, if it already exists.</p>
 </div>
 <div class="section level2">
 <h2 id="use-in-shiny-apps">Use in Shiny Apps<a class="anchor" aria-label="anchor" href="#use-in-shiny-apps"></a>
