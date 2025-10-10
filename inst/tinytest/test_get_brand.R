@@ -64,15 +64,14 @@ if (at_home()) {
 
     # Test with auth token from git credential store
     expect_message(get_brand_private_github(
+        remote_brand_file = "https://raw.githubusercontent.com/EpiForeSITE/test-private-gha/main/_brand.yml",
         config_file = file.path(test_dir, "rbranding_config.yml"),
         run_interactive = FALSE,
     ), "Local branding file overwritten with remote file")
 
     # Verify contents of downloaded brand file
-    expect_identical(
-        brand_contents_1,
-        yaml::read_yaml(file.path(test_dir, "_brand.yml"))
-    )
+    private_brand <- yaml::read_yaml(file.path(test_dir, "_brand.yml"))
+    expect_equal(private_brand$meta$name, "Private Test Brand File")
 
     # Test with invalid auth token
     expect_warning(get_brand_private_github(
