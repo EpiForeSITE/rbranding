@@ -106,6 +106,41 @@ download_public_branding_file <- function(remote_file) {
 }
 
 
+
+#' Helper function for downloading the branding file from private GitHub
+#'
+#' @param remote_file URL of the remote branding file
+#' @param auth_token Authentication token for accessing private repositories
+#'
+#' @returns Path to the temporary file where the remote branding file is downloaded
+#'
+#' @importFrom utils download.file
+#'
+#' @keywords internal
+#' @noRd
+download_private_branding_file_gh <- function(remote_file, auth_token) {
+
+  tmp_file <- tempfile()
+
+  tryCatch({
+    message("Checking remote version... ")
+    utils::download.file(
+      remote_file,
+      destfile = tmp_file,
+      quiet = TRUE,
+      headers = c(
+        Authorization = paste("Bearer", auth_token),
+        Accept = "application/vnd.github.raw"
+      )
+    )
+  }, error = function(e) {
+    message(paste("Error downloading file:", e))
+  })
+
+  tmp_file
+}
+
+
 #' Helper function to compare local and remote branding files using MD5 hashes
 #'
 #' @param local_file Path to the local branding file

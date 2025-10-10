@@ -52,3 +52,35 @@ expect_identical(bak_contents, "Update this file with rbranding::get_brand()")
 # Cleanup
 unlink(test_dir, recursive = TRUE)
 
+
+# Test get_brand_private_github()
+# - Run tests at home because a GitHub access token is required
+# - Our CI (not CRAN) runs a separate test with the `GITHUB_TOKEN` environment variable
+#    - See .github/workflows/test-get-brand.yaml
+if (at_home()) {
+    test_dir <- file.path(tempdir(), "test_get_brand_private_github")
+
+    suppressMessages(brand_init(install_path = test_dir))
+
+    # Test with auth token from git credential store
+    expect_message(get_brand_private_github(
+        config_file = file.path(test_dir, "rbranding_config.yml"),
+        run_interactive = FALSE,
+    ), "Local branding file overwritten with remote file")
+
+    # Verify contents of downloaded brand file
+    expect_identical(
+        brand_contents_1,
+        yaml::read_yaml(file.path(test_dir, "_brand.yml"))
+    )
+
+    # Test with invalid auth token
+    expect_warning(get_brand_private_github(
+        config_file = file.path(test_dir, "rbranding_config.yml"),
+        auth_token = "invalid_token",
+        run_interactive = FALSE,
+    ), "404 Not Found")
+
+    # Cleanup
+    unlink(test_dir, recursive = TRUE)
+}
