@@ -5,22 +5,16 @@ if (!dir.exists(test_dir)) {
     dir.create(test_dir, recursive = TRUE)
 }
 
-config_filepath <- file.path(test_dir, "rbranding_config.yml")
 brand_filepath <- file.path(test_dir, "_brand.yml")
 
 # Test Case 1: Public Repository
 message("\nTesting get_brand_public()...")
 
-file.copy(
-    "tests/manual/config-public.yml",
-    config_filepath,
-    overwrite = TRUE
-)
-
 tryCatch({
 
     get_brand_public(
-        config_file = config_filepath,
+        remote_brand_file = "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
+        local_file = brand_filepath,
         run_interactive = FALSE
     )
 
@@ -45,16 +39,11 @@ tryCatch({
 # Test Case 2: Private Repository
 message("\nTesting get_brand_private_github()...")
 
-file.copy(
-    "tests/manual/config-private.yml",
-    config_filepath,
-    overwrite = TRUE
-)
-
 tryCatch({
 
     get_brand_private_github(
-        config_file = config_filepath,
+        remote_brand_file = "https://raw.githubusercontent.com/EpiForeSITE/test-private-gha/main/_brand.yml",
+        local_file = brand_filepath,
         run_interactive = FALSE
     )
 
