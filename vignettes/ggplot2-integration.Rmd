@@ -113,7 +113,7 @@ brand_set_ggplot(brand_file)
 
 Now create some plots that will automatically use your brand theme:
 
-```{r basic-plot}
+```{r basic-plot, fig.alt="Branded scatterplot of car weight vs. miles per gallon"}
 # Create a basic scatter plot
 p1 <- ggplot(mtcars, aes(x = mpg, y = wt)) +
   geom_point(aes(color = factor(cyl)), size = 3) +
@@ -129,7 +129,7 @@ p1 <- ggplot(mtcars, aes(x = mpg, y = wt)) +
 print(p1)
 ```
 
-```{r bar-plot}
+```{r bar-plot, fig.alt="Branded bar plot of car count by cylinders and gears"}
 # Create a bar plot
 p2 <- ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
   geom_bar(position = "dodge") +
@@ -170,7 +170,7 @@ p1_interactive
 
 You can customize specific aspects of the theme while maintaining brand consistency:
 
-```{r advanced-theme}
+```{r advanced-theme, fig.alt="Branded scatterplot of engine performance analysis"}
 # Customize theme elements while keeping brand colors
 p3 <- ggplot(mtcars, aes(x = hp, y = mpg, size = wt)) +
   geom_point(alpha = 0.7) +
@@ -195,7 +195,7 @@ print(p3)
 
 When you're done with the brand theme, you can reset to the default ggplot2 theme:
 
-```{r reset-theme}
+```{r reset-theme, fig.alt="Scatterplot of engine performance analysis with default ggplot2 theme"}
 # Reset to original theme
 brand_reset_ggplot()
 
@@ -245,3 +245,7 @@ str(doc$typography)
 The `rbranding` package makes it easy to create consistent, branded visualizations across your organization. By following this workflow, you can ensure that all your ggplot2 and plotly charts maintain brand consistency while being accessible and professional.
 
 For more information about the brand.yml schema, visit: https://github.com/posit-dev/brand-yml/
+
+```{r cleanup, include = FALSE}
+file.remove("_brand.yml")
+```
