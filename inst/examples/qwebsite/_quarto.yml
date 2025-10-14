@@ -6,7 +6,7 @@ website:
   navbar:
     left:
       - href: index.qmd
-        text: Home 
+        text: Home
       - href: about.qmd
         text: About
       - href: dashboard.qmd
@@ -16,6 +16,7 @@ format:
     css: styles.css
     toc: true
     theme: _brand.yml
+    lang: en
 
 
 

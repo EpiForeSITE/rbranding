@@ -8,8 +8,16 @@ library(bslib)
 library(rbranding)
 library(linkeR)
 
+# Initialize rbranding and set up theme from _brand.yml
+theme <- bs_theme(brand = TRUE)
+
+# Extract the path of the discovered _brand.yml file
+brand_info <- attr(theme, "brand")
+brand_path <- brand_info$path
+
 ui <- fluidPage(
-  theme = bs_theme(version = 5, bootswatch = "cerulean"),
+  lang = "en",
+  theme = theme,
   titlePanel("Wastewater Sample Dashboard: Map-Table Interaction"),
 
   layout_sidebar(
