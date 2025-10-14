@@ -41,8 +41,8 @@ get_template <- function(template_name = NULL, install_to = NULL) {
     )
 
     # Filter out excluded templates (hardcoded exclusion list)
-    excluded_templates <- c("wastewater")
-    examples <- examples[!examples %in% excluded_templates]
+    # excluded_templates <- c("wastewater") # Add any templates to exclude here
+    # examples <- examples[!examples %in% excluded_templates]
 
     message("Choose from the following templates (for details, see the package documentation: https://epiforesite.github.io/rbranding/):")
     for (i in seq_along(examples)) {
