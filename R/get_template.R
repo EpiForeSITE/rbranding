@@ -89,4 +89,17 @@ get_template <- function(template_name = NULL, install_to = NULL) {
     file.copy(f, file.path(target_dir, basename(f)), overwrite = TRUE)
     message("Copied ", basename(f), " to ", target_dir)
   }
+
+  # Copy the icon and logo files into the target directory
+  icon_file <- system.file("template_resources", "icon.png", package = "rbranding")
+  logo_file <- system.file("template_resources", "logo.png", package = "rbranding")
+
+  # Don't overwrite existing icon/logo files
+  if (file.copy(icon_file, target_dir)) {
+    message("Copied icon.png to ", target_dir)
+  }
+
+  if (file.copy(logo_file, target_dir)) {
+    message("Copied logo.png to ", target_dir)
+  }
 }
