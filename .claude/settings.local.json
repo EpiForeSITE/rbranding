@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(git fetch:*)",
+      "Bash(cp:*)",
+      "WebSearch",
+      "Bash(git log:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,5 +1,5 @@
 Package: rbranding
-Title: Manage Branding and Accessibility R-based Projects
+Title: Manage Branding and Accessibility R-Based Projects
 Version: 0.1.0
 Authors@R: c(
     person("Willy", "Ray", , "william.ray@hsc.utah.edu", role = c("aut", "cre")),
