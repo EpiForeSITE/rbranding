@@ -78,7 +78,7 @@ get_template <- function(template_name = NULL, install_to = NULL) {
   }
 
   # Target directory in user's project
-  target_dir <- install_to %||% getwd()
+  target_dir <- if (is.null(install_to)) getwd() else install_to
 
   if (!dir.exists(target_dir)) {
     dir.create(target_dir, recursive = TRUE)

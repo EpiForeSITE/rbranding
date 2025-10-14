@@ -37,7 +37,7 @@ brand_init <- function(brand_url = NULL, install_path = ".") {
 
   # Define config content
   config <- list(
-    remote_file = brand_url %||% "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml",
+    remote_file = if (is.null(brand_url)) "https://raw.githubusercontent.com/EpiForeSITE/rbranding/main/_brand.yml" else brand_url,
     local_file = brand_filename
   )
 
