@@ -39,6 +39,12 @@ such as ‘ggplot2’ for producing branded graphics and visualizations.
 
 ## Installation
 
+You can install the stable version of `rbranding` from CRAN with:
+
+``` r
+install.packages("rbranding")
+```
+
 To get a bug fix or to use a feature from the development version, you
 can install the development version of `rbranding` from
 [GitHub](https://github.com/EpiForeSITE/rbranding) with:
@@ -50,20 +56,21 @@ remotes::install_github("EpiForeSITE/rbranding")
 
 ## Usage
 
-To initialize the branding config, use `brand_init()`:
+Use `brand_init()` to initialize the branding setup. This function
+generates the `rbranding_config.yml` and `_brand.yml` files.
 
 ``` r
 brand_init()
 ```
 
-This will generate the `rbranding_config.yml` and `_brand.yml` files.
-The `_brand.yml` file contains placeholder text. You will need to edit
-the config file with the URL of your brand file, then download that file
-using `get_brand_public()` or `get_brand_private_github()`, depending on
-whether your brand file is in a public or private GitHub repository.
+The generated `_brand.yml` file contains placeholder text. You will need
+to edit the config file with the URL of your brand file, then download
+that file using `get_brand_public()` or `get_brand_private_github()`,
+depending on whether your brand file is hosted publicly or in a private
+GitHub repository.
 
-These same functions will also update the local `_brand.yml` file, if it
-already exists.
+These same `get_brand_*()` functions will also update the local
+`_brand.yml` file, if it already exists.
 
 ## Use in Shiny Apps
 
