@@ -10,7 +10,11 @@ This is an R package called `rbranding` that facilitates the creation of Shiny a
 - `brand_init()` - Initializes branding configuration by creating rbranding_config.yml and _brand.yml files
 - `get_brand_public()` - Downloads/updates latest branding files from public source with user prompts
 - `get_brand_private_github()` - Downloads/updates latest branding files from private GitHub repositories with authentication
-- `link_leaflet_dt()` - Links leaflet maps with DT data tables for interactive dashboards
+- `get_template()` - Downloads Shiny and Quarto templates for branded applications
+- `brand_set_ggplot()` / `brand_reset_ggplot()` - Apply/reset branded ggplot2 themes
+- `brand_add_logo()` - Add branded logos to ggplot2 visualizations
+
+**Note:** For interactive map-table linking in Shiny apps, the package uses the external `linkeR` package. See `inst/examples/wastewater/app.R` for a demonstration.
 
 ## Dependencies and Installation
 
