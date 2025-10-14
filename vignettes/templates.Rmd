@@ -19,7 +19,7 @@ This vignette provides an overview of the templates available in the `rbranding`
 
 ## Quarto Templates
 
-### `qwebsite`: A Simple Quarto Website Template
+### `qwebsite`: Simple Quarto Website Template
 
 ```{r, echo=FALSE, out.width="50%", fig.alt="Screenshot of a simple branded Quarto website"}
 knitr::include_graphics("vignette-screenshots/qwebsite.jpg")

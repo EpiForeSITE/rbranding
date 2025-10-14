@@ -92,14 +92,14 @@ get_template(template_name = "shinyapp")
 
 This will copy the contents of the `shinyapp` template into your current working directory. This template provides ready-to-use Shiny app files with branding support. You can specify other templates by changing the `template_name` argument to `get_template()`. Available templates include:
 
-- `ggplot2`: R script using ggplot2
-- `quarto_ggplot2`: Quarto document using ggplot2
-- `quarto_website`: Quarto website template
-- `rmarkdown`: R Markdown document
-- `shiny_basic`: R Shiny App Example
-- `shiny_complex`: R Shiny App Template
-- `shiny_kmeans`: Simple R Shiny app showing K-means clustering
-- `shiny_wastewater`: R Shiny App Example for wastewater data visualization
+- `ggplot2`: R script using `ggplot2`
+- `qggplot2`: Quarto Report with Branded `ggplot2` Figures
+- `qwebsite`: Simple Quarto Website Template
+- `rmark`: R Markdown document
+- `shiny_example`: Simple Histogram Visualization Shiny App
+- `shinyapp`: Complex Histogram Visualization Shiny App
+- `kmeans`: Simple K-means Clustering Visualization Shiny App
+- `wastewater`: Complex Wasterwater Data Visualization Shiny App
 
 ```{r cleanup, include = FALSE}
 unlink(tmpdir, recursive = TRUE)
