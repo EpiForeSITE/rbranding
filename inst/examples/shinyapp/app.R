@@ -1,8 +1,15 @@
 #
-# DHHS R Shiny Template
+# Intermediate Shiny Template
+# Provides a more complex Shiny app with multiple tabs,
+# allowing users to interactively adjust parameters and
+# view results in different formats.
 #
-# You can run the application by clicking the 'Run App' button above.
-#
+# To run this application:
+#   in R Studio, You can run the application by clicking
+#   the 'Run App' button above.
+#   Alternatively, you can run the application by executing:
+#   shiny::runApp("app.R") in the R console from the directory
+#   containing this file.
 
 
 # Library & functions -----
@@ -21,146 +28,146 @@ library(tidyverse)
 # UI -----
 
 ## Create header -----
+# This creates the header for the dashboard that can be
+# used across multiple apps if desired.
 
-header <- dashboardHeader(title = "", #Replace with your title (displayed in the dashboard)
-                          titleWidth = 200, #Can change to accommodate your title
-                          tags$li(a(href = "https://posit-dev.github.io/brand-yml/",
-                                    img(src = "oi--circle-check.png",
-                                         title = "rbranding package"),
-                                    style = "padding-top: 5px; padding-bottom: 5px;"),
-                                  class = "dropdown"))
+header <- dashboardHeader(
+  title = "RBranding Intermediate Shiny Example", # Replace with your title (displayed in the dashboard)
+  titleWidth = 200, # Can change to accommodate your title
+  tags$li(
+    a(
+      href = "https://epiforesite.github.io/rbranding/",
+      img(
+        src = "oi--circle-check.png",
+        title = "rbranding package",
+        alt = "rbranding icon",
+        width = "40px",
+        height = "40px"
+      ),
+      style = "padding-top: 5px; padding-bottom: 5px;"
+    ),
+    class = "dropdown"
+  )
+)
 
 
 ## Define UI -----
 
 ui <- dashboardPage(
-  
+
   # This sets the title in the browser tab
   title = "Shiny App Example 1",
-  
+
   # Implement the header created above
   header,
-  
+
   ## Navigation sidebar -----
-  
-  # More icons can be found at "fontawesome.com/icons" and "getbootstrap.com/docs/3.4/components/#glyphicons" 
+
+  # More icons can be found at "fontawesome.com/icons" and
+  # "getbootstrap.com/docs/3.4/components/#glyphicons"
   # Note that some may not work, so test first!
-  
+
   dashboardSidebar(
     sidebarMenu(
       id = "sidebar",
-      ### 1st tab -----
+      ### 1st tab add or remove tabs as needed.  Add elements within 
+      ### the tabItem() sections in the dashboardBody() below.
       menuItem("Tab 1", tabname = "tab1", icon = icon("chart-line")),
-      
+
       ### 2nd tab -----
-      menuItem("Tab 2", tabname = "tab2", icon = icon("stats", lib = "glyphicon")),
-      
+      menuItem(
+        "Tab 2",
+        tabname = "tab2",
+        icon = icon("stats", lib = "glyphicon")
+      ),
+
       ### Slider -----
       uiOutput("slider")
-    ) #Close sidebarMenu
-  ), #Close dashboardSidebar
-  
+    ) # end of sidebarMenu
+  ), # end of dashboardSidebar
+
   ## Dashboard body -----
   dashboardBody(
-
     # Import CSS
+    # the HTML setAttribute('lang', 'en'); ensures accessibilty.  It's a
+    # small thing, but it helps screen readers interpret the content correctly.
     tags$head(
-      tags$script(HTML("document.documentElement.setAttribute('lang', 'en');")),
-      tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
+      tags$script(
+        HTML("document.documentElement.setAttribute('lang', 'en');")
       ),
-    
+      tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
+    ),
+
     ### 1st tab -----
     tabItem(
       tabName = "Tab 1",
-      
-      #Tab 1 contents
+
+      # Tab 1 contents
       fluidRow(
-        #Static infobox (there are also dynamic infoboxes that work similarly to valueboxes)
-        infoBox("infobox1",
-                34,
-                icon = icon("list"),
-                width = 2),
-        
-        #Dynamic valuebox
+        # Static infobox (there are also dynamic infoboxes that work
+        # similarly to valueboxes)
+        infoBox(
+          "infobox1",
+          34,
+          icon = icon("list"),
+          width = 2
+        ),
+
+        # Dynamic valuebox
         valueBoxOutput("valuebox1", width = 2)
       )
-    ), #Close Tab 1
-    
+    ), # Close Tab 1
+
     ### 2nd tab -----
     tabItem(
       tabName = "Tab 2",
-      
-      #Tab 2 contents
+
+      # Tab 2 contents
       fluidRow(
-        box(title = "Old Faithful Geyser Data",
-            plotOutput("distplot"))
+        box(
+          title = "Old Faithful Geyser Data",
+          plotOutput("distplot")
+        )
       )
-      
-    ), #Close Tab 2
-    
-    ) #Close dashboardBody
-  
-) #close dashboardPage
-
-# ui <- fluidPage(
-#   
-#   tags$head(
-#     tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
-#   ),
-# 
-#     # Application title
-#     titlePanel("Old Faithful Geyser Data"),
-# 
-#     # Sidebar with a slider input for number of bins 
-#     sidebarLayout(
-#         sidebarPanel(
-#             sliderInput("bins",
-#                         "Number of bins:",
-#                         min = 1,
-#                         max = 50,
-#                         value = 30)
-#         ),
-# 
-#         # Show a plot of the generated distribution
-#         mainPanel(
-#            plotOutput("distPlot")
-#         )
-#     )
-# )
-
-
+    ) # Close Tab 2
+  ) # Close dashboardBody
+) # close dashboardPage
 
 # Server -----
 server <- function(input, output) {
-  
   output$slider <- renderUI({
-    sliderInput("bins",
-                "Number of bins:",
-                min = 1,
-                max = 50,
-                value = 30)
+    sliderInput(
+      "bins",
+      "Number of bins:",
+      min = 1,
+      max = 50,
+      value = 30
+    )
   })
 
   ## 1st tab -----
-  
-  output$valuebox1 <- renderValueBox({
-    valueBox(7 ^ 3,
-             subtitle = "Valuebox 1",
-             icon = icon("map-location-dot"),
-             color = "orange")
-  })
-  
-  ## 2nd tab -----
-  
-    output$distplot <- renderPlot({
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
 
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    })
+  output$valuebox1 <- renderValueBox({
+    valueBox(
+      7^3,
+      subtitle = "Valuebox 1",
+      icon = icon("map-location-dot"),
+      color = "orange"
+    )
+  })
+
+  ## 2nd tab -----
+
+  output$distplot <- renderPlot({
+  # generate bins based on input$bins from ui.R
+  x <- faithful[, 2]
+  nbins <- if (is.null(input$bins)) 30 else input$bins
+  bins <- seq(min(x), max(x), length.out = nbins + 1)
+
+  # draw the histogram with the specified number of bins
+  hist(x, breaks = bins, col = "darkgray", border = "white")
+  })
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
