@@ -15,13 +15,13 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Ep
 [![pkgdown](https://github.com/EpiForeSITE/rbranding/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/EpiForeSITE/rbranding/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
-The `rbranding` package is a tool for building projects that are
-visually consistent, accessible, and easy to maintain. It provides
-functions for managing branding assets, applying organization-wide
-themes using ’\_brand.yml’, and setting up new projects with
-accessibility features and correct branding. It supports ‘Quarto’,
-‘Shiny’, and ‘RMarkdown’ projects, and integrates with other packages
-such as ‘ggplot2’ for producing branded graphics and visualizations.
+The rbranding package is a tool for building projects that are visually
+consistent, accessible, and easy to maintain. It provides functions for
+managing branding assets, applying organization-wide themes using
+’\_brand.yml’, and setting up new projects with accessibility features
+and correct branding. It supports ‘Quarto’, ‘Shiny’, and ‘RMarkdown’
+projects, and integrates with other packages such as ‘ggplot2’ for
+producing branded graphics and visualizations.
 
 ## Package Features
 
@@ -39,14 +39,14 @@ such as ‘ggplot2’ for producing branded graphics and visualizations.
 
 ## Installation
 
-You can install the stable version of `rbranding` from CRAN with:
+You can install the stable version of rbranding from CRAN with:
 
 ``` r
 install.packages("rbranding")
 ```
 
 To get a bug fix or to use a feature from the development version, you
-can install the development version of `rbranding` from
+can install the development version of rbranding from
 [GitHub](https://github.com/EpiForeSITE/rbranding) with:
 
 ``` r
