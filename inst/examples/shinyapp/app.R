@@ -62,9 +62,10 @@ ui <- dashboardPage(
   
   ## Dashboard body -----
   dashboardBody(
-    
+
     # Import CSS
     tags$head(
+      tags$script(HTML("document.documentElement.setAttribute('lang', 'en');")),
       tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")
       ),
     

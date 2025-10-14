@@ -18,7 +18,12 @@ brand_set_ggplot()
 vars <- setdiff(names(iris), "Species")
 
 pageWithSidebar(
-  headerPanel('Iris k-means clustering'),
+  headerPanel(
+    tagList(
+      tags$script(HTML("document.documentElement.setAttribute('lang', 'en');")),
+      'Iris k-means clustering'
+    )
+  ),
   sidebarPanel(
     selectInput('xcol', 'X Variable', vars),
     selectInput('ycol', 'Y Variable', vars, selected = vars[[2]]),
