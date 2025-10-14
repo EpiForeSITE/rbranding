@@ -1,0 +1,47 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  workflow_dispatch:
+
+name: Build Package for CRAN
+
+permissions: read-all
+
+jobs:
+  build-package:
+    runs-on: ubuntu-latest
+    name: Check and Build
+        
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'devel'
+          http-user-agent: 'release'
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck
+          needs: check
+
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true
+          build_args: 'c("--as-cran", "--no-manual","--compact-vignettes=gs+qpdf")'
+
+      - name: Build the package
+        run: R CMD build .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rbranding-package
+          path: rbranding*.tar.gz
+          retention-days: 7
