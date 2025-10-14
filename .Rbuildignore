@@ -20,6 +20,8 @@
 ^bak_brand\.yml$
 ^config\.yml$
 ^rbranding_config\.yml$
+^icon\.png$
+^logo\.png$
 
 ^[.].*$
 ^.*/[.].*$

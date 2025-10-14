@@ -15,13 +15,13 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Ep
 [![pkgdown](https://github.com/EpiForeSITE/rbranding/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/EpiForeSITE/rbranding/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
-The `rbranding` package is a tool for building projects that are
-visually consistent, accessible, and easy to maintain. It provides
-functions for managing branding assets, applying organization-wide
-themes using ’\_brand.yml’, and setting up new projects with
-accessibility features and correct branding. It supports ‘Quarto’,
-‘Shiny’, and ‘RMarkdown’ projects, and integrates with other packages
-such as ‘ggplot2’ for producing branded graphics and visualizations.
+The rbranding package is a tool for building projects that are visually
+consistent, accessible, and easy to maintain. It provides functions for
+managing branding assets, applying organization-wide themes using
+’\_brand.yml’, and setting up new projects with accessibility features
+and correct branding. It supports ‘Quarto’, ‘Shiny’, and ‘RMarkdown’
+projects, and integrates with other packages such as ‘ggplot2’ for
+producing branded graphics and visualizations.
 
 ## Package Features
 
@@ -39,8 +39,14 @@ such as ‘ggplot2’ for producing branded graphics and visualizations.
 
 ## Installation
 
+You can install the stable version of rbranding from CRAN with:
+
+``` r
+install.packages("rbranding")
+```
+
 To get a bug fix or to use a feature from the development version, you
-can install the development version of `rbranding` from
+can install the development version of rbranding from
 [GitHub](https://github.com/EpiForeSITE/rbranding) with:
 
 ``` r
@@ -48,22 +54,31 @@ can install the development version of `rbranding` from
 remotes::install_github("EpiForeSITE/rbranding")
 ```
 
+Alternatively, the development version of rbranding is also available
+from the R-universe project at <https://epiforesite.r-universe.dev/>
+with:
+
+``` r
+install.packages('rbranding', repos = c('https://epiforesite.r-universe.dev', 'https://cloud.r-project.org'))
+```
+
 ## Usage
 
-To initialize the branding config, use `brand_init()`:
+Use `brand_init()` to initialize the branding setup. This function
+generates the `rbranding_config.yml` and `_brand.yml` files.
 
 ``` r
 brand_init()
 ```
 
-This will generate the `rbranding_config.yml` and `_brand.yml` files.
-The `_brand.yml` file contains placeholder text. You will need to edit
-the config file with the URL of your brand file, then download that file
-using `get_brand_public()` or `get_brand_private_github()`, depending on
-whether your brand file is in a public or private GitHub repository.
+The generated `_brand.yml` file contains placeholder text. You will need
+to edit the config file with the URL of your brand file, then download
+that file using `get_brand_public()` or `get_brand_private_github()`,
+depending on whether your brand file is hosted publicly or in a private
+GitHub repository.
 
-These same functions will also update the local `_brand.yml` file, if it
-already exists.
+These same `get_brand_*()` functions will also update the local
+`_brand.yml` file, if it already exists.
 
 ## Use in Shiny Apps
 
