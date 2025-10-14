@@ -1,0 +1,111 @@
+---
+title: "Templates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Templates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette provides an overview of the templates available in the `rbranding` package. Use the `get_template()` function to install the template of your choice by specifying the `template_name` argument.
+
+## `rmark`: R Markdown Template for PDF or HTML Reports
+
+```{r, echo=FALSE, out.width="50%" }
+knitr::include_graphics("vignette-screenshots/rmark.jpg")
+```
+
+``` r
+get_template("rmark")
+```
+
+Provides a basic R Markdown document setup that integrates `_brand.yml` for consistent branding in your reports.
+
+
+## Quarto Templates
+
+### `qwebsite`: A Simple Quarto Website Template
+```{r, echo=FALSE, out.width="50%" }
+knitr::include_graphics("vignette-screenshots/qwebsite.jpg")
+```
+
+``` r
+get_template("qwebsite")
+```
+
+Provides a basic structure for a Quarto website with multiple pages, navigation, and branding support.
+
+
+### `qggplot2`: Quarto Report with Branded `ggplot2` Figures
+```{r, echo=FALSE, out.width="50%" }
+knitr::include_graphics("vignette-screenshots/qggplot2.jpg")
+```
+
+``` r
+get_template("qggplot2")
+```
+
+Provides a Quarto report setup that integrates `_brand.yml` and `ggplot2` for creating branded visualizations.
+
+
+## Shiny App Templates
+
+### Simple App: Histogram Visualization
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("vignette-screenshots/shiny2.jpg")
+```
+
+``` r
+get_template("shiny_example")
+shiny::runApp(".")
+```
+
+Provides a simple Shiny app that allows users to interactively adjust parameters and see the results in a histogram.
+
+
+### Simple App: K-means Clustering Visualization
+
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("vignette-screenshots/kmeans.jpg")
+```
+
+``` r
+get_template("kmeans")
+shiny::runApp(".")
+```
+
+Provides a simple Shiny app that demonstrates K-means clustering with interactive controls for the number of clusters and points. Based on [this example](https://shiny.rstudio.com/gallery/kmeans-example.html)
+
+
+### Complex App: Histogram Visualization
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("vignette-screenshots/shinyapp.jpg")
+```
+
+``` r
+get_template("shinyapp")
+shiny::shinyAppFile("app.r")
+```
+
+Provides a more complex Shiny app with multiple tabs, allowing users to interactively adjust parameters and view results in different formats.
+
+
+### Complex App: Wasterwater Data Visualization
+
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("vignette-screenshots/wastewater.jpg")
+```
+
+``` r
+get_template("wastewater")
+shiny::runApp(".")
+```
+
+Provides a Shiny app template for visualizing wastewater data, including interactive plots and data tables.
