@@ -1,7 +1,7 @@
 tmpdir <- file.path(tempdir(), "shiny_example_test")
 
 expect_message(get_template(
-    template_name = "shiny_example",
+    template_name = "shiny_basic",
     install_to = tmpdir
     ),
     "Copied"

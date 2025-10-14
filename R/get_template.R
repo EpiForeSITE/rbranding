@@ -22,7 +22,7 @@
 #' }
 #'
 #' tmpdir <- file.path(tempdir(), "wastewater_test")
-#' get_template(template_name = "wastewater", install_to = tmpdir)
+#' get_template(template_name = "shiny_wastewater", install_to = tmpdir)
 #'
 #' # Cleanup
 #' unlink(tmpdir, recursive = TRUE)
@@ -41,7 +41,7 @@ get_template <- function(template_name = NULL, install_to = NULL) {
     )
 
     # Filter out excluded templates (hardcoded exclusion list)
-    # excluded_templates <- c("wastewater") # Add any templates to exclude here
+    # excluded_templates <- c("shiny_wastewater") # Add any templates to exclude here
     # examples <- examples[!examples %in% excluded_templates]
 
     message("Choose from the following templates (for details, see the package documentation: https://epiforesite.github.io/rbranding/):")

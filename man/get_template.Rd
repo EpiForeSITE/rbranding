@@ -31,7 +31,7 @@ if (interactive()) {
 }
 
 tmpdir <- file.path(tempdir(), "wastewater_test")
-get_template(template_name = "wastewater", install_to = tmpdir)
+get_template(template_name = "shiny_wastewater", install_to = tmpdir)
 
 # Cleanup
 unlink(tmpdir, recursive = TRUE)

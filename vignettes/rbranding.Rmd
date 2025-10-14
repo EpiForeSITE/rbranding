@@ -87,19 +87,19 @@ cat(readLines(file.path(tmpdir, "_brand.yml")), sep = "\n")
 The rbranding package includes several templates to help you get started with branded projects. You can use the `get_template()` function to download and set up a template:
 
 ``` r
-get_template(template_name = "shinyapp")
+get_template(template_name = "shiny_complex")
 ```
 
-This will copy the contents of the `shinyapp` template into your current working directory. This template provides ready-to-use Shiny app files with branding support. You can specify other templates by changing the `template_name` argument to `get_template()`. Available templates include:
+This will copy the contents of the `shiny_complex` template into your current working directory. This template provides ready-to-use Shiny app files with branding support. You can specify other templates by changing the `template_name` argument to `get_template()`. Available templates include:
 
 - `ggplot2`: R script using `ggplot2`
-- `qggplot2`: Quarto Report with Branded `ggplot2` Figures
-- `qwebsite`: Simple Quarto Website Template
-- `rmark`: R Markdown document
-- `shiny_example`: Simple Histogram Visualization Shiny App
-- `shinyapp`: Complex Histogram Visualization Shiny App
-- `kmeans`: Simple K-means Clustering Visualization Shiny App
-- `wastewater`: Complex Wasterwater Data Visualization Shiny App
+- `quarto_ggplot2`: Quarto Report with Branded `ggplot2` Figures
+- `quarto_website`: Simple Quarto Website Template
+- `rmarkdown`: R Markdown document
+- `shiny_basic`: Simple Histogram Visualization Shiny App
+- `shiny_complex`: Complex Histogram Visualization Shiny App
+- `shiny_kmeans`: Simple K-means Clustering Visualization Shiny App
+- `shiny_wastewater`: Complex Wasterwater Data Visualization Shiny App
 
 ```{r cleanup, include = FALSE}
 unlink(tmpdir, recursive = TRUE)

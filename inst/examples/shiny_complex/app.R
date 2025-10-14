@@ -1,5 +1,5 @@
 #
-# DHHS R Shiny Template
+# Complex R Shiny Template
 #
 # You can run the application by clicking the 'Run App' button above.
 #
