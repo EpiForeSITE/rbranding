@@ -14,7 +14,7 @@ This is an R package called `rbranding` that facilitates the creation of Shiny a
 - `brand_set_ggplot()` / `brand_reset_ggplot()` - Apply/reset branded ggplot2 themes
 - `brand_add_logo()` - Add branded logos to ggplot2 visualizations
 
-**Note:** For interactive map-table linking in Shiny apps, the package uses the external `linkeR` package. See `inst/examples/shiny_wastewater/app.R` for a demonstration.
+**Note:** For interactive map-table linking in Shiny apps, the package uses the external `linkeR` package. See `inst/templates/shiny_wastewater/app.R` for a demonstration.
 
 ## Dependencies and Installation
 
@@ -76,18 +76,18 @@ echo 'library(tinytest); run_test_dir("inst/tinytest")' | R --no-save --quiet
 
 ### Available Applications
 - **Main App**: `inst/app/app.R` - Main branding demonstration app
-- **Wastewater Dashboard**: `inst/examples/shiny_wastewater/app.R` - Interactive map/table linking
-- **Quarto Website**: `inst/examples/quarto_website/` - Branded Quarto site example  
-- **R Markdown**: `inst/examples/rmarkdown/` - Branded R Markdown examples
+- **Wastewater Dashboard**: `inst/templates/shiny_wastewater/app.R` - Interactive map/table linking
+- **Quarto Website**: `inst/templates/quarto_website/` - Branded Quarto site template  
+- **R Markdown**: `inst/templates/rmarkdown/` - Branded R Markdown template
 
 ### Running Apps with Script
 ```bash
 # Run main app (in inst/app/)
 ./run_app.sh
 
-# Note: Script looks for inst/app/examples/ but examples are in inst/examples/
-# Run examples manually instead:
-cd inst/examples/shiny_wastewater && Rscript app.R
+# Note: Script looks for inst/app/templates/ but examples are in inst/templates/
+# Run templates manually instead:
+cd inst/templates/shiny_wastewater && Rscript app.R
 
 # Get script help
 ./run_app.sh --help
@@ -96,7 +96,7 @@ cd inst/examples/shiny_wastewater && Rscript app.R
 ### Manual Shiny App Execution
 ```bash
 # For apps requiring full dependencies
-cd inst/examples/shiny_wastewater
+cd inst/templates/shiny_wastewater
 Rscript -e "shiny::runApp('app.R', host='0.0.0.0', port=3838)"
 ```
 
@@ -143,7 +143,7 @@ Rscript -e "shiny::runApp('app.R', host='0.0.0.0', port=3838)"
    ```
 
 **When dependencies ARE available (full environment):**
-1. Navigate to `inst/examples/shiny_wastewater/`
+1. Navigate to `inst/templates/shiny_wastewater/`
 2. Start the Shiny app: `Rscript -e "shiny::runApp('app.R')"`
 3. Test interactive features:
    - Click on map markers to verify table row selection
@@ -157,7 +157,7 @@ Rscript -e "shiny::runApp('app.R', host='0.0.0.0', port=3838)"
 
 ### Key Directories
 - `R/` - Package source code (get_repo.R, get_template.R, link_plots.R)
-- `inst/examples/` - Example applications demonstrating package usage
+- `inst/templates/` - Example applications demonstrating package usage
 - `inst/tinytest/` - Unit tests using tinytest framework
 - `man/` - Generated documentation files
 - `vignettes/` - Package vignettes and tutorials

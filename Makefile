@@ -21,7 +21,7 @@ install:
 
 example:
 	@echo "Running example..."
-	Rscript -e 'shiny::runApp(system.file("examples", "link_plots.R", package = "rbranding"))'
+	Rscript -e 'shiny::runApp(system.file("templates", "link_plots.R", package = "rbranding"))'
 
 check:
 	R CMD build . && \

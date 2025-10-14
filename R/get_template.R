@@ -1,12 +1,12 @@
 #' Copy template files into project
 #'
-#' `get_template` copies example files from the package's `examples`
+#' `get_template` copies example files from the package's `templates`
 #' directory into the user's current working directory or a
 #' specified subdirectory.
 #'
 #' @param template_name Optional string. Name of the template to use.
-#' Corresponds to a folder name `examples/`. If NULL (default) within an
-#' interactive session, the function will list available examples and
+#' Corresponds to a folder name `templates/`. If NULL (default) within an
+#' interactive session, the function will list available templates and
 #' prompt the user to select one.
 #' @param install_to Optional string. Directory where the example files
 #' should be copied. If NULL (default), the current working directory
@@ -34,35 +34,35 @@ get_template <- function(template_name = NULL, install_to = NULL) {
       stop("template_name must be provided in non-interactive sessions")
     }
 
-    examples <- list.dirs(
-      system.file("examples", package = "rbranding"),
+    templates <- list.dirs(
+      system.file("templates", package = "rbranding"),
       full.names = FALSE,
       recursive = FALSE
     )
 
     # Filter out excluded templates (hardcoded exclusion list)
     # excluded_templates <- c("shiny_wastewater") # Add any templates to exclude here
-    # examples <- examples[!examples %in% excluded_templates]
+    # templates <- templates[!examptemplatesles %in% excluded_templates]
 
     message("Choose from the following templates (for details, see the package documentation: https://epiforesite.github.io/rbranding/):")
-    for (i in seq_along(examples)) {
-      message(i, ": ", examples[i])
+    for (i in seq_along(templates)) {
+      message(i, ": ", templates[i])
     }
     message("Press enter: Abort")
     answer <- readline()
 
     answer <- as.integer(answer)
 
-    if (is.na(answer) || answer < 1 || answer > length(examples)) {
+    if (is.na(answer) || answer < 1 || answer > length(templates)) {
       message("Template selection aborted")
       return(invisible())
     }
 
-    template_name <- examples[answer]
+    template_name <- templates[answer]
   }
 
   # Find the source directory inside the package
-  source_dir <- system.file("examples", template_name, package = "rbranding")
+  source_dir <- system.file("templates", template_name, package = "rbranding")
   if (source_dir == "") {
     stop(
       "Template '",
