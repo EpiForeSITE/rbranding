@@ -41,8 +41,7 @@ to create the backup."><meta property="og:image" content="https://epiforesite.gi
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/accessibility.html">Accessibility Guidelines</a></li>
     <li><a class="dropdown-item" href="../articles/ggplot2-integration.html">ggplot2 and Thematic Integration with Brand Themes</a></li>
-    <li><a class="dropdown-item" href="../articles/quarto-templates.html">Quarto templates</a></li>
-    <li><a class="dropdown-item" href="../articles/shiny-templates.html">Shiny Templates</a></li>
+    <li><a class="dropdown-item" href="../articles/templates.html">Templates</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -148,7 +147,7 @@ possibly creating <code>bak_brand.yml</code></p>
 <span class="r-in"><span><span class="co"># Non-interactive example</span></span></span>
 <span class="r-in"><span><span class="va">tmpdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"brand_files"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="brand_init.html">brand_init</a></span><span class="op">(</span>install_path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Created files '/tmp/RtmpVYWLmv/brand_files/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpVYWLmv/brand_files</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Created files '/tmp/Rtmp4j6ZmV/brand_files/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/Rtmp4j6ZmV/brand_files</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">get_brand_public</span><span class="op">(</span></span></span>
 <span class="r-in"><span> config_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmpdir</span>, <span class="st">"rbranding_config.yml"</span><span class="op">)</span>,</span></span>
@@ -157,7 +156,7 @@ possibly creating <code>bak_brand.yml</code></p>
 <span class="r-in"><span> backup_folder <span class="op">=</span> <span class="va">tmpdir</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Checking remote version... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Backup of local branding file saved to '/tmp/RtmpVYWLmv/brand_files/bak_brand.yml'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Backup of local branding file saved to '/tmp/Rtmp4j6ZmV/brand_files/bak_brand.yml'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Local branding file overwritten with remote file</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Cleanup</span></span></span>

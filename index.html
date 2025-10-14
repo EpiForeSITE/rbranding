@@ -42,8 +42,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="articles/accessibility.html">Accessibility Guidelines</a></li>
     <li><a class="dropdown-item" href="articles/ggplot2-integration.html">ggplot2 and Thematic Integration with Brand Themes</a></li>
-    <li><a class="dropdown-item" href="articles/quarto-templates.html">Quarto templates</a></li>
-    <li><a class="dropdown-item" href="articles/shiny-templates.html">Shiny Templates</a></li>
+    <li><a class="dropdown-item" href="articles/templates.html">Templates</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
@@ -67,7 +66,7 @@
 </div>
 <!-- badges: start -->
 
-<p>The <code>rbranding</code> package is a tool for building projects that are visually consistent, accessible, and easy to maintain. It provides functions for managing branding assets, applying organization-wide themes using ’_brand.yml’, and setting up new projects with accessibility features and correct branding. It supports ‘Quarto’, ‘Shiny’, and ‘RMarkdown’ projects, and integrates with other packages such as ‘ggplot2’ for producing branded graphics and visualizations.</p>
+<p>The rbranding package is a tool for building projects that are visually consistent, accessible, and easy to maintain. It provides functions for managing branding assets, applying organization-wide themes using ’_brand.yml’, and setting up new projects with accessibility features and correct branding. It supports ‘Quarto’, ‘Shiny’, and ‘RMarkdown’ projects, and integrates with other packages such as ‘ggplot2’ for producing branded graphics and visualizations.</p>
 <div class="section level2">
 <h2 id="package-features">Package Features<a class="anchor" aria-label="anchor" href="#package-features"></a>
 </h2>
@@ -85,19 +84,25 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>To get a bug fix or to use a feature from the development version, you can install the development version of <code>rbranding</code> from <a href="https://github.com/EpiForeSITE/rbranding" class="external-link">GitHub</a> with:</p>
+<p>You can install the stable version of rbranding from CRAN with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rbranding"</span><span class="op">)</span></span></code></pre></div>
+<p>To get a bug fix or to use a feature from the development version, you can install the development version of rbranding from <a href="https://github.com/EpiForeSITE/rbranding" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"EpiForeSITE/rbranding"</span><span class="op">)</span></span></code></pre></div>
+<p>Alternatively, the development version of rbranding is also available from the R-universe project at <a href="https://epiforesite.r-universe.dev/" class="external-link uri">https://epiforesite.r-universe.dev/</a> with:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'rbranding'</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://epiforesite.r-universe.dev'</span>, <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>To initialize the branding config, use <code><a href="reference/brand_init.html">brand_init()</a></code>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p>Use <code><a href="reference/brand_init.html">brand_init()</a></code> to initialize the branding setup. This function generates the <code>rbranding_config.yml</code> and <code>_brand.yml</code> files.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>This will generate the <code>rbranding_config.yml</code> and <code>_brand.yml</code> files. The <code>_brand.yml</code> file contains placeholder text. You will need to edit the config file with the URL of your brand file, then download that file using <code><a href="reference/get_brand_public.html">get_brand_public()</a></code> or <code><a href="reference/get_brand_private_github.html">get_brand_private_github()</a></code>, depending on whether your brand file is in a public or private GitHub repository.</p>
-<p>These same functions will also update the local <code>_brand.yml</code> file, if it already exists.</p>
+<p>The generated <code>_brand.yml</code> file contains placeholder text. You will need to edit the config file with the URL of your brand file, then download that file using <code><a href="reference/get_brand_public.html">get_brand_public()</a></code> or <code><a href="reference/get_brand_private_github.html">get_brand_private_github()</a></code>, depending on whether your brand file is hosted publicly or in a private GitHub repository.</p>
+<p>These same <code>get_brand_*()</code> functions will also update the local <code>_brand.yml</code> file, if it already exists.</p>
 </div>
 <div class="section level2">
 <h2 id="use-in-shiny-apps">Use in Shiny Apps<a class="anchor" aria-label="anchor" href="#use-in-shiny-apps"></a>

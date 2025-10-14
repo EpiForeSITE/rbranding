@@ -39,8 +39,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/accessibility.html">Accessibility Guidelines</a></li>
     <li><a class="dropdown-item" href="../articles/ggplot2-integration.html">ggplot2 and Thematic Integration with Brand Themes</a></li>
-    <li><a class="dropdown-item" href="../articles/quarto-templates.html">Quarto templates</a></li>
-    <li><a class="dropdown-item" href="../articles/shiny-templates.html">Shiny Templates</a></li>
+    <li><a class="dropdown-item" href="../articles/templates.html">Templates</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -72,27 +71,215 @@
     
     
 <div class="section level2">
-<h2 id="get-started-on-your-shiny-app-with-rbranding">Get started on your Shiny app with rbranding:<a class="anchor" aria-label="anchor" href="#get-started-on-your-shiny-app-with-rbranding"></a>
+<h2 id="introduction-to-rbranding">Introduction to rbranding<a class="anchor" aria-label="anchor" href="#introduction-to-rbranding"></a>
 </h2>
+<p>The rbranding package provides a set of tools to help you create and
+maintain consistent branding across your R projects. It is powered by <a href="https://posit-dev.github.io/brand-yml/" class="external-link"><code>_brand.yml</code></a>,
+a configuration file that defines your brand’s visual identity,
+including colors, fonts, logos, and other design elements.
+<code>_brand.yml</code> is supported by various R-based platforms,
+including Shiny, Quarto, and R Markdown.</p>
+<p>The rbranding package provides functions for setting up the branding
+files, updating them from remote sources, and applying them to your
+projects. It also includes templates for various project types, making
+it easy to get started with a branded project. The package supports <a href="https://quarto.org/docs/authoring/brand.html" class="external-link">‘Quarto’</a>,
+‘Shiny’ and ‘RMarkdown’ through <a href="https://pkgs.rstudio.com/bslib/articles/brand-yml/index.html" class="external-link"><code>bslib</code></a>,
+and integrates with ‘ggplot2’ and ‘plotly’ for producing branded
+graphics and visualizations.</p>
+<p>Finally, the rbranding package provides guidelines and support for
+accessibility, ensuring that your branded content is usable by all
+audiences.</p>
 <div class="section level3">
-<h3 id="in-the-r-console">In the R console:<a class="anchor" aria-label="anchor" href="#in-the-r-console"></a>
+<h3 id="initialization">Initialization<a class="anchor" aria-label="anchor" href="#initialization"></a>
 </h3>
-<p>Install the package from github (if necessary):</p>
+<p>Use <code><a href="../reference/brand_init.html">brand_init()</a></code> to initialize the branding setup:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># In the R terminal:</span></span>
-<span><span class="co"># Install the package from github (if necessary):</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rbranding/rbranding"</span><span class="op">)</span></span>
-<span><span class="co"># load the library:</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiforesite.github.io/rbranding/">rbranding</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/brand_init.html">brand_init</a></span><span class="op">(</span>brand_url <span class="op">=</span> <span class="st">"your_brand_file_url_here"</span>, install_path <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></code></pre></div>
+<p>This function generates two files:</p>
+<ul>
+<li>
+<code>rbranding_config.yml</code>: Contains configuration settings
+for the updating your <code>_brand.yml</code> file, specifically the URL
+of your brand file (<code>brand_url</code>) and the path to your local
+<code>_brand.yml</code> file (based on <code>install_path</code>).
+Essentially, this file saves the parameters you used when calling
+<code><a href="../reference/brand_init.html">brand_init()</a></code>, allowing you to easily update your branding
+files in the future without needing to remember or re-enter these
+details.</li>
+<li>
+<code>_brand.yml</code>: Your local brand configuration file. After
+calling <code><a href="../reference/brand_init.html">brand_init()</a></code>, this file contains placeholder text
+and will need to be updated by <code>get_brand_*()</code>, which we
+describe in the next section.</li>
+</ul>
+<p><strong>Note:</strong> Both <code>brand_url</code> and
+<code>install_path</code> are optional parameters. If not provided,
+<code><a href="../reference/brand_init.html">brand_init()</a></code> will set <code>brand_url</code> to a
+<code>_brand.yml</code> hosted on the rbranding GitHub page.
+<code>install_path</code> defaults to the current working directory
+(<code>"."</code>).</p>
+<p><code><a href="../reference/brand_init.html">brand_init()</a></code> is intended to be run once per project. It
+sets up the necessary configuration for managing your brand files, but
+does not need to be run again unless you want to change the
+<code>brand_url</code> or <code>install_path</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="updating-your-brand-file">Updating Your Brand File<a class="anchor" aria-label="anchor" href="#updating-your-brand-file"></a>
+</h3>
+<p>Now that you’ve initialized the branding setup with
+<code><a href="../reference/brand_init.html">brand_init()</a></code>, you can use the <code>get_brand_*()</code>
+functions to download or update your local <code>_brand.yml</code> file
+from a remote source.</p>
+<p>You’ll need to do this at least once after calling
+<code><a href="../reference/brand_init.html">brand_init()</a></code>, since the <code>_brand.yml</code> file
+generated by that function contains placeholder text. However, these
+functions can also be used to update your local <code>_brand.yml</code>
+file whenever changes are made to the remote brand file.</p>
+<p>There are currently two <code>get_brand_*()</code> functions
+available, depending on where your brand file is hosted:</p>
+<ul>
+<li>
+<code><a href="../reference/get_brand_public.html">get_brand_public()</a></code>: Use this function if your brand
+file is hosted publicly, such as on a public GitHub repository or a web
+server.</li>
+<li>
+<code><a href="../reference/get_brand_private_github.html">get_brand_private_github()</a></code>: Use this function if your
+brand file is hosted in a private GitHub repository. It requires a
+GitHub personal access token (PAT) with appropriate permissions to
+access the repository.</li>
+</ul>
+<p><code>get_brand_*()</code> functions both download the brand file
+from the URL specified in your <code>rbranding_config.yml</code> file
+and saves it to the local file path specified there (typically the
+current working directory). By default this function runs interactively,
+but this can be disabled by setting
+<code>run_interactive = FALSE</code>. You can also specify a backup
+file, so the previous version of your <code>_brand.yml</code> file is
+saved before being overwritten.</p>
+<p>Again, call this function whenever you want to update your local
+<code>_brand.yml</code> file with the latest version from the remote
+source.</p>
+</div>
+<div class="section level3">
+<h3 id="example-usage">Example Usage<a class="anchor" aria-label="anchor" href="#example-usage"></a>
+</h3>
+<p>Below is a simple example using the default brand file hosted on the
+rbranding GitHub page.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Temp directory</span></span>
+<span><span class="va">tmpdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"rbranding_example"</span><span class="op">)</span></span>
+<span><span class="co"># Initializes the brand files in the current working directory</span></span>
+<span><span class="fu"><a href="../reference/brand_init.html">brand_init</a></span><span class="op">(</span>install_path <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Created files '/tmp/RtmpnevIL4/rbranding_example/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpnevIL4/rbranding_example</span></span>
 <span></span>
-<span><span class="co">#Initialize the rbranding package:</span></span>
-<span><span class="fu">rbranding</span><span class="fu">::</span><span class="fu"><a href="../reference/brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmpdir</span>, <span class="st">"_brand.yml"</span><span class="op">)</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Update this file with rbranding::get_brand_public() (or another `get_brand_*` function)</span></span>
 <span></span>
-<span><span class="co"># get the latest version of the _brand.yml file:</span></span>
-<span><span class="fu">rbranding</span><span class="fu">::</span><span class="fu"><a href="../reference/get_brand_public.html">get_brand_public</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># Downloads the public brand file from the rbranding GitHub page</span></span>
+<span><span class="co"># and saves it as _brand.yml in the current working directory</span></span>
+<span><span class="fu"><a href="../reference/get_brand_public.html">get_brand_public</a></span><span class="op">(</span></span>
+<span>  config_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmpdir</span>, <span class="st">"rbranding_config.yml"</span><span class="op">)</span>,</span>
+<span>  run_interactive <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Checking remote version...</span></span>
+<span><span class="co">#&gt; Local branding file overwritten with remote file</span></span>
 <span></span>
-<span><span class="co"># install the example1 template:</span></span>
-<span><span class="fu">rbranding</span><span class="fu">::</span><span class="fu"><a href="../reference/get_template.html">get_template</a></span><span class="op">(</span><span class="st">"example1"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co"># Check the contents of the _brand.yml file</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">tmpdir</span>, <span class="st">"_brand.yml"</span><span class="op">)</span><span class="op">)</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; meta:</span></span>
+<span><span class="co">#&gt;   name: rbranding</span></span>
+<span><span class="co">#&gt;   links:</span></span>
+<span><span class="co">#&gt;     docs: https://epiforesite.github.io/rbranding/</span></span>
+<span><span class="co">#&gt;     github: https://github.com/EpiForeSITE/rbranding/</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; logo:</span></span>
+<span><span class="co">#&gt;   images:</span></span>
+<span><span class="co">#&gt;     icon:</span></span>
+<span><span class="co">#&gt;       path: icon.png</span></span>
+<span><span class="co">#&gt;       alt: "Company icon with abstract shapes"</span></span>
+<span><span class="co">#&gt;     logo:</span></span>
+<span><span class="co">#&gt;       path: logo.png</span></span>
+<span><span class="co">#&gt;       alt: "Full company logo with tagline"</span></span>
+<span><span class="co">#&gt;   small: icon</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; color:</span></span>
+<span><span class="co">#&gt;   palette:</span></span>
+<span><span class="co">#&gt;     orange: "#FF6F20"</span></span>
+<span><span class="co">#&gt;     pink: "#FF3D7F"</span></span>
+<span><span class="co">#&gt;     green: "#28A745"</span></span>
+<span><span class="co">#&gt;     yellow: "#FFC107"</span></span>
+<span><span class="co">#&gt;   primary: orange</span></span>
+<span><span class="co">#&gt;   success: green</span></span>
+<span><span class="co">#&gt;   warning: yellow</span></span>
+<span><span class="co">#&gt;   danger: pink</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; typography:</span></span>
+<span><span class="co">#&gt;   fonts:</span></span>
+<span><span class="co">#&gt;     - family: Open Sans</span></span>
+<span><span class="co">#&gt;       source: google</span></span>
+<span><span class="co">#&gt;     - family: IBM Plex Mono</span></span>
+<span><span class="co">#&gt;       source: google</span></span>
+<span><span class="co">#&gt;     - family: Rubik</span></span>
+<span><span class="co">#&gt;       source: google</span></span>
+<span><span class="co">#&gt;   base:</span></span>
+<span><span class="co">#&gt;     family: Open Sans</span></span>
+<span><span class="co">#&gt;     line-height: 1.6</span></span>
+<span><span class="co">#&gt;   headings:</span></span>
+<span><span class="co">#&gt;     family: Rubik</span></span>
+<span><span class="co">#&gt;     weight: normal</span></span>
+<span><span class="co">#&gt;   link:</span></span>
+<span><span class="co">#&gt;     color: purple</span></span>
+<span><span class="co">#&gt;   monospace:</span></span>
+<span><span class="co">#&gt;     family: IBM Plex Mono</span></span>
+<span><span class="co">#&gt;     size: 1em</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; defaults:</span></span>
+<span><span class="co">#&gt;   quarto:</span></span>
+<span><span class="co">#&gt;     format:</span></span>
+<span><span class="co">#&gt;       # basic format-specific settings</span></span>
+<span><span class="co">#&gt;   shiny:</span></span>
+<span><span class="co">#&gt;     # shiny specific settings</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="using-templates">Using Templates<a class="anchor" aria-label="anchor" href="#using-templates"></a>
+</h3>
+<p>The rbranding package includes several templates to help you get
+started with branded projects. You can use the
+<code><a href="../reference/get_template.html">get_template()</a></code> function to download and set up a
+template:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/get_template.html">get_template</a></span><span class="op">(</span>template_name <span class="op">=</span> <span class="st">"shinyapp"</span><span class="op">)</span></span></code></pre></div>
+<p>This will copy the contents of the <code>shinyapp</code> template
+into your current working directory. This template provides ready-to-use
+Shiny app files with branding support. You can specify other templates
+by changing the <code>template_name</code> argument to
+<code><a href="../reference/get_template.html">get_template()</a></code>. Available templates include:</p>
+<ul>
+<li>
+<code>ggplot2</code>: R script using <code>ggplot2</code>
+</li>
+<li>
+<code>qggplot2</code>: Quarto Report with Branded
+<code>ggplot2</code> Figures</li>
+<li>
+<code>qwebsite</code>: Simple Quarto Website Template</li>
+<li>
+<code>rmark</code>: R Markdown document</li>
+<li>
+<code>shiny_example</code>: Simple Histogram Visualization Shiny
+App</li>
+<li>
+<code>shinyapp</code>: Complex Histogram Visualization Shiny
+App</li>
+<li>
+<code>kmeans</code>: Simple K-means Clustering Visualization Shiny
+App</li>
+<li>
+<code>wastewater</code>: Complex Wasterwater Data Visualization
+Shiny App</li>
+</ul>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
