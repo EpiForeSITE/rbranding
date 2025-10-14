@@ -1,11 +1,17 @@
-# Returns a filepath to a temporary yaml file
-# brand_dhhs <- function() {load_brand("brand/_brand2.yml", color.main = "blue")}
 
-#  ui.page_opts(theme=ui.Theme.from_brand("brand/_gvy_brand.yml"))
+# Example Shiny app launcher for rbranding package
+# This file provides a function to run the main demonstration app
+# included with the rbranding package. The app showcases branding
+# features and UI components.
 
+#' Launch the rbranding demo Shiny app
+#'
+#' This function starts the Shiny app located in the 'app/' directory
+#' of the installed rbranding package. Use this to preview branding
+#' and UI integration features.
 #' @export
 run_model <- function() {
   shinyAppDir(
-    system.file("app/", package = "rbranding")
+    system.file("app/", package = "rbranding") # Finds the app directory in the installed package
   )
 }

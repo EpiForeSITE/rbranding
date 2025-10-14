@@ -3,6 +3,8 @@ library(rbranding)
 library(ggplot2)
 
 # Initialize rbranding and set up theme from _brand.yml
+# this example is so simple that we don't need to translate
+# any of the keys from _brand.yml into the theme.
 theme <- bslib::bs_theme(brand = TRUE)
 
 # Extract the path of the discovered _brand.yml file

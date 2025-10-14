@@ -24,12 +24,22 @@ library(janitor)
 library(lubridate)
 library(tidyverse)
 
+# Example: Read a color from _brand.yml in this folder
+library(yaml)
+brand <- yaml::read_yaml("_brand.yml")
+primary_name <- brand$color$primary
+primary_hex <- brand$color$palette[[primary_name]]
+# Now primary_hex contains the hex code for the primary color
+library(yaml) # for reading _brand.yml
+
 
 # UI -----
 
 ## Create header -----
 # This creates the header for the dashboard that can be
 # used across multiple apps if desired.
+
+
 
 header <- dashboardHeader(
   title = "RBranding Intermediate Shiny Example", # Replace with your title (displayed in the dashboard)
@@ -116,7 +126,7 @@ ui <- dashboardPage(
         # Dynamic valuebox
         valueBoxOutput("valuebox1", width = 2)
       )
-    ), # Close Tab 1
+    ), # end Tab 1
 
     ### 2nd tab -----
     tabItem(
@@ -129,12 +139,14 @@ ui <- dashboardPage(
           plotOutput("distplot")
         )
       )
-    ) # Close Tab 2
-  ) # Close dashboardBody
-) # close dashboardPage
+    ) # end Tab 2
+  ) # end dashboardBody
+) # end dashboardPage
 
 # Server -----
 server <- function(input, output) {
+  # Reactive slider input.  Maps to the uiOutput("slider") 
+  # above.
   output$slider <- renderUI({
     sliderInput(
       "bins",
@@ -145,27 +157,32 @@ server <- function(input, output) {
     )
   })
 
-  ## 1st tab -----
+  ## 1st value box (card) above the histogram
+  ## the icon("map-location-dot") is a Font Awesome icon.
+  ## More icons can be found at "fontawesome.com/icons"
+  ## valuebox doesn't allow taking colors as names from _brand.yml
 
   output$valuebox1 <- renderValueBox({
-    valueBox(
-      7^3,
-      subtitle = "Valuebox 1",
-      icon = icon("map-location-dot"),
-      color = "orange"
-    )
+      # here we use primary_hex for the color, this has been read 
+      # from _brand.yml
+      valueBox(
+        7^3,
+        subtitle = "Valuebox 1",
+        icon = icon("map-location-dot"),
+        color = primary_hex
+      )
   })
 
-  ## 2nd tab -----
+  ## 2nd tab This generates the histogram based on the slider input
 
   output$distplot <- renderPlot({
-  # generate bins based on input$bins from ui.R
-  x <- faithful[, 2]
-  nbins <- if (is.null(input$bins)) 30 else input$bins
-  bins <- seq(min(x), max(x), length.out = nbins + 1)
+    # generate bins based on input$bins from ui.R
+    x <- faithful[, 2]
+    nbins <- if (is.null(input$bins)) 30 else input$bins
+    bins <- seq(min(x), max(x), length.out = nbins + 1)
 
-  # draw the histogram with the specified number of bins
-  hist(x, breaks = bins, col = "darkgray", border = "white")
+    # draw the histogram with the specified number of bins
+    hist(x, breaks = bins, col = "darkgray", border = "white")
   })
 }
 

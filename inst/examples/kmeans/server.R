@@ -1,20 +1,27 @@
+# Example Shiny server logic for k-means clustering demo
+# This file defines the server-side behavior for the k-means example app.
+# It demonstrates dynamic clustering, branded ggplot output, and logo integration.
+
 function(input, output, session) {
 
   # Combine the selected variables into a new data frame
+  # reactive means this function will auto-update when inputs change
   selectedData <- reactive({
-    iris[, c(input$xcol, input$ycol)]
+    iris[, c(input$xcol, input$ycol)] # Select columns based on user input
   })
 
+  # Perform k-means clustering on the selected data
   clusters <- reactive({
     kmeans(selectedData(), input$clusters)
   })
 
+  # Render the main plot output
   output$plot1 <- renderPlot({
     # Create data frame for ggplot
     plot_data <- selectedData()
     plot_data$cluster <- factor(clusters()$cluster)
     
-    # Create centers data frame
+    # Create centers data frame for cluster centers
     centers_data <- as.data.frame(clusters()$centers)
     centers_data$cluster <- factor(seq_len(nrow(centers_data)))
     
