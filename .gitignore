@@ -14,6 +14,7 @@ rbranding.Rproj
 bak_brand.yml
 *.Rcheck/**
 docs
+pkgdown
 instructions
 inst/doc
 *.zip
