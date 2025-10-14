@@ -54,6 +54,14 @@ can install the development version of rbranding from
 remotes::install_github("EpiForeSITE/rbranding")
 ```
 
+Alternatively, the development version of rbranding is also available
+from the R-universe project at <https://epiforesite.r-universe.dev/>
+with:
+
+``` r
+install.packages('rbranding', repos = c('https://epiforesite.r-universe.dev', 'https://cloud.r-project.org'))
+```
+
 ## Usage
 
 Use `brand_init()` to initialize the branding setup. This function
