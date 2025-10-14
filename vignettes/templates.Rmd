@@ -97,7 +97,7 @@ get_template("wastewater")
 shiny::runApp(".")
 ```
 
-Provides a Shiny app template for visualizing wastewater data, including interactive plots and data tables. This example demonstrates how to integrate branding with [`linkeR` package](https://CRAN.R-project.org/package=linkeR).
+Provides a Shiny app template for visualizing wastewater data, including interactive plots and data tables. This example demonstrates how to integrate branding with the [`linkeR`](https://CRAN.R-project.org/package=linkeR) package.
 
 
 ## Other Templates
