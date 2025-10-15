@@ -59,7 +59,7 @@
 <code><a href="reference/brand_set_ggplot.html">brand_set_ggplot()</a></code> / <code><a href="reference/brand_reset_ggplot.html">brand_reset_ggplot()</a></code> - Apply/reset branded ggplot2 themes</li>
 <li>
 <code><a href="reference/brand_add_logo.html">brand_add_logo()</a></code> - Add branded logos to ggplot2 visualizations</li>
-</ul><p><strong>Note:</strong> For interactive map-table linking in Shiny apps, the package uses the external <code>linkeR</code> package. See <code>inst/examples/wastewater/app.R</code> for a demonstration.</p>
+</ul><p><strong>Note:</strong> For interactive map-table linking in Shiny apps, the package uses the external <code>linkeR</code> package. See <code>inst/templates/shiny_wastewater/app.R</code> for a demonstration.</p>
 </div>
 <div class="section level2">
 <h2 id="dependencies-and-installation">Dependencies and Installation<a class="anchor" aria-label="anchor" href="#dependencies-and-installation"></a></h2>
@@ -116,20 +116,20 @@
 <ul><li>
 <strong>Main App</strong>: <code>inst/app/app.R</code> - Main branding demonstration app</li>
 <li>
-<strong>Wastewater Dashboard</strong>: <code>inst/examples/wastewater/app.R</code> - Interactive map/table linking</li>
+<strong>Wastewater Dashboard</strong>: <code>inst/templates/shiny_wastewater/app.R</code> - Interactive map/table linking</li>
 <li>
-<strong>Quarto Website</strong>: <code>inst/examples/qwebsite/</code> - Branded Quarto site example<br></li>
+<strong>Quarto Website</strong>: <code>inst/templates/quarto_website/</code> - Branded Quarto site template<br></li>
 <li>
-<strong>R Markdown</strong>: <code>inst/examples/rmark/</code> - Branded R Markdown examples</li>
+<strong>R Markdown</strong>: <code>inst/templates/rmarkdown/</code> - Branded R Markdown template</li>
 </ul></div>
 <div class="section level3">
 <h3 id="running-apps-with-script">Running Apps with Script<a class="anchor" aria-label="anchor" href="#running-apps-with-script"></a></h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Run main app (in inst/app/)</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">./run_app.sh</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Note: Script looks for inst/app/examples/ but examples are in inst/examples/</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># Run examples manually instead:</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="bu">cd</span> inst/examples/wastewater <span class="kw">&amp;&amp;</span> <span class="ex">Rscript</span> app.R</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># Note: Script looks for inst/app/templates/ but examples are in inst/templates/</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># Run templates manually instead:</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="bu">cd</span> inst/templates/shiny_wastewater <span class="kw">&amp;&amp;</span> <span class="ex">Rscript</span> app.R</span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co"># Get script help</span></span>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="ex">./run_app.sh</span> <span class="at">--help</span></span></code></pre></div>
@@ -137,7 +137,7 @@
 <div class="section level3">
 <h3 id="manual-shiny-app-execution">Manual Shiny App Execution<a class="anchor" aria-label="anchor" href="#manual-shiny-app-execution"></a></h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># For apps requiring full dependencies</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">cd</span> inst/examples/wastewater</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">cd</span> inst/templates/shiny_wastewater</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"shiny::runApp('app.R', host='0.0.0.0', port=3838)"</span></span></code></pre></div>
 <p><strong>DEPENDENCY LIMITATION:</strong> Example apps require <code>leaflet</code> and <code>DT</code> packages which may not be available in all environments. Core package functionality works without these.</p>
 </div>
@@ -174,7 +174,7 @@
 <p>Test package loading and help:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'library(rbranding); help(package="rbranding")'</span> <span class="kw">|</span> <span class="ex">R</span> <span class="at">--no-save</span> <span class="at">--quiet</span></span></code></pre></div>
 </li>
-</ol><p><strong>When dependencies ARE available (full environment):</strong> 1. Navigate to <code>inst/examples/wastewater/</code> 2. Start the Shiny app: <code>Rscript -e "shiny::runApp('app.R')"</code> 3. Test interactive features: - Click on map markers to verify table row selection - Click on table rows to verify map marker highlighting<br>
+</ol><p><strong>When dependencies ARE available (full environment):</strong> 1. Navigate to <code>inst/templates/shiny_wastewater/</code> 2. Start the Shiny app: <code>Rscript -e "shiny::runApp('app.R')"</code> 3. Test interactive features: - Click on map markers to verify table row selection - Click on table rows to verify map marker highlighting<br>
 - Verify details panel updates correctly - Test with multiple locations</p>
 <p><strong>Note:</strong> Main app in <code>inst/app/app.R</code> currently has structural issues. Use example apps for testing.</p>
 </div>
@@ -186,7 +186,7 @@
 <ul><li>
 <code>R/</code> - Package source code (get_repo.R, get_template.R, link_plots.R)</li>
 <li>
-<code>inst/examples/</code> - Example applications demonstrating package usage</li>
+<code>inst/templates/</code> - Example applications demonstrating package usage</li>
 <li>
 <code>inst/tinytest/</code> - Unit tests using tinytest framework</li>
 <li>
