@@ -8,8 +8,8 @@ get_template(template_name = NULL, install_to = NULL)
 }
 \arguments{
 \item{template_name}{Optional string. Name of the template to use.
-Corresponds to a folder name \verb{examples/}. If NULL (default) within an
-interactive session, the function will list available examples and
+Corresponds to a folder name \verb{templates/}. If NULL (default) within an
+interactive session, the function will list available templates and
 prompt the user to select one.}
 
 \item{install_to}{Optional string. Directory where the example files
@@ -21,7 +21,7 @@ NULL. Called for its side effects: copying template files into
 the user's project directory.
 }
 \description{
-\code{get_template} copies example files from the package's \code{examples}
+\code{get_template} copies example files from the package's \code{templates}
 directory into the user's current working directory or a
 specified subdirectory.
 }
@@ -31,7 +31,7 @@ if (interactive()) {
 }
 
 tmpdir <- file.path(tempdir(), "wastewater_test")
-get_template(template_name = "wastewater", install_to = tmpdir)
+get_template(template_name = "shiny_wastewater", install_to = tmpdir)
 
 # Cleanup
 unlink(tmpdir, recursive = TRUE)

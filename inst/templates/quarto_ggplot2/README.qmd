@@ -42,7 +42,7 @@ brandingr_set_ggplot <- function(fn) {
             ]]
     }
 
-    # Processing the for family
+    # Processing the font family
     families <- lapply(doc$typography$fonts, "[[", "family") |>
         unlist() |>
         unique()
