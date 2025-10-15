@@ -1,6 +1,7 @@
 ---
 format: gfm
 title: Using themes in ggplot2
+lang: en
 ---
 
 
@@ -32,6 +33,8 @@ brandingr_set_ggplot <- function(fn) {
     doc_color <- doc$color
 
     # Replacing names
+    # names like "primary" become "blue" and "blue" becomes the hex value specified in 
+    # _brand.yml.
     to_modify <- doc_color[setdiff(names(doc_color), "palette")] |> names()
     for (i in seq_along(to_modify)) {
         doc_color[[to_modify[i]]] <- doc_color$palette[[
@@ -39,7 +42,7 @@ brandingr_set_ggplot <- function(fn) {
             ]]
     }
 
-    # Processing the family
+    # Processing the font family
     families <- lapply(doc$typography$fonts, "[[", "family") |>
         unlist() |>
         unique()

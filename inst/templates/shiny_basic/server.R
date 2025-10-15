@@ -1,33 +1,30 @@
+# Example Shiny server logic for rbranding demo app
+# This file defines the server-side behavior for the example app.
+# It demonstrates how to use bslib themes and interact with branding config files.
 
 library(shiny)
 library(bslib)
 
-
-
+# Main server function for the Shiny app
 server <- function(input, output, session) {
-  # Define the server logic for the app
-  # This is where you can add your server-side code to handle user inputs and generate outputs
+  # This is where you add server-side code to handle user inputs and generate outputs
 
-  # Example: Print a message when the app starts
   observe({
     print("App has started!")
-    # Create a theme object
+    # Create a Bootstrap theme object with branding enabled
     theme <- bs_theme(brand = TRUE)
 
-    # Extract the path of the discovered _brand.yml file
+    # Extract the path of the discovered _brand.yml file from the theme object
     brand_info <- attr(theme, "brand")
     brand_path <- brand_info$path
 
-    print(brand_path)
-
-
+    
   })
 
+  # Example output: Render a histogram of random normal values
   output$hist <- renderPlot({
     title <- "100 random normal values"
     hist(rnorm(input$num1), main = title)
   })
-
-
 
 }
