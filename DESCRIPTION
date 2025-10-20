@@ -14,7 +14,11 @@ Description: A tool for building projects that are visually consistent,
     and setting up new projects with accessibility features and correct
     branding. It supports 'Quarto', 'Shiny', and 'RMarkdown' projects, and
     integrates with 'ggplot2' and 'plotly' for producing branded graphics
-    and visualizations.
+    and visualizations. The accessibility features are based on the Web
+    Content Accessibility Guidelines (WCAG) <https://www.w3.org/WAI/WCAG21/quickref/>
+    and Accessible Rich Internet Applications (ARIA) specifications
+    <https://www.w3.org/WAI/ARIA/apg/>. The branding framework implements
+    the brand-yml specification <https://posit-dev.github.io/brand-yml/>.
 License: MIT + file LICENSE
 URL: https://epiforesite.github.io/rbranding/,
     https://github.com/EpiForeSITE/rbranding
