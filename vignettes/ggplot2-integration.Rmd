@@ -45,14 +45,25 @@ library(ggplot2)
 
 Start by initializing the branding configuration and getting the latest brand file:
 
-```{r eval=FALSE}
+```{r}
+## Use a temporary directory as the knit root for the entire document.
+## This avoids calling setwd()/on.exit() in the chunk and ensures
+## subsequent chunks are evaluated with `temp_dir` as their working dir.
+temp_dir <- tempdir()
+knitr::opts_knit$set(root.dir = temp_dir)
+
+# (Optional) store the original working directory for interactive use only
+# Note: during knitting, chunks will be evaluated with root.dir set to temp_dir,
+# so we explicitly copy/write files into that directory below.
+old_wd <- getwd()
+
 # Initialize branding (creates rbranding_config.yml and placeholder _brand.yml)
 brand_init()
 
 # Get the latest brand file from the repository
 get_brand_public()
 
-# to install these files directly to your working directory:
+# to install these files directly to your working directory (the knit root):
 get_template("ggplot2")
 ```
 
@@ -63,11 +74,13 @@ For this vignette, we'll use the existing `_brand.yml` file in the package:
 # For this demo, we'll use the package's example brand file
 brand_file <- system.file("brand_files", "_brand.yml", package = "rbranding")
 if (brand_file != "") {
-  file.copy(brand_file, "_brand.yml")
+  # copy the example brand file and logos into the knit root (temp_dir)
+  file.copy(brand_file, file.path(temp_dir, "_brand.yml"))
   # Copy logo files as well
   logo_files <- list.files(system.file("brand_files", package = "rbranding"), 
                           pattern = "*.png", full.names = TRUE)
-  file.copy(logo_files, ".")
+  file.copy(logo_files, temp_dir)
+  # Use a relative path for later chunks (they run with root.dir=temp_dir)
   brand_file <- "_brand.yml"
 } else {
   # Fallback to a basic brand configuration for demonstration
@@ -93,7 +106,8 @@ typography:
       source: google
   base: Open Sans
 "
-  writeLines(brand_config, "_brand.yml")
+  # write a fallback brand file into the knit root
+  writeLines(brand_config, file.path(temp_dir, "_brand.yml"))
   brand_file <- "_brand.yml"
 }
 
