@@ -30,8 +30,13 @@ brand_set_ggplot().
 The function supports PNG images and requires the 'png' and 'grid' packages.
 }
 \examples{
-\dontrun{
+{
 # First set the brand theme to load configuration
+old_wd <- getwd()
+setwd(tempdir()) # Change to temp directory for example
+brand_init()
+get_brand_public()
+get_template("blank")
 brand_set_ggplot()
 
 # Create a plot and add logo
@@ -46,6 +51,9 @@ ggplot(mtcars, aes(x = mpg, y = wt)) +
   geom_point() +
   labs(title = "Example Plot") +
   brand_add_logo(x = 0.1, y = 0.9, size = 0.08)
+
+setwd(old_wd) # Restore original working directory
 }
+
 
 }
