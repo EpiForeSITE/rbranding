@@ -11,8 +11,7 @@
 #' @param install_path Optional string. Directory where the files should be created.
 #' Defaults to the current working directory.
 #'
-#' @returns NULL. Called for its side effects: downloading and creating `rbranding_config.yml`
-#' and `_brand.yml` files.
+#' @returns NULL. Called for its side effects: creating `rbranding_config.yml` and placeholder `_brand.yml` files.
 #' @export
 #'
 #' @importFrom yaml write_yaml
