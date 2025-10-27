@@ -85,8 +85,13 @@ brand_set_ggplot().</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="op">{</span></span></span>
 <span class="r-in"><span><span class="co"># First set the brand theme to load configuration</span></span></span>
+<span class="r-in"><span><span class="va">old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># Change to temp directory for example</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="get_brand_public.html">get_brand_public</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="get_template.html">get_template</a></span><span class="op">(</span><span class="st">"blank"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="brand_set_ggplot.html">brand_set_ggplot</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a plot and add logo</span></span></span>
@@ -101,7 +106,18 @@ brand_set_ggplot().</p>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Example Plot"</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">brand_add_logo</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.1</span>, y <span class="op">=</span> <span class="fl">0.9</span>, size <span class="op">=</span> <span class="fl">0.08</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">old_wd</span><span class="op">)</span> <span class="co"># Restore original working directory</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Created files './rbranding_config.yml' and placeholder '_brand.yml' in current working directory</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Checking remote version... </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Local branding file overwritten with remote file</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied blank.txt to /tmp/RtmpRjGUWD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied icon.png to /tmp/RtmpRjGUWD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied logo.png to /tmp/RtmpRjGUWD</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Brand theme applied successfully!</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Custom font loaded: open_sans</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
