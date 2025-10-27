@@ -37,8 +37,12 @@ The brand.yml file should follow the schema defined at:
 https://github.com/posit-dev/brand-yml/
 }
 \examples{
-\dontrun{
+{
 # Set theme from default _brand.yml file
+old_wd <- getwd()
+setwd(tempdir()) # Change to temp directory for example
+brand_init()
+get_brand_public()
 brand_set_ggplot()
 
 # Create a plot - will use the brand theme
@@ -49,6 +53,8 @@ ggplot(mtcars, aes(x = mpg, y = wt)) +
 
 # Reset to original theme
 brand_reset_ggplot()
+
+setwd(old_wd) # Restore original working directory
 }
 
 }

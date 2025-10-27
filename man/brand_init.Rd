@@ -14,8 +14,8 @@ rbranding's brand file on GitHub.}
 Defaults to the current working directory.}
 }
 \value{
-NULL. Called for its side effects: creating \code{rbranding_config.yml}
-and \verb{_brand.yml}
+NULL. Called for its side effects: downloading and creating \code{rbranding_config.yml}
+and \verb{_brand.yml} files.
 }
 \description{
 \code{brand_init} initializes the branding configuration by creating two files:

@@ -15,14 +15,19 @@ previous theme was stored.
 before brand_set_ggplot() was called.
 }
 \examples{
-\dontrun{
+{
 # Set brand theme
+old_wd <- getwd()
+setwd(tempdir()) # Change to temp directory for example
+brand_init()
+get_brand_public()
 brand_set_ggplot()
 
 # Create some plots with brand theme...
 
 # Reset to original theme
 brand_reset_ggplot()
+setwd(old_wd) # Restore original working directory
 }
 
 }

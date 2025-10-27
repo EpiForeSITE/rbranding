@@ -30,8 +30,12 @@
 #' https://github.com/posit-dev/brand-yml/
 #'
 #' @examples
-#' \dontrun{
+#' {
 #' # Set theme from default _brand.yml file
+#' old_wd <- getwd()
+#' setwd(tempdir()) # Change to temp directory for example
+#' brand_init()
+#' get_brand_public()
 #' brand_set_ggplot()
 #'
 #' # Create a plot - will use the brand theme
@@ -42,11 +46,13 @@
 #'
 #' # Reset to original theme
 #' brand_reset_ggplot()
+#' 
+#' setwd(old_wd) # Restore original working directory
 #' }
 #'
 #' @export
 brand_set_ggplot <- function(brand_file = NULL, use_fonts = TRUE) {
-
+  
   # Default to _brand.yml in current directory
   if (is.null(brand_file)) {
     brand_file <- "_brand.yml"
@@ -184,14 +190,19 @@ brand_set_ggplot <- function(brand_file = NULL, use_fonts = TRUE) {
 #' previous theme was stored.
 #'
 #' @examples
-#' \dontrun{
+#' {
 #' # Set brand theme
+#' old_wd <- getwd()
+#' setwd(tempdir()) # Change to temp directory for example
+#' brand_init()
+#' get_brand_public()
 #' brand_set_ggplot()
 #'
 #' # Create some plots with brand theme...
 #'
 #' # Reset to original theme
 #' brand_reset_ggplot()
+#' setwd(old_wd) # Restore original working directory
 #' }
 #'
 #' @export
@@ -226,8 +237,13 @@ brand_reset_ggplot <- function() {
 #' The function supports PNG images and requires the 'png' and 'grid' packages.
 #'
 #' @examples
-#' \dontrun{
+#' {
 #' # First set the brand theme to load configuration
+#' old_wd <- getwd()
+#' setwd(tempdir()) # Change to temp directory for example
+#' brand_init()
+#' get_brand_public()
+#' get_template("blank")
 #' brand_set_ggplot()
 #'
 #' # Create a plot and add logo
@@ -242,7 +258,10 @@ brand_reset_ggplot <- function() {
 #'   geom_point() +
 #'   labs(title = "Example Plot") +
 #'   brand_add_logo(x = 0.1, y = 0.9, size = 0.08)
+#' 
+#' setwd(old_wd) # Restore original working directory
 #' }
+#'
 #'
 #' @export
 brand_add_logo <- function(x = 0.9, y = 0.1, size = 0.05, logo_type = "icon") {
