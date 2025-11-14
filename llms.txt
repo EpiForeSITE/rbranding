@@ -1,0 +1,131 @@
+# rbranding
+
+The rbranding package is a tool for building projects that are visually
+consistent, accessible, and easy to maintain. It provides functions for
+managing branding assets, applying organization-wide themes using
+’\_brand.yml’, and setting up new projects with accessibility features
+and correct branding. It supports ‘Quarto’, ‘Shiny’, and ‘RMarkdown’
+projects, and integrates with other packages such as ‘ggplot2’ for
+producing branded graphics and visualizations.
+
+## Package Features
+
+- **Branding File Management:** Download, update, and validate branding
+  YAML files for consistent theming
+- **Project Templates:** Quickly scaffold Shiny apps or Quarto websites
+  that follow best practices for branding and accessibility
+- **Accessibility:** Built-in support for accessible color palettes and
+  UI components
+- **Integration:** Easily integrates with
+  [`ggplot2`](https://ggplot2.tidyverse.org)
+  [`bslib`](https://rstudio.github.io/bslib/),
+  [`thematic`](https://rstudio.github.io/thematic/), and other modern R
+  packages
+
+## Installation
+
+You can install the stable version of rbranding from CRAN with:
+
+``` r
+install.packages("rbranding")
+```
+
+To get a bug fix or to use a feature from the development version, you
+can install the development version of rbranding from
+[GitHub](https://github.com/EpiForeSITE/rbranding) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("EpiForeSITE/rbranding")
+```
+
+Alternatively, the development version of rbranding is also available
+from the R-universe project at <https://epiforesite.r-universe.dev/>
+with:
+
+``` r
+install.packages('rbranding', repos = c('https://epiforesite.r-universe.dev', 'https://cloud.r-project.org'))
+```
+
+## Usage
+
+Use
+[`brand_init()`](https://epiforesite.github.io/rbranding/reference/brand_init.md)
+to initialize the branding setup. This function generates the
+`rbranding_config.yml` and `_brand.yml` files.
+
+``` r
+brand_init()
+```
+
+The generated `_brand.yml` file contains placeholder text. You will need
+to edit the config file with the URL of your brand file, then download
+that file using
+[`get_brand_public()`](https://epiforesite.github.io/rbranding/reference/get_brand_public.md)
+or
+[`get_brand_private_github()`](https://epiforesite.github.io/rbranding/reference/get_brand_private_github.md),
+depending on whether your brand file is hosted publicly or in a private
+GitHub repository.
+
+These same `get_brand_*()` functions will also update the local
+`_brand.yml` file, if it already exists.
+
+## Use in Shiny Apps
+
+Load the branding YAML and apply the theme in your UI/server code.
+
+## Project Documentation
+
+The full documentation for the package, including reference manuals and
+vignettes, is available at <https://epiforesite.github.io/rbranding/>.
+
+## Getting Help
+
+If you encounter a clear bug, please file an issue with a minimal
+reproducible example on
+[GitHub](https://github.com/EpiForeSITE/rbranding/issues).
+
+## Code of Conduct
+
+Please note that the rbranding project is released with a [Contributor
+Code of
+Conduct](https://epiforesite.github.io/rbranding/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
+## Acknowledgements
+
+This project was made possible by cooperative agreement
+CDC-RFA-FT-23-0069 from the CDC’s Center for Forecasting and Outbreak
+Analytics. Its contents are solely the responsibility of the authors and
+do not necessarily represent the official views of the Centers for
+Disease Control and Prevention.
+
+# Package index
+
+## All functions
+
+- [`brand_add_logo()`](https://epiforesite.github.io/rbranding/reference/brand_add_logo.md)
+  : Add Brand Logo to ggplot2 Plot
+- [`brand_init()`](https://epiforesite.github.io/rbranding/reference/brand_init.md)
+  : Initialize branding configuration
+- [`brand_reset_ggplot()`](https://epiforesite.github.io/rbranding/reference/brand_reset_ggplot.md)
+  : Reset ggplot2 Theme to Previous State
+- [`brand_set_ggplot()`](https://epiforesite.github.io/rbranding/reference/brand_set_ggplot.md)
+  : Set ggplot2 Theme from Brand Configuration
+- [`get_brand_private_github()`](https://epiforesite.github.io/rbranding/reference/get_brand_private_github.md)
+  : Download the latest branding file from a private GitHub repository
+- [`get_brand_public()`](https://epiforesite.github.io/rbranding/reference/get_brand_public.md)
+  : Download the latest branding file from a public source
+- [`get_template()`](https://epiforesite.github.io/rbranding/reference/get_template.md)
+  : Copy template files into project
+
+# Articles
+
+### All vignettes
+
+- [Accessibility
+  Guidelines](https://epiforesite.github.io/rbranding/articles/accessibility.md):
+- [ggplot2 and Thematic Integration with Brand
+  Themes](https://epiforesite.github.io/rbranding/articles/ggplot2-integration.md):
+- [rbranding](https://epiforesite.github.io/rbranding/articles/rbranding.md):
+- [Templates](https://epiforesite.github.io/rbranding/articles/templates.md):
