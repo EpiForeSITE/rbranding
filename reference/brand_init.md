@@ -39,7 +39,7 @@ NULL. Called for its side effects: downloading and creating
 tmpdir <- file.path(tempdir(), "brand_files")
 
 brand_init(install_path = tmpdir)
-#> Created files '/tmp/RtmpPuBVyk/brand_files/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpPuBVyk/brand_files
+#> Created files '/tmp/Rtmp98QbCX/brand_files/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/Rtmp98QbCX/brand_files
 
 # Clean up
 unlink(tmpdir, recursive = TRUE)

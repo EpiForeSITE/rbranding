@@ -38,9 +38,9 @@ if (interactive()) {
 
 tmpdir <- file.path(tempdir(), "wastewater_test")
 get_template(template_name = "shiny_wastewater", install_to = tmpdir)
-#> Copied app.R to /tmp/RtmpPuBVyk/wastewater_test
-#> Copied icon.png to /tmp/RtmpPuBVyk/wastewater_test
-#> Copied logo.png to /tmp/RtmpPuBVyk/wastewater_test
+#> Copied app.R to /tmp/Rtmp98QbCX/wastewater_test
+#> Copied icon.png to /tmp/Rtmp98QbCX/wastewater_test
+#> Copied logo.png to /tmp/Rtmp98QbCX/wastewater_test
 
 # Cleanup
 unlink(tmpdir, recursive = TRUE)

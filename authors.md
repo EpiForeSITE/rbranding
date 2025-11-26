@@ -14,7 +14,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/EpiForeSITE/rbranding/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/EpiForeSITE/rbranding/blob/v0.1.0/DESCRIPTION)
 
 Ray W, Pulsipher A (2025). *rbranding: Manage Branding and Accessibility
 of R Projects*. R package version 0.1.0,
