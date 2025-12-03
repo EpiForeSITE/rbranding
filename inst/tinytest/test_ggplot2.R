@@ -1,5 +1,7 @@
+test_logo_file <- tempfile(fileext = ".png")
+
 # Create a temporary brand file for testing
-test_brand_content <- "
+test_brand_content <- sprintf("
 meta:
   name:
     full: Test Organization
@@ -22,16 +24,18 @@ typography:
 logo:
   images:
     icon:
-      path: test_logo.png
+      path: %s
       alt: Test logo
-"
+", test_logo_file)
 
 # Write test brand file
 test_brand_file <- tempfile(fileext = ".yml")
 writeLines(test_brand_content, test_brand_file)
 
+
+
 # Create a dummy PNG for logo testing
-test_logo_file <- "test_logo.png"
+
 if (requireNamespace("png", quietly = TRUE)) {
   # Create a simple test image (1x1 pixel)
   img <- array(c(1, 0, 0, 1), dim = c(1, 1, 4))  # Red pixel with alpha
