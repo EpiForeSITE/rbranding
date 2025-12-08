@@ -25,6 +25,6 @@ example:
 
 check:
 	R CMD build . && \
-	R CMD check rbranding_*.tar.gz
+	R CMD check --as-cran rbranding_*.tar.gz
 
 .PHONY: help docs install example check

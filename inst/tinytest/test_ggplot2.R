@@ -34,13 +34,7 @@ writeLines(test_brand_content, test_brand_file)
 
 
 
-# Create a dummy PNG for logo testing
 
-if (requireNamespace("png", quietly = TRUE)) {
-  # Create a simple test image (1x1 pixel)
-  img <- array(c(1, 0, 0, 1), dim = c(1, 1, 4))  # Red pixel with alpha
-  png::writePNG(img, test_logo_file)
-}
 
 # Test brand_set_ggplot function
 expect_silent(brand_set_ggplot(test_brand_file, use_fonts = FALSE))
