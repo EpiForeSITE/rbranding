@@ -105,7 +105,7 @@ rbranding GitHub page.
 tmpdir <- file.path(tempdir(), "rbranding_example")
 # Initializes the brand files in the current working directory
 brand_init(install_path = tmpdir)
-#> Created files '/tmp/RtmpdLqbn4/rbranding_example/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpdLqbn4/rbranding_example
+#> Created files '/tmp/RtmpFinEr0/rbranding_example/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpFinEr0/rbranding_example
 
 cat(readLines(file.path(tmpdir, "_brand.yml")), sep = "\n")
 #> Update this file with rbranding::get_brand_public() (or another `get_brand_*` function)
