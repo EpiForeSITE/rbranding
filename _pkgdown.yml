@@ -1,3 +1,5 @@
 url: https://epiforesite.github.io/rbranding/
 template:
-  bootstrap: 5
+  bslib:
+    version: 5
+    brand: _brand.yml

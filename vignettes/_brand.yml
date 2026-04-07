@@ -1,0 +1,55 @@
+meta:
+  name: rbranding
+  links:
+    docs: https://epiforesite.github.io/rbranding/
+    github: https://github.com/EpiForeSITE/rbranding/
+
+logo:
+  images:
+    icon:
+      path: icon.png
+      alt: "Company icon with abstract shapes"
+    logo:
+      path: logo.png
+      alt: "Full company logo with tagline"
+  small: icon
+
+
+
+color:
+  palette:
+    orange: "#FF6F20"
+    pink: "#FF3D7F"
+    green: "#28A745"
+    yellow: "#FFC107"
+  primary: orange
+  success: green
+  warning: yellow
+  danger: pink
+
+typography:
+  fonts:
+    - family: Open Sans
+      source: google
+    - family: IBM Plex Mono
+      source: google
+    - family: Rubik
+      source: google
+  base:
+    family: Open Sans
+    line-height: 1.6
+  headings:
+    family: Rubik
+    weight: normal
+  link:
+    color: purple
+  monospace:
+    family: IBM Plex Mono
+    size: 1em
+
+defaults:
+  quarto:
+    format:
+      # basic format-specific settings
+  shiny:
+    # shiny specific settings
