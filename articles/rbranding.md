@@ -105,7 +105,7 @@ rbranding GitHub page.
 tmpdir <- file.path(tempdir(), "rbranding_example")
 # Initializes the brand files in the current working directory
 brand_init(install_path = tmpdir)
-#> Created files '/tmp/RtmpFinEr0/rbranding_example/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpFinEr0/rbranding_example
+#> Created files '/tmp/RtmpKOfVt1/rbranding_example/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpKOfVt1/rbranding_example
 
 cat(readLines(file.path(tmpdir, "_brand.yml")), sep = "\n")
 #> Update this file with rbranding::get_brand_public() (or another `get_brand_*` function)
@@ -122,60 +122,28 @@ get_brand_public(
 # Check the contents of the _brand.yml file
 cat(readLines(file.path(tmpdir, "_brand.yml")), sep = "\n")
 #> meta:
-#>   name: rbranding
-#>   links:
-#>     docs: https://epiforesite.github.io/rbranding/
-#>     github: https://github.com/EpiForeSITE/rbranding/
-#> 
-#> logo:
-#>   images:
-#>     icon:
-#>       path: icon.png
-#>       alt: "Company icon with abstract shapes"
-#>     logo:
-#>       path: logo.png
-#>       alt: "Full company logo with tagline"
-#>   small: icon
-#> 
-#> 
+#>   name: "ForeSITE"
 #> 
 #> color:
 #>   palette:
-#>     orange: "#FF6F20"
-#>     pink: "#FF3D7F"
-#>     green: "#28A745"
-#>     yellow: "#FFC107"
-#>   primary: orange
-#>   success: green
-#>   warning: yellow
-#>   danger: pink
+#>     foresite-blue: "#0A66C2"
+#>     gray: "#6C757D"
+#>     white: "#FFFFFF"
+#>     black: "#111111"
+#>   foreground: black
+#>   background: white
+#>   primary: foresite-blue
+#>   secondary: gray
 #> 
 #> typography:
 #>   fonts:
-#>     - family: Open Sans
+#>     - family: Montserrat
 #>       source: google
-#>     - family: IBM Plex Mono
-#>       source: google
-#>     - family: Rubik
-#>       source: google
+#>       weight: [400, 600, 700]
 #>   base:
-#>     family: Open Sans
-#>     line-height: 1.6
-#>   headings:
-#>     family: Rubik
-#>     weight: normal
-#>   link:
-#>     color: purple
-#>   monospace:
-#>     family: IBM Plex Mono
-#>     size: 1em
-#> 
-#> defaults:
-#>   quarto:
-#>     format:
-#>       # basic format-specific settings
-#>   shiny:
-#>     # shiny specific settings
+#>     family: Montserrat
+#>     line-height: 2.0
+#>   headings: Montserrat
 ```
 
 ### Using Templates

@@ -14,16 +14,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/EpiForeSITE/rbranding/blob/v0.1.1/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/EpiForeSITE/rbranding/blob/main/DESCRIPTION)
 
-Ray W, Pulsipher A (2025). *rbranding: Manage Branding and Accessibility
+Ray W, Pulsipher A (2026). *rbranding: Manage Branding and Accessibility
 of R Projects*. R package version 0.1.1,
 <https://epiforesite.github.io/rbranding/>.
 
     @Manual{,
       title = {rbranding: Manage Branding and Accessibility of R Projects},
       author = {Willy Ray and Andrew Pulsipher},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.1.1},
       url = {https://epiforesite.github.io/rbranding/},
     }

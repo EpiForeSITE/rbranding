@@ -55,8 +55,6 @@ get_brand_public()
 get_template("ggplot2")
 #> Copied example.R to /home/runner/work/rbranding/rbranding/vignettes
 #> Copied README.md to /home/runner/work/rbranding/rbranding/vignettes
-#> Copied icon.png to /home/runner/work/rbranding/rbranding/vignettes
-#> Copied logo.png to /home/runner/work/rbranding/rbranding/vignettes
 ```
 
 For this vignette, we’ll use the existing `_brand.yml` file in the
