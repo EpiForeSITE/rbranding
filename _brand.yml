@@ -1,24 +1,55 @@
 meta:
-  name: "ForeSITE"
+  name: rbranding
+  links:
+    docs: https://epiforesite.github.io/rbranding/
+    github: https://github.com/EpiForeSITE/rbranding/
+
+logo:
+  images:
+    icon:
+      path: icon.png
+      alt: "Company icon with abstract shapes"
+    logo:
+      path: logo.png
+      alt: "Full company logo with tagline"
+  small: icon
+
+
 
 color:
   palette:
-    foresite-blue: "#0A66C2"
-    gray: "#6C757D"
-    white: "#FFFFFF"
-    black: "#111111"
-  foreground: black
-  background: white
-  primary: foresite-blue
-  secondary: gray
+    orange: "#FF6F20"
+    pink: "#FF3D7F"
+    green: "#28A745"
+    yellow: "#FFC107"
+  primary: orange
+  success: green
+  warning: yellow
+  danger: pink
 
 typography:
   fonts:
-    - family: Montserrat
+    - family: Open Sans
       source: google
-      weight: [400, 600, 700]
+    - family: IBM Plex Mono
+      source: google
+    - family: Rubik
+      source: google
   base:
-    family: Montserrat
-    line-height: 2.0
-  headings: Montserrat
+    family: Open Sans
+    line-height: 1.6
+  headings:
+    family: Rubik
+    weight: normal
+  link:
+    color: purple
+  monospace:
+    family: IBM Plex Mono
+    size: 1em
 
+defaults:
+  quarto:
+    format:
+      # basic format-specific settings
+  shiny:
+    # shiny specific settings
