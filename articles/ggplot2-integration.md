@@ -16,6 +16,7 @@ package provides functions to:
 First, let’s load the required packages:
 
 ``` r
+
 library(rbranding)
 library(ggplot2)
 
@@ -31,6 +32,7 @@ Start by initializing the branding configuration and getting the latest
 brand file:
 
 ``` r
+
 ## Use a temporary directory as the knit root for the entire document.
 ## This avoids calling setwd()/on.exit() in the chunk and ensures
 ## subsequent chunks are evaluated with `temp_dir` as their working dir.
@@ -61,6 +63,7 @@ For this vignette, we’ll use the existing `_brand.yml` file in the
 package:
 
 ``` r
+
 # In a real project, you would have a _brand.yml file in your working directory
 # For this demo, we'll use the package's example brand file
 brand_file <- system.file("brand_files", "_brand.yml", package = "rbranding")
@@ -112,6 +115,7 @@ Apply the brand theme to ggplot2. This will set colors and fonts
 according to your brand configuration:
 
 ``` r
+
 # Set the brand theme
 brand_set_ggplot(brand_file)
 #> Brand theme applied successfully!
@@ -123,6 +127,7 @@ brand_set_ggplot(brand_file)
 Now create some plots that will automatically use your brand theme:
 
 ``` r
+
 # Create a basic scatter plot
 p1 <- ggplot(mtcars, aes(x = mpg, y = wt)) +
   geom_point(aes(color = factor(cyl)), size = 3) +
@@ -142,6 +147,7 @@ print(p1)
 gallon](ggplot2-integration_files/figure-html/basic-plot-1.png)
 
 ``` r
+
 # Create a bar plot
 p2 <- ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
   geom_bar(position = "dodge") +
@@ -165,6 +171,7 @@ If your brand configuration includes a logo, you can add it to your
 plots:
 
 ``` r
+
 # Add logo to the plot (requires logo in brand.yml and png package)
 p1_with_logo <- p1 + brand_add_logo(x = 0.9, y = 0.1, size = 0.05)
 print(p1_with_logo)
@@ -175,6 +182,7 @@ print(p1_with_logo)
 You can also create interactive versions of your plots using plotly:
 
 ``` r
+
 library(plotly)
 
 # Convert ggplot to interactive plotly chart
@@ -188,6 +196,7 @@ You can customize specific aspects of the theme while maintaining brand
 consistency:
 
 ``` r
+
 # Customize theme elements while keeping brand colors
 p3 <- ggplot(mtcars, aes(x = hp, y = mpg, size = wt)) +
   geom_point(alpha = 0.7) +
@@ -217,6 +226,7 @@ When you’re done with the brand theme, you can reset to the default
 ggplot2 theme:
 
 ``` r
+
 # Reset to original theme
 brand_reset_ggplot()
 #> ggplot2 theme reset to previous state.
@@ -265,6 +275,7 @@ theme](ggplot2-integration_files/figure-html/reset-theme-1.png)
 ### Solutions
 
 ``` r
+
 # Disable custom fonts if having issues
 brand_set_ggplot(use_fonts = FALSE)
 

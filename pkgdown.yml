@@ -1,4 +1,4 @@
-pandoc: 3.1.11
+pandoc: 3.8.3
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
@@ -6,7 +6,7 @@ articles:
   ggplot2-integration: ggplot2-integration.html
   rbranding: rbranding.html
   templates: templates.html
-last_built: 2026-04-07T17:45Z
+last_built: 2026-05-05T18:11Z
 urls:
   reference: https://epiforesite.github.io/rbranding/reference
   article: https://epiforesite.github.io/rbranding/articles

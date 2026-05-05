@@ -69,5 +69,6 @@ setwd(old_wd) # Restore original working directory
 #> Checking remote version... 
 #> Local branding file overwritten with remote file
 #> Brand theme applied successfully!
+#> Custom font loaded: open_sans
 #> ggplot2 theme reset to previous state.
 ```

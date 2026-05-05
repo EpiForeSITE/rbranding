@@ -14,6 +14,7 @@ function to install the template of your choice by specifying the
 website](vignette-screenshots/qwebsite.jpg)
 
 ``` r
+
 get_template("quarto_website")
 ```
 
@@ -26,6 +27,7 @@ navigation, and branding support.
 figure](vignette-screenshots/qggplot2.jpg)
 
 ``` r
+
 get_template("quarto_ggplot2")
 ```
 
@@ -40,6 +42,7 @@ Provides a Quarto report setup that integrates `_brand.yml` and
 histogram](vignette-screenshots/shiny2.jpg)
 
 ``` r
+
 get_template("shiny_basic")
 shiny::runApp(".")
 ```
@@ -53,6 +56,7 @@ parameters and see the results in a histogram.
 visualization](vignette-screenshots/kmeans.jpg)
 
 ``` r
+
 get_template("shiny_kmeans")
 shiny::runApp(".")
 ```
@@ -67,6 +71,7 @@ interactive controls for the number of clusters and points. Based on
 histogram](vignette-screenshots/shinyapp.jpg)
 
 ``` r
+
 get_template("shiny_complex")
 shiny::shinyAppFile("app.r")
 ```
@@ -80,6 +85,7 @@ interactively adjust parameters and view results in different formats.
 data](vignette-screenshots/wastewater.jpg)
 
 ``` r
+
 get_template("shiny_wastewater")
 shiny::runApp(".")
 ```
@@ -97,6 +103,7 @@ integrate branding with the
 document](vignette-screenshots/rmark.jpg)
 
 ``` r
+
 get_template("rmarkdown")
 ```
 

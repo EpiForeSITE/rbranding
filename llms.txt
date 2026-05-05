@@ -27,6 +27,7 @@ producing branded graphics and visualizations.
 You can install the stable version of rbranding from CRAN with:
 
 ``` r
+
 install.packages("rbranding")
 ```
 
@@ -35,6 +36,7 @@ can install the development version of rbranding from
 [GitHub](https://github.com/EpiForeSITE/rbranding) with:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("EpiForeSITE/rbranding")
 ```
@@ -44,6 +46,7 @@ from the R-universe project at <https://epiforesite.r-universe.dev/>
 with:
 
 ``` r
+
 install.packages('rbranding', repos = c('https://epiforesite.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
@@ -55,6 +58,7 @@ to initialize the branding setup. This function generates the
 `rbranding_config.yml` and `_brand.yml` files.
 
 ``` r
+
 brand_init()
 ```
 

@@ -37,63 +37,63 @@ impactful.
 
 ### Dashboard Design Do’s & Don’ts
 
-| ✅ DO                                                                     | ❌ DON’T                                                                              |
-|:--------------------------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| Include **data tables** with all visualizations                           | Show charts with no alternative format                                                |
-| Use plain-language **alt text** and summaries                             | Hide alt text in tooltips or modals                                                   |
-| **Limit interactions** to key tasks                                       | Add hover-only or animated elements                                                   |
+| ✅ DO | ❌ DON’T |
+|:---|:---|
+| Include **data tables** with all visualizations | Show charts with no alternative format |
+| Use plain-language **alt text** and summaries | Hide alt text in tooltips or modals |
+| **Limit interactions** to key tasks | Add hover-only or animated elements |
 | **Highlight key insights** and put less important information to tooltips | Use a large amount of text to fill the page and make users dig through visual clutter |
-| **Prioritize tables** over interactive visualizations or maps             | Assume all users can navigate interactive views                                       |
+| **Prioritize tables** over interactive visualizations or maps | Assume all users can navigate interactive views |
 
 ## Common Technical Pitfalls
 
 ### **1. Missing or Inadequate Alternative Text**
 
-| ❌ Issue                                                                | ✅ Solution                                                                      |
-|:------------------------------------------------------------------------|:---------------------------------------------------------------------------------|
-| `<img>` elements lack `alt`, `aria-label`                               | Add `alt` or mark as decorative with `role="presentation"`                       |
-| SVGs with `role="img"` lack descriptive labels                          | Use `<title>`, `aria-label`, or `aria-labelledby` to describe the icon’s purpose |
-| `<iframe>` lacks accessible name                                        | Add a descriptive `title` attribute or `aria-label`                              |
-| Buttons or links lack visible text or programmatically associated label | Add label via inner text, `aria-label`, `aria-labelledby`, or `title`            |
+| ❌ Issue | ✅ Solution |
+|:---|:---|
+| `<img>` elements lack `alt`, `aria-label` | Add `alt` or mark as decorative with `role="presentation"` |
+| SVGs with `role="img"` lack descriptive labels | Use `<title>`, `aria-label`, or `aria-labelledby` to describe the icon’s purpose |
+| `<iframe>` lacks accessible name | Add a descriptive `title` attribute or `aria-label` |
+| Buttons or links lack visible text or programmatically associated label | Add label via inner text, `aria-label`, `aria-labelledby`, or `title` |
 
 ### **2. Insufficient Color Contrast**
 
-| ❌ Issue                                                                              | ✅ Solution                                                               |
-|:--------------------------------------------------------------------------------------|:--------------------------------------------------------------------------|
+| ❌ Issue | ✅ Solution |
+|:---|:---|
 | White text on a light background fails to meet the WCAG AA contrast ratio requirement | Ensure 4.5:1 contrast ratio for normal text (use WebAIM Contrast Checker) |
 
 ### **3. ARIA Attribute Misuse**
 
-| ❌ Issue                                                                | ✅ Solution                                                                            |
-|:------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| ❌ Issue | ✅ Solution |
+|:---|:---|
 | Invalid ARIA attributes for given role (e.g., `aria-selected` on `<a>`) | Use ARIA attributes only with compatible roles (e.g., `aria-selected` on `role="tab"`) |
-| `aria-label` used with `role="presentation"` or `role="none"`           | Remove label or change the role to one that supports labeling                          |
-| Misused or redundant roles on non-interactive elements                  | Use native HTML roles (like `<button>`) or remove unnecessary ARIA roles               |
+| `aria-label` used with `role="presentation"` or `role="none"` | Remove label or change the role to one that supports labeling |
+| Misused or redundant roles on non-interactive elements | Use native HTML roles (like `<button>`) or remove unnecessary ARIA roles |
 
 ### **4. ARIA Role Structure & Hierarchy Errors**
 
-| ❌ Issue                                                                 | ✅ Solution                                                       |
-|:-------------------------------------------------------------------------|:------------------------------------------------------------------|
-| ARIA parent roles (e.g., `grid`) lack required child roles (e.g., `row`) | Follow correct structure: `grid → row → gridcell`                 |
-| ARIA child roles used out of context (e.g., `gridcell` not inside `row`) | Restructure DOM to enforce valid nesting                          |
-| Structural roles used without semantic purpose                           | Use native HTML where possible for more predictable accessibility |
+| ❌ Issue | ✅ Solution |
+|:---|:---|
+| ARIA parent roles (e.g., `grid`) lack required child roles (e.g., `row`) | Follow correct structure: `grid → row → gridcell` |
+| ARIA child roles used out of context (e.g., `gridcell` not inside `row`) | Restructure DOM to enforce valid nesting |
+| Structural roles used without semantic purpose | Use native HTML where possible for more predictable accessibility |
 
 ### **5. Keyboard Navigation & Focus Management**
 
-| ❌ Issue                                                                       | ✅ Solution                                                                           |
-|:-------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| Focusable elements lack accessible name (e.g., icon-only button)               | Add `aria-label`, `title`, or text content that screen readers can access             |
-| Scrollable containers not keyboard focusable                                   | Add `tabindex="0"` and ensure content is reachable via keyboard                       |
-| Nested interactive controls (e.g., a `button` inside a `role="tab"` container) | Avoid interactive nesting; separate into distinct controls                            |
-| Form inputs have hidden or missing labels                                      | Associate form fields with visible `<label>` or use `aria-labelledby` or `aria-label` |
+| ❌ Issue | ✅ Solution |
+|:---|:---|
+| Focusable elements lack accessible name (e.g., icon-only button) | Add `aria-label`, `title`, or text content that screen readers can access |
+| Scrollable containers not keyboard focusable | Add `tabindex="0"` and ensure content is reachable via keyboard |
+| Nested interactive controls (e.g., a `button` inside a `role="tab"` container) | Avoid interactive nesting; separate into distinct controls |
+| Form inputs have hidden or missing labels | Associate form fields with visible `<label>` or use `aria-labelledby` or `aria-label` |
 
 ### **6. Structural & Semantic Violations**
 
-| ❌ Issue                                                   | ✅ Solution                                                                           |
-|:-----------------------------------------------------------|:--------------------------------------------------------------------------------------|
-| `<a href="#">` or `<button>` used without purpose or label | Provide clear intent with text or ARIA attributes                                     |
-| Mailto/email links not clearly labeled or visible          | Add contextual label (e.g., `"Email us: example@email.com"`) with sufficient contrast |
-| Iframes embedded without descriptive context               | Add `title`, wrap in `<section>`, or provide heading to explain embedded content      |
+| ❌ Issue | ✅ Solution |
+|:---|:---|
+| `<a href="#">` or `<button>` used without purpose or label | Provide clear intent with text or ARIA attributes |
+| Mailto/email links not clearly labeled or visible | Add contextual label (e.g., `"Email us: example@email.com"`) with sufficient contrast |
+| Iframes embedded without descriptive context | Add `title`, wrap in `<section>`, or provide heading to explain embedded content |
 
 ## Testing Tools
 

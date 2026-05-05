@@ -71,10 +71,10 @@ setwd(old_wd) # Restore original working directory
 #> Created files './rbranding_config.yml' and placeholder '_brand.yml' in current working directory
 #> Checking remote version... 
 #> Local branding file overwritten with remote file
-#> Copied blank.txt to /tmp/Rtmpp3fNCW
-#> Copied icon.png to /tmp/Rtmpp3fNCW
-#> Copied logo.png to /tmp/Rtmpp3fNCW
+#> Copied blank.txt to /tmp/RtmpCM1nIW
+#> Copied icon.png to /tmp/RtmpCM1nIW
+#> Copied logo.png to /tmp/RtmpCM1nIW
 #> Brand theme applied successfully!
-#> Error in brand_add_logo(): No logo information found in brand configuration.
+#> Custom font loaded: open_sans
 
 ```
