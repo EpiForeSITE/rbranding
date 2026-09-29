@@ -1,4 +1,8 @@
 test_logo_file <- tempfile(fileext = ".png")
+# A small non-square logo (20 x 10 px) for the brand_add_logo() tests
+if (requireNamespace("png", quietly = TRUE)) {
+  png::writePNG(array(0.5, dim = c(10, 20, 3)), test_logo_file)
+}
 
 # Create a temporary brand file for testing
 test_brand_content <- sprintf("
@@ -57,6 +61,10 @@ if (requireNamespace("png", quietly = TRUE) && file.exists(test_logo_file)) {
     logo_layer <- brand_add_logo(x = 0.5, y = 0.5, size = 0.1)
   })
   expect_true(inherits(logo_layer, "Layer"))
+  # Only the height is fixed, so the logo keeps its aspect ratio
+  logo_grob <- logo_layer$geom_params$grob
+  expect_null(logo_grob$width)
+  expect_equal(as.numeric(logo_grob$height), 0.1)
 } else {
   # Test error when logo file doesn't exist
   expect_error(brand_add_logo(), pattern = "Logo file not found")
