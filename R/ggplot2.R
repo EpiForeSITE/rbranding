@@ -224,7 +224,8 @@ brand_reset_ggplot <- function() {
 #'
 #' @param x Numeric. Horizontal position of the logo (0-1 scale). Default is 0.9.
 #' @param y Numeric. Vertical position of the logo (0-1 scale). Default is 0.1.
-#' @param size Numeric. Size of the logo as a fraction of the plot (0-1 scale). Default is 0.05.
+#' @param size Numeric. Height of the logo as a fraction of the plot (0-1 scale);
+#' the width follows the image's aspect ratio. Default is 0.05.
 #' @param logo_type Character. Which logo to use: "icon" (default) or "full".
 #'
 #' @return A ggplot2 annotation_custom layer that can be added to a plot with `+`.
@@ -318,7 +319,7 @@ brand_add_logo <- function(x = 0.9, y = 0.1, size = 0.05, logo_type = "icon") {
         logo_image,
         x = x,
         y = y,
-        width = grid::unit(size, "npc"),
+        # Only the height is fixed so the logo keeps its aspect ratio
         height = grid::unit(size, "npc")
       ),
       xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf

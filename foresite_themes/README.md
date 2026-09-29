@@ -52,6 +52,11 @@ brand manager.
 - Web-ready PNGs are in `assets/logos/`. Vector (EPS/PDF) and CMYK originals
   are in the ForeSITE shared folders.
 
+## Copy bundled with rbranding
+
+`inst/brand_files/` holds a copy of `_brand.yml` and `assets/logos/`, used by
+the package vignettes. After editing the brand here, run `make sync-brand`.
+
 ## pkgdown theme
 
 Requires pkgdown ≥ 2.1.0 and the [brand.yml](https://posit-dev.github.io/brand-yml/pkg/r/)

@@ -1,6 +1,10 @@
 ---
 title: "Accessibility Guidelines"
-format: html
+format:
+  html:
+    # Keep the installed vignettes small (the pkgdown site applies the full theme)
+    minimal: true
+brand: false
 vignette: >
   %\VignetteIndexEntry{Accessibility Guidelines}
   %\VignetteEngine{quarto::html}
