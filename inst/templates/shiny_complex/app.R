@@ -160,17 +160,21 @@ server <- function(input, output) {
   ## 1st value box (card) above the histogram
   ## the icon("map-location-dot") is a Font Awesome icon.
   ## More icons can be found at "fontawesome.com/icons"
-  ## valuebox doesn't allow taking colors as names from _brand.yml
+  ## valueBox() only accepts its own color names (e.g., "orange"), not hex
+  ## codes, so we create it with a valid color and then set the background
+  ## to primary_hex, which was read from _brand.yml
 
   output$valuebox1 <- renderValueBox({
-      # here we use primary_hex for the color, this has been read 
-      # from _brand.yml
-      valueBox(
+      vb <- valueBox(
         7^3,
         subtitle = "Valuebox 1",
         icon = icon("map-location-dot"),
-        color = primary_hex
+        color = "black"
       )
+      htmltools::tagQuery(vb)$
+        find(".small-box")$
+        addAttrs(style = paste0("background-color: ", primary_hex, " !important;"))$
+        allTags()
   })
 
   ## 2nd tab This generates the histogram based on the slider input
