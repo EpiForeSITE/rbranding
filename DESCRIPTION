@@ -5,6 +5,8 @@ Authors@R: c(
     person("Willy", "Ray", , "william.ray@hsc.utah.edu", role = c("aut", "cre")),
     person("Andrew", "Pulsipher", , "pulsipher.a@gmail.com", role = c("aut", "ctb"),
            comment = c(ORCID = "0000-0002-0773-3210")),
+    person("George", "Vega Yon", , "g.vegayon@gmail.com", role = "aut",
+           comment = c(ORCID = "0000-0002-3171-0844")),
     person("Centers for Disease Control and Prevention's Center for Forecasting and Outbreak Analytics", role = "fnd",
            comment = "Cooperative agreement CDC-RFA-FT-23-0069")
   )
