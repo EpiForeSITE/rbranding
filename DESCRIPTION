@@ -1,6 +1,6 @@
 Package: rbranding
 Title: Manage Branding and Accessibility of R Projects
-Version: 0.1.1
+Version: 0.1.1.9000
 Authors@R: c(
     person("Willy", "Ray", , "william.ray@hsc.utah.edu", role = c("aut", "cre")),
     person("Andrew", "Pulsipher", , "pulsipher.a@gmail.com", role = c("aut", "ctb"),
@@ -38,6 +38,7 @@ Suggests:
     pkgdown,
     plotly,
     png,
+    quarto,
     rmarkdown,
     shiny,
     showtext,
@@ -45,7 +46,10 @@ Suggests:
     thematic,
     tinytest
 VignetteBuilder:
-    knitr
+    quarto
+SystemRequirements: Quarto command line tools
+    (<https://github.com/quarto-dev/quarto-cli>)
+Config/Needs/website: brand.yml
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

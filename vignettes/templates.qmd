@@ -1,9 +1,9 @@
 ---
 title: "Templates"
-output: rmarkdown::html_vignette
+format: html
 vignette: >
   %\VignetteIndexEntry{Templates}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -21,9 +21,7 @@ This vignette provides an overview of the templates available in the `rbranding`
 
 ### `quarto_website`: Simple Quarto Website Template
 
-```{r, echo=FALSE, out.width="50%", fig.alt="Screenshot of a simple branded Quarto website"}
-knitr::include_graphics("vignette-screenshots/qwebsite.jpg")
-```
+![](vignette-screenshots/qwebsite.jpg){width="50%" fig-alt="Screenshot of a simple branded Quarto website"}
 
 ``` r
 get_template("quarto_website")
@@ -33,9 +31,7 @@ Provides a basic structure for a Quarto website with multiple pages, navigation,
 
 
 ### `quarto_ggplot2`: Quarto Report with Branded `ggplot2` Figures
-```{r, echo=FALSE, out.width="50%", fig.alt="Screenshot of a branded ggplot2 scatterplot figure"}
-knitr::include_graphics("vignette-screenshots/qggplot2.jpg")
-```
+![](vignette-screenshots/qggplot2.jpg){width="50%" fig-alt="Screenshot of a branded ggplot2 scatterplot figure"}
 
 ``` r
 get_template("quarto_ggplot2")
@@ -47,9 +43,7 @@ Provides a Quarto report setup that integrates `_brand.yml` and `ggplot2` for cr
 ## Shiny App Templates
 
 ### `shiny_basic`: Simple Histogram Visualization Shiny App
-```{r, echo=FALSE, out.width="50%", fig.alt="Screenshot of a simple branded Shiny app histogram"}
-knitr::include_graphics("vignette-screenshots/shiny2.jpg")
-```
+![](vignette-screenshots/shiny2.jpg){width="50%" fig-alt="Screenshot of a simple branded Shiny app histogram"}
 
 ``` r
 get_template("shiny_basic")
@@ -61,9 +55,7 @@ Provides a simple Shiny app that allows users to interactively adjust parameters
 
 ### `shiny_kmeans`: Simple K-means Clustering Visualization Shiny App
 
-```{r, echo=FALSE, out.width="50%", fig.alt="Screenshot of a simple branded Shiny app K-means clustering visualization"}
-knitr::include_graphics("vignette-screenshots/kmeans.jpg")
-```
+![](vignette-screenshots/kmeans.jpg){width="50%" fig-alt="Screenshot of a simple branded Shiny app K-means clustering visualization"}
 
 ``` r
 get_template("shiny_kmeans")
@@ -74,9 +66,7 @@ Provides a simple Shiny app that demonstrates K-means clustering with interactiv
 
 
 ### `shiny_complex`: Complex Histogram Visualization Shiny App
-```{r, echo=FALSE, out.width="50%", fig.alt="Screenshot of a complex branded Shiny app histogram"}
-knitr::include_graphics("vignette-screenshots/shinyapp.jpg")
-```
+![](vignette-screenshots/shinyapp.jpg){width="50%" fig-alt="Screenshot of a complex branded Shiny app histogram"}
 
 ``` r
 get_template("shiny_complex")
@@ -88,9 +78,7 @@ Provides a more complex Shiny app with multiple tabs, allowing users to interact
 
 ### `shiny_wastewater`: Wasterwater Data Visualization Shiny App
 
-```{r, echo=FALSE, out.width="50%", fig.alt="Screenshot of a complex branded Shiny app visualizing wastewater data"}
-knitr::include_graphics("vignette-screenshots/wastewater.jpg")
-```
+![](vignette-screenshots/wastewater.jpg){width="50%" fig-alt="Screenshot of a complex branded Shiny app visualizing wastewater data"}
 
 ``` r
 get_template("shiny_wastewater")
@@ -104,9 +92,7 @@ Provides a Shiny app template for visualizing wastewater data, including interac
 
 ### `rmarkdown`: R Markdown Template for PDF or HTML Reports
 
-```{r, echo=FALSE, out.width="50%", fig.alt="Screenshot of a simple branded R Markdown document"}
-knitr::include_graphics("vignette-screenshots/rmark.jpg")
-```
+![](vignette-screenshots/rmark.jpg){width="50%" fig-alt="Screenshot of a simple branded R Markdown document"}
 
 ``` r
 get_template("rmarkdown")

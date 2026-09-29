@@ -1,9 +1,9 @@
 ---
 title: "ggplot2 and Thematic Integration with Brand Themes"
-output: rmarkdown::html_vignette
+format: html
 vignette: >
   %\VignetteIndexEntry{ggplot2 and Thematic Integration with Brand Themes}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 

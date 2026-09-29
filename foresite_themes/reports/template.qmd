@@ -1,0 +1,63 @@
+---
+title: "ForeSITE Report Title"
+subtitle: "Optional subtitle"
+author:
+  - name: "Author Name"
+    affiliation: "Affiliation"
+date: today
+format:
+  html: default
+  typst: default
+---
+
+```{r}
+#| label: setup
+#| include: false
+# Brand colors are read from the same _brand.yml that styles this report
+brand <- yaml::read_yaml("../_brand.yml")
+pal <- unlist(brand$color$palette)
+```
+
+## Summary
+
+Replace this text with a short summary of the report. Colors, fonts, and
+logos are defined once in `_brand.yml`, so the HTML and PDF versions of this
+report stay consistent with ForeSITE pkgdown sites and Shiny apps.
+
+::: {.callout-note}
+The ForeSITE crimson (`#A60F2D`) and dark gray (`#4E4E4E`) meet WCAG AA
+contrast on white. Use gold (`#FDB921`) only for accents and fills, never for
+text on light backgrounds.
+:::
+
+## Results
+
+```{r}
+#| label: fig-example
+#| fig-cap: "Example figure using the ForeSITE palette."
+#| fig-alt: "Line chart of two example series over 20 weeks, one in crimson and one in gold."
+#| echo: false
+set.seed(1)
+weeks <- 1:20
+series_a <- cumsum(rnorm(20, 1))
+series_b <- cumsum(rnorm(20, 0.6))
+par(family = "sans", col.axis = pal[["dark-gray"]], col.lab = pal[["dark-gray"]])
+plot(
+  weeks, series_a, type = "o", pch = 16, lwd = 2, col = pal[["crimson"]],
+  ylim = range(series_a, series_b), xlab = "Week", ylab = "Value", bty = "l"
+)
+lines(weeks, series_b, type = "o", pch = 16, lwd = 2, col = pal[["gold"]])
+legend("topleft", c("Series A", "Series B"),
+  col = pal[c("crimson", "gold")], lwd = 2, pch = 16, bty = "n"
+)
+```
+
+@fig-example shows how to reuse the brand palette in base R graphics. For
+ggplot2, see `rbranding::brand_set_ggplot()`.
+
+## Acknowledgments {.unnumbered .foresite-acknowledgment}
+
+This report was made possible by cooperative agreement CDC-RFA-FT-23-0069 from
+the CDC's Center for Forecasting and Outbreak Analytics. Its contents are
+solely the responsibility of the authors and do not necessarily represent the
+official views of the Centers for Disease Control and Prevention.

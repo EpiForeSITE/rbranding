@@ -1,0 +1,34 @@
+# ForeSITE Quarto report theme (requires Quarto >= 1.6)
+#
+# This folder is a Quarto project: `_brand.yml` (colors, fonts, logos) is
+# picked up automatically, and the settings below apply to every report in
+# `reports/`. Render with `quarto render` (all reports) or
+# `quarto render reports/<file>.qmd`.
+project:
+  type: default
+  render:
+    - reports/*.qmd
+
+format:
+  html:
+    theme: [brand, reports/foresite.scss]
+    toc: true
+    toc-location: left
+    number-sections: true
+    title-block-banner: true
+    embed-resources: true
+    fig-cap-location: bottom
+    code-fold: true
+    lang: en
+  typst:
+    papersize: us-letter
+    margin:
+      x: 1in
+      y: 1in
+    toc: true
+    number-sections: true
+    fig-cap-location: bottom
+    # PNG avoids requiring Cairo/svglite for the default SVG figure device
+    fig-format: png
+    fig-dpi: 300
+    echo: false

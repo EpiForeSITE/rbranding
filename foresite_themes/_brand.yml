@@ -1,0 +1,97 @@
+# ForeSITE brand (https://posit-dev.github.io/brand-yml/)
+#
+# Source: "ForeSITE Usage Guidelines" (WSU Design and Printing Services,
+# N12526.4.24). Check details in the ForeSITE shared folders.
+#
+# Official logo colors (do not alter):
+#   Crimson   #A60F2D  PMS 201 C
+#   Gold      #FDB921  PMS 1235 C
+#   Dark Gray #4E4E4E  PMS 7540 C  (RGB 78, 78, 78; the guide's "9A5107" hex is a typo)
+#
+# WCAG 2.1 contrast (on white #FFFFFF):
+#   crimson 7.70:1 (AA/AAA) | dark-gray 8.32:1 (AA/AAA) | gold 1.73:1 (FAIL)
+#   => gold is an accent/fill color only; never use it for text on light
+#      backgrounds. Dark gray (4.81:1) or black text is fine on gold.
+
+meta:
+  name:
+    short: ForeSITE
+    full: ForeSITE
+  link:
+    home: https://github.com/EpiForeSITE
+    github: https://github.com/EpiForeSITE
+
+logo:
+  images:
+    # `icon` and `full` are the names used by rbranding::brand_add_logo()
+    icon:
+      path: assets/logos/foresite-icon.png
+      alt: "ForeSITE logo"
+    full:
+      path: assets/logos/foresite-primary.png
+      alt: "ForeSITE logo"
+    full-white:
+      path: assets/logos/foresite-white.png
+      alt: "ForeSITE logo"
+    secondary:
+      path: assets/logos/foresite-secondary.png
+      alt: "ForeSITE logo"
+  # Use `full-white` on dark backgrounds (see guidelines, p. 3)
+  small: icon
+  medium: full
+  large: full
+
+color:
+  palette:
+    crimson: "#A60F2D"
+    gold: "#FDB921"
+    dark-gray: "#4E4E4E"
+    # Supporting neutrals (not part of the logo guidelines)
+    white: "#FFFFFF"
+    light-gray: "#F5F5F5"
+    black: "#000000"
+  foreground: dark-gray
+  background: white
+  primary: crimson
+  secondary: dark-gray
+  tertiary: gold
+  warning: gold
+  light: light-gray
+  dark: dark-gray
+
+typography:
+  # The logo type is Proxima Nova Semibold (a commercial font). Montserrat is
+  # the closest freely available geometric sans and is used for headings.
+  fonts:
+    - family: Montserrat
+      source: google
+      weight: [400, 600, 700]
+    - family: Open Sans
+      source: google
+      weight: [400, 600, 700]
+      style: [normal, italic]
+    - family: IBM Plex Mono
+      source: google
+      weight: [400, 600]
+  base:
+    family: Open Sans
+    line-height: 1.6
+  headings:
+    family: Montserrat
+    weight: 600
+    color: dark-gray
+  link:
+    color: crimson
+    decoration: underline
+  monospace:
+    family: IBM Plex Mono
+    size: 0.9em
+
+defaults:
+  bootstrap:
+    rules: |
+      .navbar { border-bottom: 4px solid $brand-gold; }
+      h1, .h1 { color: $brand-crimson; }
+      a:hover, a:focus { color: darken($brand-crimson, 10%); }
+      :focus-visible { outline: 3px solid $brand-gold; outline-offset: 2px; }
+      blockquote { border-left: 4px solid $brand-gold; }

@@ -1,9 +1,9 @@
 ---
 title: "rbranding"
-output: rmarkdown::html_vignette
+format: html
 vignette: >
   %\VignetteIndexEntry{rbranding}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 

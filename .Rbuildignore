@@ -27,8 +27,9 @@
 ^.*/[.].*$
 
 # Articles
-^vignettes/accessibility\.Rmd$
-^vignettes/accessibility_files$
+^vignettes/accessibility\.qmd$
+^vignettes/.*_files$
+^vignettes/\.quarto$
 
 # Resources
 ^resources$
@@ -38,5 +39,7 @@
 ^_pkgdown\.yml$
 ^pkgdown$
 
-^README\.Rmd$
+^README\.qmd$
+^foresite_themes$
+^foresite_logos_and_materials$
 ^cran-comments\.md$
