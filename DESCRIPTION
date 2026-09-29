@@ -29,6 +29,8 @@ Imports:
     utils,
     yaml
 Suggests:
+    brand.yml,
+    bslib,
     DT,
     grid,
     here,

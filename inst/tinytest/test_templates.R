@@ -20,7 +20,7 @@ has_pkgs <- function(pkgs) {
 brand_primary <- "#A60F2D" # ForeSITE crimson, the primary color in brand_files
 
 # shiny_kmeans: the UI uses a Bootstrap 5 theme built from _brand.yml ---------
-if (has_pkgs(c("shiny", "bslib", "sass", "ggplot2"))) {
+if (has_pkgs(c("shiny", "bslib", "brand.yml", "sass", "ggplot2"))) {
   dir <- setup_template("shiny_kmeans")
   old_wd <- setwd(dir)
 
@@ -48,7 +48,7 @@ if (has_pkgs(c("shiny", "bslib", "sass", "ggplot2"))) {
 }
 
 # shiny_complex: the value box uses the brand's primary color ------------------
-complex_pkgs <- c("shiny", "shinydashboard", "htmltools", "bslib", "shinyWidgets",
+complex_pkgs <- c("shiny", "shinydashboard", "htmltools", "bslib", "brand.yml", "shinyWidgets",
                   "plotly", "leaflet", "janitor", "lubridate", "tidyverse", "yaml")
 if (has_pkgs(complex_pkgs)) {
   dir <- setup_template("shiny_complex")
