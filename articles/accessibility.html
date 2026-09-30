@@ -7,13 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Accessibility Guidelines • rbranding</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Open_Sans-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Montserrat-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/Open_Sans-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/IBM_Plex_Mono-0.4.10/font.css" rel="stylesheet">
-<link href="../deps/Rubik-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Accessibility Guidelines">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="accessibility_files/libs/quarto-html/popper.min.js"></script><script src="accessibility_files/libs/quarto-html/tippy.umd.min.js"></script><link href="accessibility_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="accessibility_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Accessibility Guidelines">
+<meta property="og:image" content="https://epiforesite.github.io/rbranding/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -23,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rbranding</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,38 +57,30 @@
 
 
   </div>
-</nav><div class="container template-article">
-
-
-
-
+</nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Accessibility Guidelines</h1>
-            
-      
-      <small class="dont-index">Source: <a href="https://github.com/EpiForeSITE/rbranding/blob/main/vignettes/accessibility.Rmd" class="external-link"><code>vignettes/accessibility.Rmd</code></a></small>
-      <div class="d-none name"><code>accessibility.Rmd</code></div>
+
+
+
+
+      <small class="dont-index">Source: <a href="https://github.com/EpiForeSITE/rbranding/blob/main/vignettes/accessibility.qmd" class="external-link"><code>vignettes/accessibility.qmd</code></a></small>
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<p>This is a practical guide to <strong>designing and implementing
-accessible dashboards using R</strong>. Ensuring the accessibility of
-dashboards benefits everyone. It not only allows people with diverse
-abilities to access and interpret data, but also improves overall
-usability.</p>
-<p>This guide presents essential accessibility principles, offers
-actionable design strategies and highlights common pitfalls to avoid. It
-helps you build dashboards that are inclusive, user-friendly, and
-impactful.</p>
-<div class="section level2">
-<h2 id="general-design-principles-for-accessibility">General Design Principles for Accessibility<a class="anchor" aria-label="anchor" href="#general-design-principles-for-accessibility"></a>
+
+
+
+
+
+    <p>This is a practical guide to <strong>designing and implementing accessible dashboards using R</strong>. Ensuring the accessibility of dashboards benefits everyone. It not only allows people with diverse abilities to access and interpret data, but also improves overall usability.</p>
+<p>This guide presents essential accessibility principles, offers actionable design strategies and highlights common pitfalls to avoid. It helps you build dashboards that are inclusive, user-friendly, and impactful.</p>
+<section class="level2"><h2 id="general-design-principles-for-accessibility">General Design Principles for Accessibility<a class="anchor" aria-label="anchor" href="#general-design-principles-for-accessibility"></a>
 </h2>
-<div class="section level3">
-<h3 id="principles">Principles<a class="anchor" aria-label="anchor" href="#principles"></a>
+<section class="level3"><h3 id="principles">Principles<a class="anchor" aria-label="anchor" href="#principles"></a>
 </h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>
 <strong>Make content perceivable</strong>
 <ul>
@@ -111,11 +106,9 @@ impactful.</p>
 <ul>
 <li>Use consistent layout and predictable navigation<br>
 </li>
-<li>Group related controls with landmarks (e.g.,
-<code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>)<br>
+<li>Group related controls with landmarks (e.g., <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>)<br>
 </li>
-<li>Use headings (<code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code>)
-meaningfully and hierarchically</li>
+<li>Use headings (<code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code>) meaningfully and hierarchically</li>
 </ul>
 </li>
 <li>
@@ -136,315 +129,318 @@ meaningfully and hierarchically</li>
 <li>Avoid keyboard traps or focus loops</li>
 </ul>
 </li>
-</ol>
-</div>
-<div class="section level3">
-<h3 id="dashboard-design-dos-donts">Dashboard Design Do’s &amp; Don’ts<a class="anchor" aria-label="anchor" href="#dashboard-design-dos-donts"></a>
+</ol></section><section class="level3"><h3 id="dashboard-design-dos-donts">Dashboard Design Do’s &amp; Don’ts<a class="anchor" aria-label="anchor" href="#dashboard-design-dos-donts"></a>
 </h3>
-<table class="table">
+<table class="table caption-top">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">✅ DO</th>
-<th align="left">❌ DON’T</th>
+<th style="text-align: left;">✅ DO</th>
+<th style="text-align: left;">❌ DON’T</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Include <strong>data tables</strong> with all
-visualizations</td>
-<td align="left">Show charts with no alternative format</td>
+<td style="text-align: left;">Include <strong>data tables</strong> with all visualizations</td>
+<td style="text-align: left;">Show charts with no alternative format</td>
 </tr>
 <tr class="even">
-<td align="left">Use plain-language <strong>alt text</strong> and
-summaries</td>
-<td align="left">Hide alt text in tooltips or modals</td>
+<td style="text-align: left;">Use plain-language <strong>alt text</strong> and summaries</td>
+<td style="text-align: left;">Hide alt text in tooltips or modals</td>
 </tr>
 <tr class="odd">
-<td align="left">
+<td style="text-align: left;">
 <strong>Limit interactions</strong> to key tasks</td>
-<td align="left">Add hover-only or animated elements</td>
+<td style="text-align: left;">Add hover-only or animated elements</td>
 </tr>
 <tr class="even">
-<td align="left">
-<strong>Highlight key insights</strong> and put less
-important information to tooltips</td>
-<td align="left">Use a large amount of text to fill the page and make
-users dig through visual clutter</td>
+<td style="text-align: left;">
+<strong>Highlight key insights</strong> and put less important information to tooltips</td>
+<td style="text-align: left;">Use a large amount of text to fill the page and make users dig through visual clutter</td>
 </tr>
 <tr class="odd">
-<td align="left">
-<strong>Prioritize tables</strong> over interactive
-visualizations or maps</td>
-<td align="left">Assume all users can navigate interactive views</td>
+<td style="text-align: left;">
+<strong>Prioritize tables</strong> over interactive visualizations or maps</td>
+<td style="text-align: left;">Assume all users can navigate interactive views</td>
 </tr>
 </tbody>
-</table>
-</div>
-</div>
-<div class="section level2">
-<h2 id="common-technical-pitfalls">Common Technical Pitfalls<a class="anchor" aria-label="anchor" href="#common-technical-pitfalls"></a>
+</table></section></section><section class="level2"><h2 id="common-technical-pitfalls">Common Technical Pitfalls<a class="anchor" aria-label="anchor" href="#common-technical-pitfalls"></a>
 </h2>
-<div class="section level3">
-<h3 id="missing-or-inadequate-alternative-text">
+<section class="level3"><h3 id="missing-or-inadequate-alternative-text">
 <strong>1. Missing or Inadequate Alternative Text</strong><a class="anchor" aria-label="anchor" href="#missing-or-inadequate-alternative-text"></a>
 </h3>
-<table class="table">
+<table class="table caption-top">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">❌ Issue</th>
-<th align="left">✅ Solution</th>
+<th style="text-align: left;">❌ Issue</th>
+<th style="text-align: left;">✅ Solution</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">
-<code>&lt;img&gt;</code> elements lack
-<code>alt</code>, <code>aria-label</code>
+<td style="text-align: left;">
+<code>&lt;img&gt;</code> elements lack <code>alt</code>, <code>aria-label</code>
 </td>
-<td align="left">Add <code>alt</code> or mark as decorative with
-<code>role="presentation"</code>
+<td style="text-align: left;">Add <code>alt</code> or mark as decorative with <code>role="presentation"</code>
 </td>
 </tr>
 <tr class="even">
-<td align="left">SVGs with <code>role="img"</code> lack descriptive
-labels</td>
-<td align="left">Use <code>&lt;title&gt;</code>,
-<code>aria-label</code>, or <code>aria-labelledby</code> to describe the
-icon’s purpose</td>
+<td style="text-align: left;">SVGs with <code>role="img"</code> lack descriptive labels</td>
+<td style="text-align: left;">Use <code>&lt;title&gt;</code>, <code>aria-label</code>, or <code>aria-labelledby</code> to describe the icon’s purpose</td>
 </tr>
 <tr class="odd">
-<td align="left">
+<td style="text-align: left;">
 <code>&lt;iframe&gt;</code> lacks accessible name</td>
-<td align="left">Add a descriptive <code>title</code> attribute or
-<code>aria-label</code>
+<td style="text-align: left;">Add a descriptive <code>title</code> attribute or <code>aria-label</code>
 </td>
 </tr>
 <tr class="even">
-<td align="left">Buttons or links lack visible text or programmatically
-associated label</td>
-<td align="left">Add label via inner text, <code>aria-label</code>,
-<code>aria-labelledby</code>, or <code>title</code>
+<td style="text-align: left;">Buttons or links lack visible text or programmatically associated label</td>
+<td style="text-align: left;">Add label via inner text, <code>aria-label</code>, <code>aria-labelledby</code>, or <code>title</code>
 </td>
 </tr>
 </tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="insufficient-color-contrast">
+</table></section><section class="level3"><h3 id="insufficient-color-contrast">
 <strong>2. Insufficient Color Contrast</strong><a class="anchor" aria-label="anchor" href="#insufficient-color-contrast"></a>
 </h3>
-<table class="table">
+<table class="table caption-top">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">❌ Issue</th>
-<th align="left">✅ Solution</th>
+<th style="text-align: left;">❌ Issue</th>
+<th style="text-align: left;">✅ Solution</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="left">White text on a light background fails to meet the WCAG
-AA contrast ratio requirement</td>
-<td align="left">Ensure 4.5:1 contrast ratio for normal text (use WebAIM
-Contrast Checker)</td>
+<td style="text-align: left;">White text on a light background fails to meet the WCAG AA contrast ratio requirement</td>
+<td style="text-align: left;">Ensure 4.5:1 contrast ratio for normal text (use WebAIM Contrast Checker)</td>
 </tr></tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="aria-attribute-misuse">
+</table></section><section class="level3"><h3 id="aria-attribute-misuse">
 <strong>3. ARIA Attribute Misuse</strong><a class="anchor" aria-label="anchor" href="#aria-attribute-misuse"></a>
 </h3>
-<table class="table">
+<table class="table caption-top">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">❌ Issue</th>
-<th align="left">✅ Solution</th>
+<th style="text-align: left;">❌ Issue</th>
+<th style="text-align: left;">✅ Solution</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Invalid ARIA attributes for given role (e.g.,
-<code>aria-selected</code> on <code>&lt;a&gt;</code>)</td>
-<td align="left">Use ARIA attributes only with compatible roles (e.g.,
-<code>aria-selected</code> on <code>role="tab"</code>)</td>
+<td style="text-align: left;">Invalid ARIA attributes for given role (e.g., <code>aria-selected</code> on <code>&lt;a&gt;</code>)</td>
+<td style="text-align: left;">Use ARIA attributes only with compatible roles (e.g., <code>aria-selected</code> on <code>role="tab"</code>)</td>
 </tr>
 <tr class="even">
-<td align="left">
-<code>aria-label</code> used with
-<code>role="presentation"</code> or <code>role="none"</code>
+<td style="text-align: left;">
+<code>aria-label</code> used with <code>role="presentation"</code> or <code>role="none"</code>
 </td>
-<td align="left">Remove label or change the role to one that supports
-labeling</td>
+<td style="text-align: left;">Remove label or change the role to one that supports labeling</td>
 </tr>
 <tr class="odd">
-<td align="left">Misused or redundant roles on non-interactive
-elements</td>
-<td align="left">Use native HTML roles (like
-<code>&lt;button&gt;</code>) or remove unnecessary ARIA roles</td>
+<td style="text-align: left;">Misused or redundant roles on non-interactive elements</td>
+<td style="text-align: left;">Use native HTML roles (like <code>&lt;button&gt;</code>) or remove unnecessary ARIA roles</td>
 </tr>
 </tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="aria-role-structure-hierarchy-errors">
+</table></section><section class="level3"><h3 id="aria-role-structure-hierarchy-errors">
 <strong>4. ARIA Role Structure &amp; Hierarchy Errors</strong><a class="anchor" aria-label="anchor" href="#aria-role-structure-hierarchy-errors"></a>
 </h3>
-<table class="table">
+<table class="table caption-top">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">❌ Issue</th>
-<th align="left">✅ Solution</th>
+<th style="text-align: left;">❌ Issue</th>
+<th style="text-align: left;">✅ Solution</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ARIA parent roles (e.g., <code>grid</code>) lack
-required child roles (e.g., <code>row</code>)</td>
-<td align="left">Follow correct structure:
-<code>grid → row → gridcell</code>
+<td style="text-align: left;">ARIA parent roles (e.g., <code>grid</code>) lack required child roles (e.g., <code>row</code>)</td>
+<td style="text-align: left;">Follow correct structure: <code>grid → row → gridcell</code>
 </td>
 </tr>
 <tr class="even">
-<td align="left">ARIA child roles used out of context (e.g.,
-<code>gridcell</code> not inside <code>row</code>)</td>
-<td align="left">Restructure DOM to enforce valid nesting</td>
+<td style="text-align: left;">ARIA child roles used out of context (e.g., <code>gridcell</code> not inside <code>row</code>)</td>
+<td style="text-align: left;">Restructure DOM to enforce valid nesting</td>
 </tr>
 <tr class="odd">
-<td align="left">Structural roles used without semantic purpose</td>
-<td align="left">Use native HTML where possible for more predictable
-accessibility</td>
+<td style="text-align: left;">Structural roles used without semantic purpose</td>
+<td style="text-align: left;">Use native HTML where possible for more predictable accessibility</td>
 </tr>
 </tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="keyboard-navigation-focus-management">
+</table></section><section class="level3"><h3 id="keyboard-navigation-focus-management">
 <strong>5. Keyboard Navigation &amp; Focus Management</strong><a class="anchor" aria-label="anchor" href="#keyboard-navigation-focus-management"></a>
 </h3>
-<table class="table">
+<table class="table caption-top">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">❌ Issue</th>
-<th align="left">✅ Solution</th>
+<th style="text-align: left;">❌ Issue</th>
+<th style="text-align: left;">✅ Solution</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Focusable elements lack accessible name (e.g.,
-icon-only button)</td>
-<td align="left">Add <code>aria-label</code>, <code>title</code>, or
-text content that screen readers can access</td>
+<td style="text-align: left;">Focusable elements lack accessible name (e.g., icon-only button)</td>
+<td style="text-align: left;">Add <code>aria-label</code>, <code>title</code>, or text content that screen readers can access</td>
 </tr>
 <tr class="even">
-<td align="left">Scrollable containers not keyboard focusable</td>
-<td align="left">Add <code>tabindex="0"</code> and ensure content is
-reachable via keyboard</td>
+<td style="text-align: left;">Scrollable containers not keyboard focusable</td>
+<td style="text-align: left;">Add <code>tabindex="0"</code> and ensure content is reachable via keyboard</td>
 </tr>
 <tr class="odd">
-<td align="left">Nested interactive controls (e.g., a
-<code>button</code> inside a <code>role="tab"</code> container)</td>
-<td align="left">Avoid interactive nesting; separate into distinct
-controls</td>
+<td style="text-align: left;">Nested interactive controls (e.g., a <code>button</code> inside a <code>role="tab"</code> container)</td>
+<td style="text-align: left;">Avoid interactive nesting; separate into distinct controls</td>
 </tr>
 <tr class="even">
-<td align="left">Form inputs have hidden or missing labels</td>
-<td align="left">Associate form fields with visible
-<code>&lt;label&gt;</code> or use <code>aria-labelledby</code> or
-<code>aria-label</code>
+<td style="text-align: left;">Form inputs have hidden or missing labels</td>
+<td style="text-align: left;">Associate form fields with visible <code>&lt;label&gt;</code> or use <code>aria-labelledby</code> or <code>aria-label</code>
 </td>
 </tr>
 </tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="structural-semantic-violations">
+</table></section><section class="level3"><h3 id="structural-semantic-violations">
 <strong>6. Structural &amp; Semantic Violations</strong><a class="anchor" aria-label="anchor" href="#structural-semantic-violations"></a>
 </h3>
-<table class="table">
+<table class="table caption-top">
 <colgroup>
-<col width="50%">
-<col width="50%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">❌ Issue</th>
-<th align="left">✅ Solution</th>
+<th style="text-align: left;">❌ Issue</th>
+<th style="text-align: left;">✅ Solution</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">
-<code>&lt;a href="#"&gt;</code> or
-<code>&lt;button&gt;</code> used without purpose or label</td>
-<td align="left">Provide clear intent with text or ARIA attributes</td>
+<td style="text-align: left;">
+<code>&lt;a href="#"&gt;</code> or <code>&lt;button&gt;</code> used without purpose or label</td>
+<td style="text-align: left;">Provide clear intent with text or ARIA attributes</td>
 </tr>
 <tr class="even">
-<td align="left">Mailto/email links not clearly labeled or visible</td>
-<td align="left">Add contextual label (e.g.,
-<code>"Email us: example@email.com"</code>) with sufficient
-contrast</td>
+<td style="text-align: left;">Mailto/email links not clearly labeled or visible</td>
+<td style="text-align: left;">Add contextual label (e.g., <code>"Email us: example@email.com"</code>) with sufficient contrast</td>
 </tr>
 <tr class="odd">
-<td align="left">Iframes embedded without descriptive context</td>
-<td align="left">Add <code>title</code>, wrap in
-<code>&lt;section&gt;</code>, or provide heading to explain embedded
-content</td>
+<td style="text-align: left;">Iframes embedded without descriptive context</td>
+<td style="text-align: left;">Add <code>title</code>, wrap in <code>&lt;section&gt;</code>, or provide heading to explain embedded content</td>
 </tr>
 </tbody>
-</table>
-</div>
-</div>
-<div class="section level2">
-<h2 id="testing-tools">Testing Tools<a class="anchor" aria-label="anchor" href="#testing-tools"></a>
+</table></section></section><section class="level2"><h2 id="testing-tools">Testing Tools<a class="anchor" aria-label="anchor" href="#testing-tools"></a>
 </h2>
-<p>Below are free, widely available tools you can use to evaluate the
-accessibility of your dashboards:</p>
+<p>Below are free, widely available tools you can use to evaluate the accessibility of your dashboards:</p>
 <ul>
 <li>
-<a href="https://www.deque.com/axe/browser-extensions/" class="external-link">axe DevTools Browser Extension</a>:
-Runs automated scans in your developer tools to flag WCAG issues and
-suggest fixes right in the browser.</li>
+<a href="https://www.deque.com/axe/browser-extensions/" class="external-link">axe DevTools Browser Extension</a>: Runs automated scans in your developer tools to flag WCAG issues and suggest fixes right in the browser.</li>
 <li>
-<a href="https://wave.webaim.org/extension/" class="external-link">WAVE Browser
-Extension</a>: Adds an on‑page overlay that visually marks accessibility
-errors, alerts, and structural cues for quick review.</li>
+<a href="https://wave.webaim.org/extension/" class="external-link">WAVE Browser Extension</a>: Adds an on‑page overlay that visually marks accessibility errors, alerts, and structural cues for quick review.</li>
 <li>
-<a href="https://webaim.org/resources/contrastchecker/" class="external-link">WebAIM
-Contrast Checker</a>: Tests any foreground‑background color pair to
-confirm it meets WCAG AA/AAA contrast ratios.</li>
+<a href="https://webaim.org/resources/contrastchecker/" class="external-link">WebAIM Contrast Checker</a>: Tests any foreground‑background color pair to confirm it meets WCAG AA/AAA contrast ratios.</li>
 </ul>
-<p>In addition to automated tools, always perform manual checks with a
-screen reader. Popular options include <strong>VoiceOver</strong>
-(macOS/iOS), <strong>NVDA</strong> (Windows), and <strong>JAWS</strong>
-(Windows).</p>
-</div>
-<div class="section level2">
-<h2 id="accessiblity-guidelines-cheatsheet">Accessiblity Guidelines Cheatsheet<a class="anchor" aria-label="anchor" href="#accessiblity-guidelines-cheatsheet"></a>
+<p>In addition to automated tools, always perform manual checks with a screen reader. Popular options include <strong>VoiceOver</strong> (macOS/iOS), <strong>NVDA</strong> (Windows), and <strong>JAWS</strong> (Windows).</p>
+</section><section class="level2"><h2 id="accessiblity-guidelines-cheatsheet">Accessiblity Guidelines Cheatsheet<a class="anchor" aria-label="anchor" href="#accessiblity-guidelines-cheatsheet"></a>
 </h2>
-<p>We created a cheatsheet for the above accessiblity guidelines. You
-may download the cheatsheet as a <a href="https://github.com/EpiForeSITE/rbranding/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.pdf" class="external-link">PDF</a>
-or <a href="https://github.com/EpiForeSITE/rbranding/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.svg" class="external-link">SVG</a></p>
-</div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+<p>We created a cheatsheet for the above accessiblity guidelines. You may download the cheatsheet as a <a href="https://github.com/EpiForeSITE/rbranding/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.pdf" class="external-link">PDF</a> or <a href="https://github.com/EpiForeSITE/rbranding/blob/main/resources/cheatsheets/cheatsheet-accessibility-guidelines.svg" class="external-link">SVG</a></p>
+</section><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
-
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Willy Ray, Andrew Pulsipher, Centers for Disease Control and Prevention’s Center for Forecasting and Outbreak Analytics.</p>
+  <p>Developed by Willy Ray, Andrew Pulsipher, George Vega Yon, Centers for Disease Control and Prevention’s Center for Forecasting and Outbreak Analytics. Part of the <a href="https://github.com/EpiForeSITE" class="external-link">ForeSITE</a> software ecosystem. This project was made possible by cooperative agreement CDC-RFA-FT-23-0069 from the CDC’s Center for Forecasting and Outbreak Analytics. Its contents are solely the responsibility of the authors and do not necessarily represent the official views of the Centers for Disease Control and Prevention.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

@@ -78,6 +78,15 @@ These same `get_brand_*()` functions will also update the local
 
 Load the branding YAML and apply the theme in your UI/server code.
 
+## ForeSITE Themes
+
+The
+[`foresite_themes/`](https://github.com/EpiForeSITE/rbranding/tree/main/foresite_themes)
+folder contains the official ForeSITE brand (`_brand.yml`, logos) along
+with ready-to-use themes for pkgdown sites and Quarto reports. See its
+[README](https://github.com/EpiForeSITE/rbranding/blob/main/foresite_themes/README.md)
+for usage instructions.
+
 ## Project Documentation
 
 The full documentation for the package, including reference manuals and

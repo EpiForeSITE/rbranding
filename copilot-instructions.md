@@ -53,7 +53,8 @@ sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-ext
 ``` bash
 # Install core R packages via apt (more reliable than CRAN in restricted environments)
 sudo apt-get install -y r-cran-devtools r-cran-yaml r-cran-shiny r-cran-dt r-cran-htmltools
-sudo apt-get install -y r-cran-dplyr r-cran-knitr r-cran-rmarkdown r-cran-bslib
+sudo apt-get install -y r-cran-dplyr r-cran-knitr r-cran-rmarkdown r-cran-bslib r-cran-quarto
+# Vignettes and README are built with Quarto: install the Quarto CLI from https://quarto.org
 
 # If network access to CRAN is available, install additional packages:
 sudo Rscript -e "install.packages(c('leaflet', 'tinytest', 'here', 'pkgdown'), repos='https://cloud.r-project.org/')"
@@ -204,7 +205,10 @@ Use example apps for testing.
 - `inst/templates/` - Example applications demonstrating package usage
 - `inst/tinytest/` - Unit tests using tinytest framework
 - `man/` - Generated documentation files
-- `vignettes/` - Package vignettes and tutorials
+- `vignettes/` - Package vignettes and tutorials (Quarto `.qmd`, built
+  with the `quarto::html` engine)
+- `foresite_themes/` - Official ForeSITE brand (`_brand.yml`, logos)
+  plus pkgdown and Quarto report themes
 - `.github/workflows/` - CI/CD pipelines (R-CMD-check.yaml,
   pkgdown.yaml)
 
@@ -215,6 +219,7 @@ Use example apps for testing.
 - `run_app.sh` - Script for running example applications
 - `_brand.yml` - Default branding configuration
 - `rbranding_config.yml` - Package configuration template
+- `README.qmd` - Source for README.md (render with `make readme`)
 
 ## Common Issues and Solutions
 

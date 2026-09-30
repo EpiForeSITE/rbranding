@@ -11,6 +11,9 @@ package provides functions to:
 3.  Add brand logos to plots
 4.  Reset themes when needed
 
+The examples use the [ForeSITE](https://github.com/EpiForeSITE) brand,
+which ships with the package.
+
 ## Getting Started
 
 First, let’s load the required packages:
@@ -28,85 +31,52 @@ library(ggplot2)
 
 ## Step 1: Initialize and Load Brand Configuration
 
-Start by initializing the branding configuration and getting the latest
-brand file:
+In a real project, you initialize the branding configuration once and
+then download the latest brand file:
 
 ``` r
-
-## Use a temporary directory as the knit root for the entire document.
-## This avoids calling setwd()/on.exit() in the chunk and ensures
-## subsequent chunks are evaluated with `temp_dir` as their working dir.
-temp_dir <- tempdir()
-knitr::opts_knit$set(root.dir = temp_dir)
-
-# (Optional) store the original working directory for interactive use only
-# Note: during knitting, chunks will be evaluated with root.dir set to temp_dir,
-# so we explicitly copy/write files into that directory below.
-old_wd <- getwd()
 
 # Initialize branding (creates rbranding_config.yml and placeholder _brand.yml)
 brand_init()
-#> Created files './rbranding_config.yml' and placeholder '_brand.yml' in current working directory
 
 # Get the latest brand file from the repository
 get_brand_public()
-#> Checking remote version...
-#> Local branding file overwritten with remote file
 
-# to install these files directly to your working directory (the knit root):
+# Optionally, install the ggplot2 example template in your working directory
 get_template("ggplot2")
-#> Copied example.R to /home/runner/work/rbranding/rbranding/vignettes
-#> Copied README.md to /home/runner/work/rbranding/rbranding/vignettes
 ```
 
-For this vignette, we’ll use the existing `_brand.yml` file in the
-package:
+For this vignette, we use the ForeSITE `_brand.yml` and logos bundled
+with the package, copied into a temporary directory:
 
 ``` r
 
-# In a real project, you would have a _brand.yml file in your working directory
-# For this demo, we'll use the package's example brand file
-brand_file <- system.file("brand_files", "_brand.yml", package = "rbranding")
-if (brand_file != "") {
-  # copy the example brand file and logos into the knit root (temp_dir)
-  file.copy(brand_file, file.path(temp_dir, "_brand.yml"))
-  # Copy logo files as well
-  logo_files <- list.files(system.file("brand_files", package = "rbranding"), 
-                          pattern = "*.png", full.names = TRUE)
-  file.copy(logo_files, temp_dir)
-  # Use a relative path for later chunks (they run with root.dir=temp_dir)
-  brand_file <- "_brand.yml"
-} else {
-  # Fallback to a basic brand configuration for demonstration
-  brand_config <- "
-meta:
-  name:
-    full: Example Organization
-    short: EO
+## Use a temporary directory as the knit root for the entire document so that
+## subsequent chunks are evaluated with `temp_dir` as their working directory.
+temp_dir <- file.path(tempdir(), "rbranding-ggplot2")
+dir.create(temp_dir, showWarnings = FALSE)
+knitr::opts_knit$set(root.dir = temp_dir)
 
-color:
-  palette:
-    primary: '#1c8478'
-    secondary: '#4e2d53'
-    accent: '#474747'
-  foreground: black
-  background: white
-  primary: primary
-  secondary: secondary
+brand_dir <- system.file("brand_files", package = "rbranding")
+invisible(file.copy(
+  list.files(brand_dir, full.names = TRUE),
+  temp_dir,
+  recursive = TRUE,
+  overwrite = TRUE
+))
+brand_file <- file.path(temp_dir, "_brand.yml")
+```
 
-typography:
-  fonts:
-    - family: Open Sans
-      source: google
-  base: Open Sans
-"
-  # write a fallback brand file into the knit root
-  writeLines(brand_config, file.path(temp_dir, "_brand.yml"))
-  brand_file <- "_brand.yml"
-}
+The brand defines three official colors, which we will also use for the
+data:
 
-cat("Using brand file:", brand_file)
-#> Using brand file: _brand.yml
+``` r
+
+brand <- yaml::read_yaml(brand_file)
+foresite <- unlist(brand$color$palette[c("crimson", "gold", "dark-gray")])
+foresite
+#>   crimson      gold dark-gray 
+#> "#A60F2D" "#FDB921" "#4E4E4E"
 ```
 
 ## Step 2: Set the ggplot2 Theme
@@ -116,66 +86,92 @@ according to your brand configuration:
 
 ``` r
 
-# Set the brand theme
 brand_set_ggplot(brand_file)
 #> Brand theme applied successfully!
 #> Custom font loaded: open_sans
 ```
 
-## Step 3: Create ggplot2 Visualizations
-
-Now create some plots that will automatically use your brand theme:
+The brand theme is a regular ggplot2 theme, so you can fine-tune it with
+[`theme_update()`](https://ggplot2.tidyverse.org/reference/get_theme.html).
+Here we increase the text size for readability, use a light grid so the
+data stand out, and highlight titles in ForeSITE crimson:
 
 ``` r
 
-# Create a basic scatter plot
-p1 <- ggplot(mtcars, aes(x = mpg, y = wt)) +
-  geom_point(aes(color = factor(cyl)), size = 3) +
+theme_update(
+  text = element_text(size = 13),
+  plot.title = element_text(size = 17, face = "bold", colour = foresite[["crimson"]]),
+  plot.subtitle = element_text(size = 12, colour = foresite[["dark-gray"]]),
+  plot.title.position = "plot",
+  axis.text = element_text(size = 11),
+  panel.grid.major = element_line(colour = "#E6E6E6", linewidth = 0.4),
+  panel.grid.minor = element_blank(),
+  legend.position = "bottom"
+)
+```
+
+## Step 3: Create ggplot2 Visualizations
+
+Now create some plots that will automatically use your brand theme. We
+map groups to the brand colors with `scale_*_manual()`. Gold has low
+contrast on white (1.7:1), so points and bars get a thin dark gray
+outline to keep them distinguishable:
+
+``` r
+
+p1 <- ggplot(mtcars, aes(x = mpg, y = wt, fill = factor(cyl))) +
+  geom_point(shape = 21, size = 3.5, stroke = 0.4, colour = foresite[["dark-gray"]]) +
+  scale_fill_manual(values = unname(foresite)) +
   labs(
     title = "Car Weight vs. Miles per Gallon",
     subtitle = "Data from the 1974 Motor Trend magazine",
     x = "Miles per Gallon",
     y = "Weight (1000 lbs)",
-    color = "Cylinders"
-  ) +
-  theme(legend.position = "bottom")
+    fill = "Cylinders"
+  )
 
 print(p1)
 ```
 
-![Branded scatterplot of car weight vs. miles per
-gallon](ggplot2-integration_files/figure-html/basic-plot-1.png)
+![Scatterplot of car weight versus miles per gallon with points colored
+crimson, gold, and dark gray by number of cylinders, styled with the
+ForeSITE brand.](ggplot2-integration_files/figure-html/basic-plot-1.png)
 
 ``` r
 
-# Create a bar plot
 p2 <- ggplot(mtcars, aes(x = factor(cyl), fill = factor(gear))) +
-  geom_bar(position = "dodge") +
+  geom_bar(position = position_dodge(width = 0.8), width = 0.75,
+           colour = foresite[["dark-gray"]], linewidth = 0.3) +
+  scale_fill_manual(values = unname(foresite)) +
+  scale_y_continuous(breaks = seq(0, 12, by = 2), expand = expansion(mult = c(0, 0.05))) +
   labs(
     title = "Car Count by Cylinders and Gears",
     x = "Number of Cylinders",
     y = "Count",
     fill = "Gears"
   ) +
-  theme(legend.position = "bottom")
+  theme(panel.grid.major.x = element_blank())
 
 print(p2)
 ```
 
-![Branded bar plot of car count by cylinders and
-gears](ggplot2-integration_files/figure-html/bar-plot-1.png)
+![Grouped bar chart of car counts by number of cylinders and gears in
+crimson, gold, and dark gray, styled with the ForeSITE
+brand.](ggplot2-integration_files/figure-html/bar-plot-1.png)
 
 ## Step 4: Add Brand Logo (Optional)
 
 If your brand configuration includes a logo, you can add it to your
-plots:
+plots. `size` is the logo’s height as a fraction of the plot:
 
 ``` r
 
-# Add logo to the plot (requires logo in brand.yml and png package)
-p1_with_logo <- p1 + brand_add_logo(x = 0.9, y = 0.1, size = 0.05)
+p1_with_logo <- p1 + brand_add_logo(x = 0.94, y = 0.88, size = 0.16)
 print(p1_with_logo)
 ```
+
+![The car weight scatterplot with the ForeSITE logo in the top-right
+corner.](ggplot2-integration_files/figure-html/logo-plot-1.png)
 
 ## Step 5: Interactive Plots with plotly
 
@@ -186,7 +182,7 @@ You can also create interactive versions of your plots using plotly:
 library(plotly)
 
 # Convert ggplot to interactive plotly chart
-p1_interactive <- ggplotly(p1, tooltip = c("x", "y", "colour"))
+p1_interactive <- ggplotly(p1, tooltip = c("x", "y", "fill"))
 p1_interactive
 ```
 
@@ -197,10 +193,9 @@ consistency:
 
 ``` r
 
-# Customize theme elements while keeping brand colors
 p3 <- ggplot(mtcars, aes(x = hp, y = mpg, size = wt)) +
-  geom_point(alpha = 0.7) +
-  scale_size_continuous(range = c(2, 8)) +
+  geom_point(colour = foresite[["crimson"]], alpha = 0.6) +
+  scale_size_continuous(range = c(2, 9)) +
   labs(
     title = "Engine Performance Analysis",
     subtitle = "Relationship between horsepower, fuel efficiency, and weight",
@@ -209,16 +204,16 @@ p3 <- ggplot(mtcars, aes(x = hp, y = mpg, size = wt)) +
     size = "Weight (1000 lbs)"
   ) +
   theme(
-    plot.title = element_text(size = 16, face = "bold"),
-    plot.subtitle = element_text(size = 12, face = "italic"),
+    plot.subtitle = element_text(face = "italic"),
     legend.position = "right"
   )
 
 print(p3)
 ```
 
-![Branded scatterplot of engine performance
-analysis](ggplot2-integration_files/figure-html/advanced-theme-1.png)
+![Bubble chart of miles per gallon versus horsepower with crimson
+bubbles sized by car weight, styled with the ForeSITE
+brand.](ggplot2-integration_files/figure-html/advanced-theme-1.png)
 
 ## Step 7: Reset Theme
 
@@ -244,8 +239,9 @@ p4 <- ggplot(mtcars, aes(x = mpg, y = wt)) +
 print(p4)
 ```
 
-![Scatterplot of engine performance analysis with default ggplot2
-theme](ggplot2-integration_files/figure-html/reset-theme-1.png)
+![Scatterplot of car weight versus miles per gallon with the default
+ggplot2 theme and
+colors.](ggplot2-integration_files/figure-html/reset-theme-1.png)
 
 ## Best Practices
 
@@ -254,11 +250,14 @@ theme](ggplot2-integration_files/figure-html/reset-theme-1.png)
     at the beginning of your analysis
 2.  **Test font loading**: Custom fonts may not work in all environments
 3.  **Use consistent colors**: Stick to the brand palette for
-    consistency
-4.  **Reset when needed**: Use
+    consistency, and check contrast (e.g., outline light colors such as
+    gold)
+4.  **Size figures for their destination**: Match `fig.width` to the
+    width at which the figure is displayed so text is not scaled down
+5.  **Reset when needed**: Use
     [`brand_reset_ggplot()`](https://epiforesite.github.io/rbranding/reference/brand_reset_ggplot.md)
     to return to default themes
-5.  **Logo placement**: Position logos where they don’t interfere with
+6.  **Logo placement**: Position logos where they don’t interfere with
     data
 
 ## Troubleshooting
@@ -267,6 +266,9 @@ theme](ggplot2-integration_files/figure-html/reset-theme-1.png)
 
 - **Font loading fails**: Some environments may not support custom
   Google Fonts
+- **Text looks too small**: The figure is wider than where it is
+  displayed, or `showtext` renders at a different resolution than the
+  figure; set `fig.showtext = TRUE` in knitr/Quarto documents
 - **Logo not found**: Ensure the logo path in `_brand.yml` is correct
   and the file exists
 - **Colors not applied**: Check that your `_brand.yml` file follows the
@@ -293,4 +295,4 @@ can ensure that all your ggplot2 and plotly charts maintain brand
 consistency while being accessible and professional.
 
 For more information about the brand.yml schema, visit:
-<https://github.com/posit-dev/brand-yml/>
+https://github.com/posit-dev/brand-yml/

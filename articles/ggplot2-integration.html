@@ -7,13 +7,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>ggplot2 and Thematic Integration with Brand Themes • rbranding</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Open_Sans-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Montserrat-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/Open_Sans-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/IBM_Plex_Mono-0.4.10/font.css" rel="stylesheet">
-<link href="../deps/Rubik-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="ggplot2 and Thematic Integration with Brand Themes">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="ggplot2-integration_files/libs/quarto-html/popper.min.js"></script><script src="ggplot2-integration_files/libs/quarto-html/tippy.umd.min.js"></script><link href="ggplot2-integration_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ggplot2-integration_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="ggplot2 and Thematic Integration with Brand Themes">
+<meta property="og:image" content="https://epiforesite.github.io/rbranding/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -23,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rbranding</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,40 +57,38 @@
 
 
   </div>
-</nav><div class="container template-article">
-
-
-
-
+</nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>ggplot2 and Thematic Integration with Brand Themes</h1>
-            
-      
-      <small class="dont-index">Source: <a href="https://github.com/EpiForeSITE/rbranding/blob/main/vignettes/ggplot2-integration.Rmd" class="external-link"><code>vignettes/ggplot2-integration.Rmd</code></a></small>
-      <div class="d-none name"><code>ggplot2-integration.Rmd</code></div>
+
+
+
+
+      <small class="dont-index">Source: <a href="https://github.com/EpiForeSITE/rbranding/blob/main/vignettes/ggplot2-integration.qmd" class="external-link"><code>vignettes/ggplot2-integration.qmd</code></a></small>
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+
+
+
+
+
+    <section class="level2"><h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>This vignette demonstrates how to integrate ggplot2 and plotly
-visualizations with brand themes using the <code>rbranding</code>
-package. The package provides functions to:</p>
-<ol style="list-style-type: decimal">
+<p>This vignette demonstrates how to integrate ggplot2 and plotly visualizations with brand themes using the <code>rbranding</code> package. The package provides functions to:</p>
+<ol type="1">
 <li>Load brand configuration from <code>_brand.yml</code> files</li>
 <li>Apply brand colors and typography to ggplot2 themes</li>
 <li>Add brand logos to plots</li>
 <li>Reset themes when needed</li>
 </ol>
-</div>
-<div class="section level2">
-<h2 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
+<p>The examples use the <a href="https://github.com/EpiForeSITE" class="external-link">ForeSITE</a> brand, which ships with the package.</p>
+</section><section class="level2"><h2 id="getting-started">Getting Started<a class="anchor" aria-label="anchor" href="#getting-started"></a>
 </h2>
 <p>First, let’s load the required packages:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiforesite.github.io/rbranding/">rbranding</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
@@ -96,161 +97,150 @@ package. The package provides functions to:</p>
 <span><span class="co"># library(sysfonts)  # For custom fonts</span></span>
 <span><span class="co"># library(showtext)  # For custom fonts</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-1-initialize-and-load-brand-configuration">Step 1: Initialize and Load Brand Configuration<a class="anchor" aria-label="anchor" href="#step-1-initialize-and-load-brand-configuration"></a>
+</section><section class="level2"><h2 id="step-1-initialize-and-load-brand-configuration">Step 1: Initialize and Load Brand Configuration<a class="anchor" aria-label="anchor" href="#step-1-initialize-and-load-brand-configuration"></a>
 </h2>
-<p>Start by initializing the branding configuration and getting the
-latest brand file:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">## Use a temporary directory as the knit root for the entire document.</span></span>
-<span><span class="co">## This avoids calling setwd()/on.exit() in the chunk and ensures</span></span>
-<span><span class="co">## subsequent chunks are evaluated with `temp_dir` as their working dir.</span></span>
-<span><span class="va">temp_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_knit.html" class="external-link">opts_knit</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>root.dir <span class="op">=</span> <span class="va">temp_dir</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># (Optional) store the original working directory for interactive use only</span></span>
-<span><span class="co"># Note: during knitting, chunks will be evaluated with root.dir set to temp_dir,</span></span>
-<span><span class="co"># so we explicitly copy/write files into that directory below.</span></span>
-<span><span class="va">old_wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Initialize branding (creates rbranding_config.yml and placeholder _brand.yml)</span></span>
+<p>In a real project, you initialize the branding configuration once and then download the latest brand file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Initialize branding (creates rbranding_config.yml and placeholder _brand.yml)</span></span>
 <span><span class="fu"><a href="../reference/brand_init.html">brand_init</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Created files './rbranding_config.yml' and placeholder '_brand.yml' in current working directory</span></span>
 <span></span>
 <span><span class="co"># Get the latest brand file from the repository</span></span>
 <span><span class="fu"><a href="../reference/get_brand_public.html">get_brand_public</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Checking remote version...</span></span>
-<span><span class="co">#&gt; Local branding file overwritten with remote file</span></span>
 <span></span>
-<span><span class="co"># to install these files directly to your working directory (the knit root):</span></span>
-<span><span class="fu"><a href="../reference/get_template.html">get_template</a></span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Copied example.R to /home/runner/work/rbranding/rbranding/vignettes</span></span>
-<span><span class="co">#&gt; Copied README.md to /home/runner/work/rbranding/rbranding/vignettes</span></span></code></pre></div>
-<p>For this vignette, we’ll use the existing <code>_brand.yml</code>
-file in the package:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># In a real project, you would have a _brand.yml file in your working directory</span></span>
-<span><span class="co"># For this demo, we'll use the package's example brand file</span></span>
-<span><span class="va">brand_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"brand_files"</span>, <span class="st">"_brand.yml"</span>, package <span class="op">=</span> <span class="st">"rbranding"</span><span class="op">)</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="va">brand_file</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="co"># copy the example brand file and logos into the knit root (temp_dir)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="va">brand_file</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_dir</span>, <span class="st">"_brand.yml"</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="co"># Copy logo files as well</span></span>
-<span>  <span class="va">logo_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"brand_files"</span>, package <span class="op">=</span> <span class="st">"rbranding"</span><span class="op">)</span>, </span>
-<span>                          pattern <span class="op">=</span> <span class="st">"*.png"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span><span class="va">logo_files</span>, <span class="va">temp_dir</span><span class="op">)</span></span>
-<span>  <span class="co"># Use a relative path for later chunks (they run with root.dir=temp_dir)</span></span>
-<span>  <span class="va">brand_file</span> <span class="op">&lt;-</span> <span class="st">"_brand.yml"</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="co"># Fallback to a basic brand configuration for demonstration</span></span>
-<span>  <span class="va">brand_config</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
-<span><span class="st">meta:</span></span>
-<span><span class="st">  name:</span></span>
-<span><span class="st">    full: Example Organization</span></span>
-<span><span class="st">    short: EO</span></span>
-<span><span class="st"></span></span>
-<span><span class="st">color:</span></span>
-<span><span class="st">  palette:</span></span>
-<span><span class="st">    primary: '#1c8478'</span></span>
-<span><span class="st">    secondary: '#4e2d53'</span></span>
-<span><span class="st">    accent: '#474747'</span></span>
-<span><span class="st">  foreground: black</span></span>
-<span><span class="st">  background: white</span></span>
-<span><span class="st">  primary: primary</span></span>
-<span><span class="st">  secondary: secondary</span></span>
-<span><span class="st"></span></span>
-<span><span class="st">typography:</span></span>
-<span><span class="st">  fonts:</span></span>
-<span><span class="st">    - family: Open Sans</span></span>
-<span><span class="st">      source: google</span></span>
-<span><span class="st">  base: Open Sans</span></span>
-<span><span class="st">"</span></span>
-<span>  <span class="co"># write a fallback brand file into the knit root</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">brand_config</span>, <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_dir</span>, <span class="st">"_brand.yml"</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">brand_file</span> <span class="op">&lt;-</span> <span class="st">"_brand.yml"</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Using brand file:"</span>, <span class="va">brand_file</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Using brand file: _brand.yml</span></span></code></pre></div>
+<span><span class="co"># Optionally, install the ggplot2 example template in your working directory</span></span>
+<span><span class="fu"><a href="../reference/get_template.html">get_template</a></span><span class="op">(</span><span class="st">"ggplot2"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-2-set-the-ggplot2-theme">Step 2: Set the ggplot2 Theme<a class="anchor" aria-label="anchor" href="#step-2-set-the-ggplot2-theme"></a>
+<p>For this vignette, we use the ForeSITE <code>_brand.yml</code> and logos bundled with the package, copied into a temporary directory:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Use a temporary directory as the knit root for the entire document so that</span></span>
+<span><span class="co">## subsequent chunks are evaluated with `temp_dir` as their working directory.</span></span>
+<span><span class="va">temp_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"rbranding-ggplot2"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="va">temp_dir</span>, showWarnings <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_knit.html" class="external-link">opts_knit</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>root.dir <span class="op">=</span> <span class="va">temp_dir</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">brand_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"brand_files"</span>, package <span class="op">=</span> <span class="st">"rbranding"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.copy</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">brand_dir</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  <span class="va">temp_dir</span>,</span>
+<span>  recursive <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">brand_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">temp_dir</span>, <span class="st">"_brand.yml"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<p>The brand defines three official colors, which we will also use for the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">brand</span> <span class="op">&lt;-</span> <span class="fu">yaml</span><span class="fu">::</span><span class="fu"><a href="https://yaml.r-lib.org/reference/read_yaml.html" class="external-link">read_yaml</a></span><span class="op">(</span><span class="va">brand_file</span><span class="op">)</span></span>
+<span><span class="va">foresite</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">brand</span><span class="op">$</span><span class="va">color</span><span class="op">$</span><span class="va">palette</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"crimson"</span>, <span class="st">"gold"</span>, <span class="st">"dark-gray"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">foresite</span></span>
+<span><span class="co">#&gt;   crimson      gold dark-gray </span></span>
+<span><span class="co">#&gt; "#A60F2D" "#FDB921" "#4E4E4E"</span></span></code></pre></div>
+</div>
+</section><section class="level2"><h2 id="step-2-set-the-ggplot2-theme">Step 2: Set the ggplot2 Theme<a class="anchor" aria-label="anchor" href="#step-2-set-the-ggplot2-theme"></a>
 </h2>
-<p>Apply the brand theme to ggplot2. This will set colors and fonts
-according to your brand configuration:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Set the brand theme</span></span>
-<span><span class="fu"><a href="../reference/brand_set_ggplot.html">brand_set_ggplot</a></span><span class="op">(</span><span class="va">brand_file</span><span class="op">)</span></span>
+<p>Apply the brand theme to ggplot2. This will set colors and fonts according to your brand configuration:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/brand_set_ggplot.html">brand_set_ggplot</a></span><span class="op">(</span><span class="va">brand_file</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Brand theme applied successfully!</span></span>
 <span><span class="co">#&gt; Custom font loaded: open_sans</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-3-create-ggplot2-visualizations">Step 3: Create ggplot2 Visualizations<a class="anchor" aria-label="anchor" href="#step-3-create-ggplot2-visualizations"></a>
+<p>The brand theme is a regular ggplot2 theme, so you can fine-tune it with <code><a href="https://ggplot2.tidyverse.org/reference/get_theme.html" class="external-link">theme_update()</a></code>. Here we increase the text size for readability, use a light grid so the data stand out, and highlight titles in ForeSITE crimson:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_theme.html" class="external-link">theme_update</a></span><span class="op">(</span></span>
+<span>  text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>,</span>
+<span>  plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">17</span>, face <span class="op">=</span> <span class="st">"bold"</span>, colour <span class="op">=</span> <span class="va">foresite</span><span class="op">[[</span><span class="st">"crimson"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span>, colour <span class="op">=</span> <span class="va">foresite</span><span class="op">[[</span><span class="st">"dark-gray"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,</span>
+<span>  axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span><span class="op">)</span>,</span>
+<span>  panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"#E6E6E6"</span>, linewidth <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span>,</span>
+<span>  panel.grid.minor <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  legend.position <span class="op">=</span> <span class="st">"bottom"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+</section><section class="level2"><h2 id="step-3-create-ggplot2-visualizations">Step 3: Create ggplot2 Visualizations<a class="anchor" aria-label="anchor" href="#step-3-create-ggplot2-visualizations"></a>
 </h2>
-<p>Now create some plots that will automatically use your brand
-theme:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Create a basic scatter plot</span></span>
-<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">wt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
+<p>Now create some plots that will automatically use your brand theme. We map groups to the brand colors with <code>scale_*_manual()</code>. Gold has low contrast on white (1.7:1), so points and bars get a thin dark gray outline to keep them distinguishable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">wt</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">21</span>, size <span class="op">=</span> <span class="fl">3.5</span>, stroke <span class="op">=</span> <span class="fl">0.4</span>, colour <span class="op">=</span> <span class="va">foresite</span><span class="op">[[</span><span class="st">"dark-gray"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">foresite</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Car Weight vs. Miles per Gallon"</span>,</span>
 <span>    subtitle <span class="op">=</span> <span class="st">"Data from the 1974 Motor Trend magazine"</span>,</span>
 <span>    x <span class="op">=</span> <span class="st">"Miles per Gallon"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Weight (1000 lbs)"</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"Cylinders"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span>    fill <span class="op">=</span> <span class="st">"Cylinders"</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggplot2-integration_files/figure-html/basic-plot-1.png" class="r-plt" alt="Branded scatterplot of car weight vs. miles per gallon" width="1200"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Create a bar plot</span></span>
-<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggplot2-integration_files/figure-html/basic-plot-1.png" style="width:100.0%" alt="Scatterplot of car weight versus miles per gallon with points colored crimson, gold, and dark gray by number of cylinders, styled with the ForeSITE brand."></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.75</span>,</span>
+<span>           colour <span class="op">=</span> <span class="va">foresite</span><span class="op">[[</span><span class="st">"dark-gray"</span><span class="op">]</span><span class="op">]</span>, linewidth <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">foresite</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, expand <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/expansion.html" class="external-link">expansion</a></span><span class="op">(</span>mult <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Car Count by Cylinders and Gears"</span>,</span>
 <span>    x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>,</span>
 <span>    y <span class="op">=</span> <span class="st">"Count"</span>,</span>
 <span>    fill <span class="op">=</span> <span class="st">"Gears"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid.major.x <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggplot2-integration_files/figure-html/bar-plot-1.png" class="r-plt" alt="Branded bar plot of car count by cylinders and gears" width="1200"></p>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggplot2-integration_files/figure-html/bar-plot-1.png" style="width:100.0%" alt="Grouped bar chart of car counts by number of cylinders and gears in crimson, gold, and dark gray, styled with the ForeSITE brand."></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="step-4-add-brand-logo-optional">Step 4: Add Brand Logo (Optional)<a class="anchor" aria-label="anchor" href="#step-4-add-brand-logo-optional"></a>
+</div>
+</div>
+</section><section class="level2"><h2 id="step-4-add-brand-logo-optional">Step 4: Add Brand Logo (Optional)<a class="anchor" aria-label="anchor" href="#step-4-add-brand-logo-optional"></a>
 </h2>
-<p>If your brand configuration includes a logo, you can add it to your
-plots:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Add logo to the plot (requires logo in brand.yml and png package)</span></span>
-<span><span class="va">p1_with_logo</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="../reference/brand_add_logo.html">brand_add_logo</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.9</span>, y <span class="op">=</span> <span class="fl">0.1</span>, size <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
+<p>If your brand configuration includes a logo, you can add it to your plots. <code>size</code> is the logo’s height as a fraction of the plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p1_with_logo</span> <span class="op">&lt;-</span> <span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="../reference/brand_add_logo.html">brand_add_logo</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.94</span>, y <span class="op">=</span> <span class="fl">0.88</span>, size <span class="op">=</span> <span class="fl">0.16</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p1_with_logo</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggplot2-integration_files/figure-html/logo-plot-1.png" style="width:100.0%" alt="The car weight scatterplot with the ForeSITE logo in the top-right corner."></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="step-5-interactive-plots-with-plotly">Step 5: Interactive Plots with plotly<a class="anchor" aria-label="anchor" href="#step-5-interactive-plots-with-plotly"></a>
+</div>
+</div>
+</section><section class="level2"><h2 id="step-5-interactive-plots-with-plotly">Step 5: Interactive Plots with plotly<a class="anchor" aria-label="anchor" href="#step-5-interactive-plots-with-plotly"></a>
 </h2>
-<p>You can also create interactive versions of your plots using
-plotly:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>You can also create interactive versions of your plots using plotly:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com" class="external-link">plotly</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Convert ggplot to interactive plotly chart</span></span>
-<span><span class="va">p1_interactive</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html" class="external-link">ggplotly</a></span><span class="op">(</span><span class="va">p1</span>, tooltip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"colour"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">p1_interactive</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/ggplotly.html" class="external-link">ggplotly</a></span><span class="op">(</span><span class="va">p1</span>, tooltip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"fill"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">p1_interactive</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-6-advanced-theming">Step 6: Advanced Theming<a class="anchor" aria-label="anchor" href="#step-6-advanced-theming"></a>
+</section><section class="level2"><h2 id="step-6-advanced-theming">Step 6: Advanced Theming<a class="anchor" aria-label="anchor" href="#step-6-advanced-theming"></a>
 </h2>
-<p>You can customize specific aspects of the theme while maintaining
-brand consistency:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Customize theme elements while keeping brand colors</span></span>
-<span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span>, y <span class="op">=</span> <span class="va">mpg</span>, size <span class="op">=</span> <span class="va">wt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size_continuous</a></span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<p>You can customize specific aspects of the theme while maintaining brand consistency:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span>, y <span class="op">=</span> <span class="va">mpg</span>, size <span class="op">=</span> <span class="va">wt</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">foresite</span><span class="op">[[</span><span class="st">"crimson"</span><span class="op">]</span><span class="op">]</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size_continuous</a></span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
 <span>    title <span class="op">=</span> <span class="st">"Engine Performance Analysis"</span>,</span>
 <span>    subtitle <span class="op">=</span> <span class="st">"Relationship between horsepower, fuel efficiency, and weight"</span>,</span>
@@ -259,20 +249,23 @@ brand consistency:</p>
 <span>    size <span class="op">=</span> <span class="st">"Weight (1000 lbs)"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
-<span>    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,</span>
-<span>    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span>, face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
+<span>    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span><span class="op">)</span>,</span>
 <span>    legend.position <span class="op">=</span> <span class="st">"right"</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggplot2-integration_files/figure-html/advanced-theme-1.png" class="r-plt" alt="Branded scatterplot of engine performance analysis" width="1200"></p>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggplot2-integration_files/figure-html/advanced-theme-1.png" style="width:100.0%" alt="Bubble chart of miles per gallon versus horsepower with crimson bubbles sized by car weight, styled with the ForeSITE brand."></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="step-7-reset-theme">Step 7: Reset Theme<a class="anchor" aria-label="anchor" href="#step-7-reset-theme"></a>
+</div>
+</div>
+</section><section class="level2"><h2 id="step-7-reset-theme">Step 7: Reset Theme<a class="anchor" aria-label="anchor" href="#step-7-reset-theme"></a>
 </h2>
-<p>When you’re done with the brand theme, you can reset to the default
-ggplot2 theme:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>When you’re done with the brand theme, you can reset to the default ggplot2 theme:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Reset to original theme</span></span>
 <span><span class="fu"><a href="../reference/brand_reset_ggplot.html">brand_reset_ggplot</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ggplot2 theme reset to previous state.</span></span>
@@ -288,51 +281,45 @@ ggplot2 theme:</p>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">p4</span><span class="op">)</span></span></code></pre></div>
-<p><img src="ggplot2-integration_files/figure-html/reset-theme-1.png" class="r-plt" alt="Scatterplot of engine performance analysis with default ggplot2 theme" width="1200"></p>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="ggplot2-integration_files/figure-html/reset-theme-1.png" style="width:100.0%" alt="Scatterplot of car weight versus miles per gallon with the default ggplot2 theme and colors."></p>
+</figure>
 </div>
-<div class="section level2">
-<h2 id="best-practices">Best Practices<a class="anchor" aria-label="anchor" href="#best-practices"></a>
-</h2>
-<ol style="list-style-type: decimal">
-<li>
-<strong>Set theme early</strong>: Call
-<code><a href="../reference/brand_set_ggplot.html">brand_set_ggplot()</a></code> at the beginning of your analysis</li>
-<li>
-<strong>Test font loading</strong>: Custom fonts may not work in all
-environments</li>
-<li>
-<strong>Use consistent colors</strong>: Stick to the brand palette
-for consistency</li>
-<li>
-<strong>Reset when needed</strong>: Use
-<code><a href="../reference/brand_reset_ggplot.html">brand_reset_ggplot()</a></code> to return to default themes</li>
-<li>
-<strong>Logo placement</strong>: Position logos where they don’t
-interfere with data</li>
-</ol>
 </div>
-<div class="section level2">
-<h2 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
+</div>
+</section><section class="level2"><h2 id="best-practices">Best Practices<a class="anchor" aria-label="anchor" href="#best-practices"></a>
 </h2>
-<div class="section level3">
-<h3 id="common-issues">Common Issues<a class="anchor" aria-label="anchor" href="#common-issues"></a>
+<ol type="1">
+<li>
+<strong>Set theme early</strong>: Call <code><a href="../reference/brand_set_ggplot.html">brand_set_ggplot()</a></code> at the beginning of your analysis</li>
+<li>
+<strong>Test font loading</strong>: Custom fonts may not work in all environments</li>
+<li>
+<strong>Use consistent colors</strong>: Stick to the brand palette for consistency, and check contrast (e.g., outline light colors such as gold)</li>
+<li>
+<strong>Size figures for their destination</strong>: Match <code>fig.width</code> to the width at which the figure is displayed so text is not scaled down</li>
+<li>
+<strong>Reset when needed</strong>: Use <code><a href="../reference/brand_reset_ggplot.html">brand_reset_ggplot()</a></code> to return to default themes</li>
+<li>
+<strong>Logo placement</strong>: Position logos where they don’t interfere with data</li>
+</ol></section><section class="level2"><h2 id="troubleshooting">Troubleshooting<a class="anchor" aria-label="anchor" href="#troubleshooting"></a>
+</h2>
+<section class="level3"><h3 id="common-issues">Common Issues<a class="anchor" aria-label="anchor" href="#common-issues"></a>
 </h3>
 <ul>
 <li>
-<strong>Font loading fails</strong>: Some environments may not
-support custom Google Fonts</li>
+<strong>Font loading fails</strong>: Some environments may not support custom Google Fonts</li>
 <li>
-<strong>Logo not found</strong>: Ensure the logo path in
-<code>_brand.yml</code> is correct and the file exists</li>
+<strong>Text looks too small</strong>: The figure is wider than where it is displayed, or <code>showtext</code> renders at a different resolution than the figure; set <code>fig.showtext = TRUE</code> in knitr/Quarto documents</li>
 <li>
-<strong>Colors not applied</strong>: Check that your
-<code>_brand.yml</code> file follows the correct schema</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="solutions">Solutions<a class="anchor" aria-label="anchor" href="#solutions"></a>
+<strong>Logo not found</strong>: Ensure the logo path in <code>_brand.yml</code> is correct and the file exists</li>
+<li>
+<strong>Colors not applied</strong>: Check that your <code>_brand.yml</code> file follows the correct schema</li>
+</ul></section><section class="level3"><h3 id="solutions">Solutions<a class="anchor" aria-label="anchor" href="#solutions"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Disable custom fonts if having issues</span></span>
 <span><span class="fu"><a href="../reference/brand_set_ggplot.html">brand_set_ggplot</a></span><span class="op">(</span>use_fonts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -341,29 +328,104 @@ support custom Google Fonts</li>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">doc</span><span class="op">$</span><span class="va">color</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">doc</span><span class="op">$</span><span class="va">typography</span><span class="op">)</span></span></code></pre></div>
 </div>
-</div>
-<div class="section level2">
-<h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</section></section><section class="level2"><h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
 </h2>
-<p>The <code>rbranding</code> package makes it easy to create
-consistent, branded visualizations across your organization. By
-following this workflow, you can ensure that all your ggplot2 and plotly
-charts maintain brand consistency while being accessible and
-professional.</p>
-<p>For more information about the brand.yml schema, visit: <a href="https://github.com/posit-dev/brand-yml/" class="external-link uri">https://github.com/posit-dev/brand-yml/</a></p>
-</div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+<p>The <code>rbranding</code> package makes it easy to create consistent, branded visualizations across your organization. By following this workflow, you can ensure that all your ggplot2 and plotly charts maintain brand consistency while being accessible and professional.</p>
+<p>For more information about the brand.yml schema, visit: https://github.com/posit-dev/brand-yml/</p>
+</section><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
-
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Willy Ray, Andrew Pulsipher, Centers for Disease Control and Prevention’s Center for Forecasting and Outbreak Analytics.</p>
+  <p>Developed by Willy Ray, Andrew Pulsipher, George Vega Yon, Centers for Disease Control and Prevention’s Center for Forecasting and Outbreak Analytics. Part of the <a href="https://github.com/EpiForeSITE" class="external-link">ForeSITE</a> software ecosystem. This project was made possible by cooperative agreement CDC-RFA-FT-23-0069 from the CDC’s Center for Forecasting and Outbreak Analytics. Its contents are solely the responsibility of the authors and do not necessarily represent the official views of the Centers for Disease Control and Prevention.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

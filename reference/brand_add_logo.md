@@ -21,8 +21,8 @@ brand_add_logo(x = 0.9, y = 0.1, size = 0.05, logo_type = "icon")
 
 - size:
 
-  Numeric. Size of the logo as a fraction of the plot (0-1 scale).
-  Default is 0.05.
+  Numeric. Height of the logo as a fraction of the plot (0-1 scale); the
+  width follows the image's aspect ratio. Default is 0.05.
 
 - logo_type:
 
@@ -71,9 +71,9 @@ setwd(old_wd) # Restore original working directory
 #> Created files './rbranding_config.yml' and placeholder '_brand.yml' in current working directory
 #> Checking remote version... 
 #> Local branding file overwritten with remote file
-#> Copied blank.txt to /tmp/RtmpCM1nIW
-#> Copied icon.png to /tmp/RtmpCM1nIW
-#> Copied logo.png to /tmp/RtmpCM1nIW
+#> Copied blank.txt to /tmp/Rtmp3QsUu8
+#> Copied icon.png to /tmp/Rtmp3QsUu8
+#> Copied logo.png to /tmp/Rtmp3QsUu8
 #> Brand theme applied successfully!
 #> Custom font loaded: open_sans
 

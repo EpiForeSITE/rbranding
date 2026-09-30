@@ -73,13 +73,13 @@ histogram](vignette-screenshots/shinyapp.jpg)
 ``` r
 
 get_template("shiny_complex")
-shiny::shinyAppFile("app.r")
+shiny::shinyAppFile("app.R")
 ```
 
 Provides a more complex Shiny app with multiple tabs, allowing users to
 interactively adjust parameters and view results in different formats.
 
-### `shiny_wastewater`: Wasterwater Data Visualization Shiny App
+### `shiny_wastewater`: Wastewater Data Visualization Shiny App
 
 ![Screenshot of a complex branded Shiny app visualizing wastewater
 data](vignette-screenshots/wastewater.jpg)
