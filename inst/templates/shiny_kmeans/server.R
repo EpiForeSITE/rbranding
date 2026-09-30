@@ -26,10 +26,10 @@ function(input, output, session) {
     centers_data$cluster <- factor(seq_len(nrow(centers_data)))
     
     # Create ggplot with branded theme
-    p <- ggplot(plot_data, aes_string(x = input$xcol, y = input$ycol, color = "cluster")) +
+    p <- ggplot(plot_data, aes(x = .data[[input$xcol]], y = .data[[input$ycol]], color = cluster)) +
       geom_point(size = 3, alpha = 0.8) +
       geom_point(data = centers_data, 
-                 aes_string(x = input$xcol, y = input$ycol, color = "cluster"),
+                 aes(x = .data[[input$xcol]], y = .data[[input$ycol]], color = cluster),
                  shape = 4, size = 6, stroke = 2, show.legend = FALSE) +
       labs(
         title = "Iris K-means Clustering",

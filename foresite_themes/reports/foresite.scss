@@ -1,0 +1,28 @@
+/*-- scss:defaults --*/
+// Colors and fonts are provided by _brand.yml. Note that $brand-* variables
+// are not yet defined in this section; use them under scss:rules instead.
+
+/*-- scss:rules --*/
+// Title banner in ForeSITE crimson with a gold accent, echoing the logo.
+.quarto-title-banner {
+  background-color: $brand-crimson;
+  color: $brand-white;
+  border-bottom: 6px solid $brand-gold;
+
+  h1, h2, .title, .subtitle, a {
+    color: $brand-white;
+  }
+}
+
+h2 {
+  border-bottom: 2px solid $brand-gold;
+  padding-bottom: 0.25rem;
+}
+
+// Funding acknowledgment block (see template.qmd)
+.foresite-acknowledgment {
+  font-size: 0.875rem;
+  border-top: 1px solid $brand-light-gray;
+  margin-top: 3rem;
+  padding-top: 1rem;
+}

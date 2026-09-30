@@ -2,10 +2,9 @@
 library(rbranding)
 library(ggplot2)
 
-# Initialize rbranding and set up theme from _brand.yml
-# this example is so simple that we don't need to translate
-# any of the keys from _brand.yml into the theme.
-theme <- bslib::bs_theme(brand = TRUE)
+# Create a Bootstrap theme from _brand.yml (discovered automatically);
+# it is passed to the page below so the UI uses the brand colors and fonts
+theme <- bslib::bs_theme(version = 5, brand = TRUE)
 
 # Extract the path of the discovered _brand.yml file
 brand_info <- attr(theme, "brand")
@@ -19,19 +18,18 @@ brand_set_ggplot()
 # a categorical variable
 vars <- setdiff(names(iris), "Species")
 
-pageWithSidebar(
-  headerPanel(
-    tagList(
-      tags$script(HTML("document.documentElement.setAttribute('lang', 'en');")),
-      'Iris k-means clustering'
+fluidPage(
+  theme = theme,
+  lang = "en",
+  titlePanel("Iris k-means clustering"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput('xcol', 'X Variable', vars),
+      selectInput('ycol', 'Y Variable', vars, selected = vars[[2]]),
+      numericInput('clusters', 'Cluster count', 3, min = 1, max = 9)
+    ),
+    mainPanel(
+      plotOutput('plot1')
     )
-  ),
-  sidebarPanel(
-    selectInput('xcol', 'X Variable', vars),
-    selectInput('ycol', 'Y Variable', vars, selected = vars[[2]]),
-    numericInput('clusters', 'Cluster count', 3, min = 1, max = 9)
-  ),
-  mainPanel(
-    plotOutput('plot1')
   )
 )

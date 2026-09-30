@@ -1,26 +1,31 @@
 ---
-output: github_document
+format:
+  gfm:
+    wrap: preserve
+    # badge URLs have no file extension; don't let pandoc append ".png"
+    default-image-extension: ""
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    fig.path: "man/figures/README-"
+    out.width: "100%"
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
+<!-- README.md is generated from README.qmd. Please edit that file and run `quarto render README.qmd` -->
 
 # rbranding
 
 <!-- badges: start -->
 [![ForeSITE Group](https://github.com/EpiForeSITE/software/raw/e82ed88f75e0fe5c0a1a3b38c2b94509f122019c/docs/assets/foresite-software-badge.svg)](https://github.com/EpiForeSITE)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/EpiForeSITE/rbranding/blob/master/LICENSE.md)
+[![CRAN status](https://www.r-pkg.org/badges/version/rbranding)](https://CRAN.R-project.org/package=rbranding)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/rbranding)](https://CRAN.R-project.org/package=rbranding)
+[![CRAN monthly downloads](https://cranlogs.r-pkg.org/badges/last-month/rbranding)](https://CRAN.R-project.org/package=rbranding)
+[![R-universe](https://epiforesite.r-universe.dev/badges/rbranding)](https://epiforesite.r-universe.dev/rbranding)
 [![R-CMD-check](https://github.com/EpiForeSITE/rbranding/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EpiForeSITE/rbranding/actions/workflows/R-CMD-check.yaml)
 [![pkgdown](https://github.com/EpiForeSITE/rbranding/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/EpiForeSITE/rbranding/actions/workflows/pkgdown.yaml)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/EpiForeSITE/rbranding/blob/main/LICENSE.md)
 <!-- badges: end -->
 
 The rbranding package is a tool for building projects that are visually consistent, accessible, and easy to maintain. It provides functions for managing branding assets, applying organization-wide themes using '_brand.yml', and setting up new projects with accessibility features and correct branding. It supports 'Quarto', 'Shiny', and 'RMarkdown' projects, and integrates with other packages such as 'ggplot2' for producing branded graphics and visualizations.
@@ -67,6 +72,10 @@ These same `get_brand_*()` functions will also update the local `_brand.yml` fil
 ## Use in Shiny Apps
 
 Load the branding YAML and apply the theme in your UI/server code.
+
+## ForeSITE Themes
+
+The [`foresite_themes/`](https://github.com/EpiForeSITE/rbranding/tree/main/foresite_themes) folder contains the official ForeSITE brand (`_brand.yml`, logos) along with ready-to-use themes for pkgdown sites and Quarto reports. See its [README](https://github.com/EpiForeSITE/rbranding/blob/main/foresite_themes/README.md) for usage instructions.
 
 ## Project Documentation
 

@@ -14,7 +14,7 @@ rbranding.Rproj
 bak_brand.yml
 *.Rcheck/**
 docs
-pkgdown
+/pkgdown
 instructions
 inst/doc
 *.zip
@@ -24,3 +24,8 @@ notes/*
 weekly_update.md
 .claude/settings.local.json
 
+# Raw brand materials (large source files; web-ready copies live in foresite_themes/)
+foresite_logos_and_materials/
+vignettes/*.html
+vignettes/*_files/
+README_files/

@@ -1,11 +1,21 @@
-url: https://epiforesite.github.io/rbranding/
+# ForeSITE pkgdown theme
+#
+# Usage (see ../README.md for details):
+#   1. Copy `foresite_themes/_brand.yml` and `foresite_themes/assets/` into
+#      your package (e.g., under `pkgdown/brand/`), and add that folder to
+#      `.Rbuildignore`.
+#   2. Merge the settings below into your package's `_pkgdown.yml`, adjusting
+#      `url` and the `brand` path.
+#   3. Build with `pkgdown::build_site()` (requires pkgdown >= 2.1.0 and the
+#      brand.yml R package).
 
-# ForeSITE pkgdown theme (see foresite_themes/pkgdown/_pkgdown.yml)
+url: https://epiforesite.github.io/<package>/
+
 template:
   bootstrap: 5
   light-switch: false
   bslib:
-    brand: foresite_themes/_brand.yml
+    brand: pkgdown/brand/_brand.yml
 
 navbar:
   bg: light

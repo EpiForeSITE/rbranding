@@ -1,9 +1,13 @@
 ---
 title: "Accessibility Guidelines"
-output: rmarkdown::html_vignette
+format:
+  html:
+    # Keep the installed vignettes small (the pkgdown site applies the full theme)
+    minimal: true
+brand: false
 vignette: >
   %\VignetteIndexEntry{Accessibility Guidelines}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 This is a practical guide to **designing and implementing accessible dashboards using R**.

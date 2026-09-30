@@ -1,9 +1,13 @@
 ---
 title: "rbranding"
-output: rmarkdown::html_vignette
+format:
+  html:
+    # Keep the installed vignettes small (the pkgdown site applies the full theme)
+    minimal: true
+brand: false
 vignette: >
   %\VignetteIndexEntry{rbranding}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 

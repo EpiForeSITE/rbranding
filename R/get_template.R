@@ -86,7 +86,8 @@ get_template <- function(template_name = NULL, install_to = NULL) {
 
   # Copy each file to the target directory
   for (f in files) {
-    file.copy(f, file.path(target_dir, basename(f)), overwrite = TRUE)
+    # recursive = TRUE also copies subdirectories (e.g., shiny_complex/www)
+    file.copy(f, target_dir, overwrite = TRUE, recursive = TRUE)
     message("Copied ", basename(f), " to ", target_dir)
   }
 
