@@ -25,6 +25,17 @@ the user's project directory.
 directory into the user's current working directory or a
 specified subdirectory.
 }
+\section{Known issue on Windows}{
+
+Templates that build a theme from \verb{_brand.yml} with
+\code{bslib::bs_theme(brand = TRUE)} download the brand's Google Fonts
+(\code{source: google}). On Windows this can fail with
+\verb{Failed to open file ... font?kit=...} because of a bug in the sass package
+(\href{https://github.com/rstudio/sass/issues/157}{rstudio/sass#157}). Until it
+is fixed, remove or replace the Google font entries under \code{typography} in
+your \verb{_brand.yml} when running these templates on Windows.
+}
+
 \examples{
 if (interactive()) {
   get_template() # prompts user to select an example

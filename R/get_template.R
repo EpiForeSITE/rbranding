@@ -14,6 +14,15 @@
 #'
 #' @returns NULL. Called for its side effects: copying template files into
 #' the user's project directory.
+#'
+#' @section Known issue on Windows:
+#' Templates that build a theme from `_brand.yml` with
+#' `bslib::bs_theme(brand = TRUE)` download the brand's Google Fonts
+#' (`source: google`). On Windows this can fail with
+#' `Failed to open file ... font?kit=...` because of a bug in the sass package
+#' ([rstudio/sass#157](https://github.com/rstudio/sass/issues/157)). Until it
+#' is fixed, remove or replace the Google font entries under `typography` in
+#' your `_brand.yml` when running these templates on Windows.
 #' @export
 #'
 #' @examples
