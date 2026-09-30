@@ -10,6 +10,7 @@
 * The `shiny_kmeans` template now applies the `_brand.yml` theme to its UI (it was created but never used) and no longer uses the deprecated `ggplot2::aes_string()`.
 * New tests cover template installation (including subdirectories), the Shiny templates' brand theming, and `brand_add_logo()` (whose test previously never ran because the logo file was not created).
 * Refreshed the screenshots in the Templates vignette to match the current templates.
+* Documented a known issue on Windows: templates that build a theme from `_brand.yml` fail when downloading Google Fonts ([rstudio/sass#157](https://github.com/rstudio/sass/issues/157)). The template tests no longer download fonts.
 
 # rbranding 0.1.0
 

@@ -20,6 +20,12 @@ knitr::opts_chunk$set(
 
 This vignette provides an overview of the templates available in the `rbranding` package. Use the `get_template()` function to install the template of your choice by specifying the `template_name` argument.
 
+::: {.callout-warning}
+## Known issue on Windows
+
+Templates that build a theme from `_brand.yml` with `bslib::bs_theme(brand = TRUE)` (`shiny_basic`, `shiny_kmeans`, `shiny_wastewater`, `quarto_website`, and `quarto_ggplot2`) download the brand's Google Fonts (`source: google`). On Windows this can fail with `Failed to open file ... font?kit=...` because of a bug in the sass package ([rstudio/sass#157](https://github.com/rstudio/sass/issues/157)). Until it is fixed, remove or replace the Google font entries under `typography` in your `_brand.yml` when running these templates on Windows.
+:::
+
 
 ## Quarto Templates
 

@@ -10,6 +10,14 @@ setup_template <- function(template_name) {
   brand_dir <- system.file("brand_files", package = "rbranding")
   file.copy(list.files(brand_dir, full.names = TRUE), dir,
             recursive = TRUE, overwrite = TRUE)
+
+  # Drop the typography section so building the theme does not download Google
+  # Fonts. The tests only check colors, and the download fails on Windows
+  # (font URLs contain a "?" that is invalid in file names) and offline.
+  brand_file <- file.path(dir, "_brand.yml")
+  brand <- yaml::read_yaml(brand_file)
+  brand$typography <- NULL
+  yaml::write_yaml(brand, brand_file)
   dir
 }
 
