@@ -75,6 +75,12 @@
 
 
     <p>This vignette provides an overview of the templates available in the <code>rbranding</code> package. Use the <code><a href="../reference/get_template.html">get_template()</a></code> function to install the template of your choice by specifying the <code>template_name</code> argument.</p>
+<div>
+<blockquote>
+<p><strong>Known issue on Windows</strong></p>
+<p>Templates that build a theme from <code>_brand.yml</code> with <code>bslib::bs_theme(brand = TRUE)</code> (<code>shiny_basic</code>, <code>shiny_kmeans</code>, <code>shiny_wastewater</code>, <code>quarto_website</code>, and <code>quarto_ggplot2</code>) download the brand’s Google Fonts (<code>source: google</code>). On Windows this can fail with <code>Failed to open file ... font?kit=...</code> because of a bug in the sass package (<a href="https://github.com/rstudio/sass/issues/157" class="external-link">rstudio/sass#157</a>). Until it is fixed, remove or replace the Google font entries under <code>typography</code> in your <code>_brand.yml</code> when running these templates on Windows.</p>
+</blockquote>
+</div>
 <section class="level2"><h2 id="quarto-templates">Quarto Templates<a class="anchor" aria-label="anchor" href="#quarto-templates"></a>
 </h2>
 <section class="level3"><h3 id="quarto_website-simple-quarto-website-template">

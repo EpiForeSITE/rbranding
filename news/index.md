@@ -28,6 +28,10 @@
   created).
 - Refreshed the screenshots in the Templates vignette to match the
   current templates.
+- Documented a known issue on Windows: templates that build a theme from
+  `_brand.yml` fail when downloading Google Fonts
+  ([rstudio/sass#157](https://github.com/rstudio/sass/issues/157)). The
+  template tests no longer download fonts.
 
 ## rbranding 0.1.0
 

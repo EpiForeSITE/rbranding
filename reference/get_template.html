@@ -76,6 +76,18 @@ will be used.</p></dd>
     <p>NULL. Called for its side effects: copying template files into
 the user's project directory.</p>
     </div>
+    <div class="section level2">
+    <h2 id="known-issue-on-windows">Known issue on Windows<a class="anchor" aria-label="anchor" href="#known-issue-on-windows"></a></h2>
+
+
+<p>Templates that build a theme from <code>_brand.yml</code> with
+<code>bslib::bs_theme(brand = TRUE)</code> download the brand's Google Fonts
+(<code>source: google</code>). On Windows this can fail with
+<code>Failed to open file ... font?kit=...</code> because of a bug in the sass package
+(<a href="https://github.com/rstudio/sass/issues/157" class="external-link">rstudio/sass#157</a>). Until it
+is fixed, remove or replace the Google font entries under <code>typography</code> in
+your <code>_brand.yml</code> when running these templates on Windows.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -85,9 +97,9 @@ the user's project directory.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">tmpdir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"wastewater_test"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">get_template</span><span class="op">(</span>template_name <span class="op">=</span> <span class="st">"shiny_wastewater"</span>, install_to <span class="op">=</span> <span class="va">tmpdir</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied app.R to /tmp/Rtmp3QsUu8/wastewater_test</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied icon.png to /tmp/Rtmp3QsUu8/wastewater_test</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied logo.png to /tmp/Rtmp3QsUu8/wastewater_test</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied app.R to /tmp/RtmpQEvQc3/wastewater_test</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied icon.png to /tmp/RtmpQEvQc3/wastewater_test</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Copied logo.png to /tmp/RtmpQEvQc3/wastewater_test</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Cleanup</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="va">tmpdir</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>

@@ -83,7 +83,7 @@ if (interactive()) {
 # Non-interactive example
 tmpdir <- file.path(tempdir(), "brand_files")
 brand_init(install_path = tmpdir)
-#> Created files '/tmp/Rtmp3QsUu8/brand_files/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/Rtmp3QsUu8/brand_files
+#> Created files '/tmp/RtmpQEvQc3/brand_files/rbranding_config.yml' and placeholder '_brand.yml' in /tmp/RtmpQEvQc3/brand_files
 
 get_brand_public(
  config_file = file.path(tmpdir, "rbranding_config.yml"),
@@ -92,7 +92,7 @@ get_brand_public(
  backup_folder = tmpdir
 )
 #> Checking remote version... 
-#> Backup of local branding file saved to '/tmp/Rtmp3QsUu8/brand_files/bak_brand.yml'
+#> Backup of local branding file saved to '/tmp/RtmpQEvQc3/brand_files/bak_brand.yml'
 #> Local branding file overwritten with remote file
 
 # Cleanup
