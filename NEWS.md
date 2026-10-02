@@ -3,6 +3,7 @@
 * README and vignettes are now built with Quarto (`README.qmd`, `vignettes/*.qmd`, `VignetteBuilder: quarto`). Building the vignettes requires the Quarto CLI.
 * Added CRAN, download, and R-universe badges to the README.
 * New `foresite_themes/` folder with the official ForeSITE `_brand.yml`, logos, and themes for pkgdown sites and Quarto reports (HTML and PDF). The package website now uses the ForeSITE pkgdown theme.
+* Added a reusable GitHub Actions workflow for downstream packages to sync the canonical ForeSITE pkgdown brand and open a pull request when it changes.
 * The ForeSITE brand is bundled in `inst/brand_files/` and used by the ggplot2 vignette, which no longer needs network access and has larger, clearer figures.
 * `brand_add_logo()` now keeps the logo's aspect ratio; `size` sets its height.
 * `get_template()` now copies template subdirectories (e.g., `shiny_complex/www/`).
