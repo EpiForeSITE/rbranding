@@ -1,0 +1,63 @@
+name: Sync ForeSITE brand
+
+on:
+  workflow_call:
+    inputs:
+      source-ref:
+        description: Revision of EpiForeSITE/rbranding that contains the canonical brand
+        required: false
+        default: main
+        type: string
+
+# A caller must grant these permissions as well. A reusable workflow cannot
+# increase permissions granted by its caller.
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    name: Update pkgdown brand files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out downstream package
+        uses: actions/checkout@v4
+        with:
+          path: downstream
+
+      - name: Check out canonical ForeSITE brand
+        uses: actions/checkout@v4
+        with:
+          repository: EpiForeSITE/rbranding
+          ref: ${{ inputs.source-ref }}
+          path: rbranding
+
+      - name: Copy canonical brand files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p downstream/pkgdown/brand/assets/logos
+          cp rbranding/foresite_themes/_brand.yml downstream/pkgdown/brand/_brand.yml
+          rsync --archive --delete \
+            rbranding/foresite_themes/assets/logos/ \
+            downstream/pkgdown/brand/assets/logos/
+
+      - name: Open pull request when the brand changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          path: downstream
+          token: ${{ github.token }}
+          commit-message: "chore: sync ForeSITE brand"
+          branch: chore/sync-foresite-brand
+          delete-branch: true
+          title: "chore: sync ForeSITE brand"
+          body: |
+            Updates `pkgdown/brand/` from the canonical ForeSITE brand in
+            [EpiForeSITE/rbranding](https://github.com/EpiForeSITE/rbranding)
+            at `${{ inputs.source-ref }}`.
+
+            This pull request was created automatically by the ForeSITE brand
+            sync workflow.
+          add-paths: |
+            pkgdown/brand/_brand.yml
+            pkgdown/brand/assets/logos

@@ -87,6 +87,45 @@ rbranding::get_brand_public(run_interactive = FALSE)
 This downloads only `_brand.yml`. Copy the `assets/logos/` folder as well if
 you use the logos.
 
+## Keeping downstream package brands in sync
+
+Downstream packages use a **pull-based** sync: each package schedules a small
+workflow that calls the reusable workflow in this repository. The caller checks
+out the downstream package, copies the canonical `_brand.yml` and
+`assets/logos/` into `pkgdown/brand/`, and opens or updates a pull request only
+when those files differ. No cross-repository secret is required; the caller's
+`GITHUB_TOKEN` can create a pull request in its own repository.
+
+Downstream packages track `main` for now. That keeps the published brand
+current without release-management overhead. If we later publish versioned
+brand releases, change both references below to the chosen tag.
+
+Create `.github/workflows/sync-foresite-brand.yml` in a downstream package:
+
+```yaml
+name: Sync ForeSITE brand
+
+on:
+  schedule:
+    - cron: "17 5 * * 1" # weekly, Monday at 05:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    uses: EpiForeSITE/rbranding/.github/workflows/sync-foresite-brand.yml@main
+    with:
+      source-ref: main
+```
+
+The first rollout still needs the pkgdown configuration, README acknowledgement,
+and `NEWS.md` entry described above. The sync workflow deliberately manages
+only `pkgdown/brand/_brand.yml` and `pkgdown/brand/assets/logos/`, so package
+specific pkgdown settings remain under each package's control.
+
 ## Quarto report theme
 
 Requires Quarto ≥ 1.6. This folder is a Quarto project, so `_brand.yml` is
