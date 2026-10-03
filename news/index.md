@@ -9,6 +9,9 @@
 - New `foresite_themes/` folder with the official ForeSITE `_brand.yml`,
   logos, and themes for pkgdown sites and Quarto reports (HTML and PDF).
   The package website now uses the ForeSITE pkgdown theme.
+- Added a reusable GitHub Actions workflow for downstream packages to
+  sync the canonical ForeSITE pkgdown brand and open a pull request when
+  it changes.
 - The ForeSITE brand is bundled in `inst/brand_files/` and used by the
   ggplot2 vignette, which no longer needs network access and has larger,
   clearer figures.
